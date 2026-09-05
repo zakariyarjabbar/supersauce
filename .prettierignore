@@ -1,0 +1,11 @@
+node_modules
+.next
+.impeccable
+reference-photos
+assets
+public
+package-lock.json
+AGENTS.md
+CLAUDE.md
+deliverables
+test-results

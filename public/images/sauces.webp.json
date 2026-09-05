@@ -1,0 +1,7 @@
+{
+  "prompt": "Use case: ads-marketing\nAsset type: website food photograph for a fictional Iraqi fast-food chain\nPrimary request: Photoreal food commercial close-up of three small white ramekins filled respectively with orange burger sauce, rich yellow cheese sauce, and red chili sauce.\nScene/backdrop: A pale warm ivory tabletop, color #f7f3eb.\nSubject details: One golden fry is dipped into the orange sauce diagonally from the upper right; no hand is needed. The sauces have rich, creamy, appetizing texture.\nStyle/medium: Premium professional commercial food photography.\nComposition/framing: Landscape 3:2, close-up arranged composition, all three ramekins fully visible and fully inside the image.\nLighting/mood: Directional natural daylight, realistic shadows.\nConstraints: No text, logos, or watermark. No hands or people.",
+  "source": "assets/source/sauces.png",
+  "type": "ai-generated-concept",
+  "generator": "OpenAI image generation",
+  "note": "Presentation imagery; not a verified photograph of the restaurant or its products."
+}

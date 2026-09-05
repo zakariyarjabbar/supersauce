@@ -1,0 +1,7 @@
+{
+  "prompt": "Use case: product-mockup. Asset: menu food photo for a bold red and cream Iraqi fast-food brand. Photorealistic commercial studio photography of one crispy fried chicken burger with an irregular golden crunchy chicken fillet extending beyond the glossy sesame brioche bun, shredded green lettuce, pickles and thick creamy sauce. Entire burger centered, generous negative space on all sides. Seamless warm off-white background hex #f7f3eb and matching tabletop, subtle realistic contact shadow. Three-quarter frontal angle, camera at food level, beautiful warm crisp lighting, rich appetizing texture. Landscape 3:2. No text, no logos, no utensils, no watermark. Actual edible food rather than CGI.",
+  "source": "assets/source/chicken-burger.png",
+  "type": "ai-generated-concept",
+  "generator": "OpenAI image generation",
+  "note": "Presentation imagery; not a verified photograph of the restaurant or its products."
+}

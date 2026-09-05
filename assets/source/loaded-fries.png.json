@@ -1,0 +1,7 @@
+{
+  "prompt": "Use case: product-mockup. Asset: food menu photograph. An appetizing generous pile of golden crispy French fries covered with flowing cheddar sauce, orange signature sauce, small pieces of crispy fried chicken and a few jalapeno rings, in a minimal matte red open paper tray without any printing. Entire tray visible centered, not cut off, filling about 70 percent frame. Clean seamless warm off-white background #f7f3eb and matching ground with a soft natural shadow. Premium fast food commercial photography, warm studio light, three-quarter view looking slightly down, crisp detailed food texture. Landscape 3:2. No text, no brands, no decorative props, no watermark, photorealistic not CGI.",
+  "source": "assets/source/loaded-fries.png",
+  "type": "ai-generated-concept",
+  "generator": "OpenAI image generation",
+  "note": "Presentation imagery; not a verified photograph of the restaurant or its products."
+}
