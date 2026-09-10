@@ -39,11 +39,9 @@ for (const [name, viewport] of [
     });
   }
   await page.goto(`${base}/menu/smoky-burger`, { waitUntil: "networkidle" });
-  await page.getByRole("button", { name: /أضف لطلبك/ }).click();
-  await page.goto(`${base}/order`, { waitUntil: "networkidle" });
+  await page.getByRole("button", { name: "اطلب سموكي برغر", exact: true }).click();
   await page.screenshot({
-    path: `.impeccable/review/${name}-order.png`,
-    fullPage: true,
+    path: `.impeccable/review/${name}-order-options.png`,
     animations: "disabled",
   });
   await page.close();

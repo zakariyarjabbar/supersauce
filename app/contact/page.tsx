@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Instagram,
-  ArrowUpLeft,
-  MapPin,
-  ArrowLeft,
-  MessageCircle,
-  ShoppingBag,
-} from "lucide-react";
+import { Instagram, ArrowUpLeft, MapPin, ArrowLeft, MessageCircle, Utensils } from "lucide-react";
 import { PageIntro } from "@/components/brand";
 import { ContactForm } from "@/components/contact-form";
 import { site } from "@/lib/site";
@@ -66,9 +59,9 @@ export default async function ContactPage({
             <ArrowLeft size={21} />
           </Link>
           <div className="contact-order-note">
-            <ShoppingBag size={24} />
+            <Utensils size={24} />
             <h3>جوعان ومستعجل؟</h3>
-            <p>تصفح المنيو وجهّز وجبتك بخطوات بسيطة.</p>
+            <p>تصفح المنيو واختار وجبتك، بعدها تواصل مباشرة مع المطعم للطلب.</p>
             <Link className="text-link" href="/menu">
               يلا نختار <ArrowLeft size={18} />
             </Link>

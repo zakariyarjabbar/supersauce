@@ -3,7 +3,7 @@ import "@fontsource-variable/alexandria";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { CartProvider } from "@/components/cart-provider";
+import { OrderProvider } from "@/components/order-options";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -38,17 +38,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           hidden
           dangerouslySetInnerHTML={{
             __html:
-              "<!-- THESIS: The Iraqi red restaurant campaign becomes a food-first website. OWN-WORLD: saturated red, butter yellow stars, cream paper, Alexandria Arabic, checkerboard seams. STORY: crave a burger, explore the menu, build a demo meal, find the brand. FIRST VIEWPORT: cream navigation, enormous right-hand Arabic headline, left-hand sculptural burger, yellow action and star stamp. FORM: reference-pinned brand campaign, seed fe71bef7; user delegated mock content. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->",
+              "<!-- THESIS: The Iraqi red restaurant campaign becomes a food-first website. OWN-WORLD: saturated red, butter yellow stars, cream paper, Alexandria Arabic, checkerboard seams. STORY: crave a burger, explore the menu, choose a contact channel, find the brand. FIRST VIEWPORT: cream navigation, enormous right-hand Arabic headline, left-hand sculptural burger, yellow action and star stamp. FORM: reference-pinned brand campaign, seed fe71bef7; user delegated mock content. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->",
           }}
         />
         <a href="#main" className="skip-link">
           انتقل إلى المحتوى
         </a>
-        <CartProvider>
+        <OrderProvider>
           <Header />
           <main id="main">{children}</main>
           <Footer />
-        </CartProvider>
+        </OrderProvider>
       </body>
     </html>
   );

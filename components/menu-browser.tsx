@@ -3,14 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { ArrowLeft, Plus, Heart, Search, X, SlidersHorizontal, Flame, Minus } from "lucide-react";
+import { ArrowLeft, Search, X, SlidersHorizontal, Flame } from "lucide-react";
 import { categories, menuItems, type MenuItem, type Category } from "@/lib/menu";
 import { formatPrice, normalizeArabic } from "@/lib/site";
-import { useCart } from "./cart-provider";
+import { OrderButton } from "./order-options";
 
 export function FoodCard({ item }: { item: MenuItem }) {
-  const { add, favorites, toggleFavorite } = useCart();
-  const favorite = favorites.includes(item.slug);
   return (
     <article className="food-card">
       <div className={`food-photo ${item.category === "burgers" ? "red-photo" : ""}`}>
@@ -29,14 +27,6 @@ export function FoodCard({ item }: { item: MenuItem }) {
             {item.tag}
           </span>
         )}
-        <button
-          className={`favorite icon-button ${favorite ? "selected" : ""}`}
-          aria-label={`${favorite ? "إزالة" : "حفظ"} ${item.name} ${favorite ? "من" : "في"} المفضلة`}
-          aria-pressed={favorite}
-          onClick={() => toggleFavorite(item.slug)}
-        >
-          <Heart size={19} fill={favorite ? "currentColor" : "none"} />
-        </button>
       </div>
       <div className="food-info">
         <h3>
@@ -47,13 +37,7 @@ export function FoodCard({ item }: { item: MenuItem }) {
           <span className="price">
             <b dir="ltr">{formatPrice(item.price)}</b> <small>د.ع</small>
           </span>
-          <button
-            className="add-button"
-            onClick={() => add(item.slug)}
-            aria-label={`أضف ${item.name} إلى الطلب`}
-          >
-            <Plus size={22} />
-          </button>
+          <OrderButton item={item} className="food-order-button" />
         </div>
       </div>
     </article>
@@ -98,12 +82,9 @@ export function MenuBrowser() {
   );
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("recommended");
-  const [savedOnly, setSavedOnly] = useState(false);
-  const { favorites } = useCart();
   const items = menuItems.filter(
     (item) =>
       (category === "all" || item.category === category) &&
-      (!savedOnly || favorites.includes(item.slug)) &&
       normalizeArabic(`${item.name} ${item.description}`).includes(normalizeArabic(query)),
   );
   if (sort !== "recommended")
@@ -118,7 +99,6 @@ export function MenuBrowser() {
   const reset = () => {
     changeCategory("all");
     setQuery("");
-    setSavedOnly(false);
     setSort("recommended");
   };
   return (
@@ -142,14 +122,6 @@ export function MenuBrowser() {
             </button>
           )}
         </div>
-        <button
-          className={`filter-button ${savedOnly ? "active" : ""}`}
-          aria-pressed={savedOnly}
-          onClick={() => setSavedOnly(!savedOnly)}
-        >
-          <Heart size={19} fill={savedOnly ? "currentColor" : "none"} /> المفضلة
-          {favorites.length ? ` (${favorites.length})` : ""}
-        </button>
       </div>
       <div className="category-tabs" aria-label="تصنيفات المنيو">
         {categories.map((c) => (
@@ -184,12 +156,8 @@ export function MenuBrowser() {
       ) : (
         <div className="empty-state">
           <Search size={44} />
-          <h2>{savedOnly ? "بعدك ما اخترت مفضلتك" : "ما لقينا هالاختيار"}</h2>
-          <p>
-            {savedOnly
-              ? "اضغط على القلب جنب الوجبة حتى ترجع إلها بسهولة."
-              : "جرّب اسم أقصر، أو شوف كل المنيو."}
-          </p>
+          <h2>ما لقينا هالاختيار</h2>
+          <p>جرّب اسم أقصر، أو شوف كل المنيو.</p>
           <button className="button button-red" onClick={reset}>
             شوف كل المنيو <ArrowLeft size={18} />
           </button>
@@ -197,40 +165,5 @@ export function MenuBrowser() {
       )}
       <p className="small-note">الصور توضيحية. تفاصيل المكونات والأسعار قابلة للتغيير حسب الفرع.</p>
     </div>
-  );
-}
-
-export function ProductPurchase({ item }: { item: MenuItem }) {
-  const [quantity, setQuantity] = useState(1);
-  const { add } = useCart();
-  return (
-    <>
-      <div className="purchase-row">
-        <div className="quantity-control">
-          <button
-            disabled={quantity >= 20}
-            aria-label="زيادة الكمية"
-            onClick={() => setQuantity((q) => q + 1)}
-          >
-            <Plus size={17} />
-          </button>
-          <output aria-label="الكمية">{quantity}</output>
-          <button
-            disabled={quantity <= 1}
-            aria-label="تقليل الكمية"
-            onClick={() => setQuantity((q) => q - 1)}
-          >
-            <Minus size={17} />
-          </button>
-        </div>
-        <button className="button button-red" onClick={() => add(item.slug, quantity)}>
-          أضف لطلبك <span dir="ltr">{formatPrice(item.price * quantity)}</span> د.ع{" "}
-          <Plus size={18} />
-        </button>
-      </div>
-      <Link className="text-link" href="/order">
-        كمّل طلبك <ArrowLeft size={19} />
-      </Link>
-    </>
   );
 }

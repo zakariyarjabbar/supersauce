@@ -1,5 +1,30 @@
 # Validation record
 
+## 10 September 2026 — menu and contact ordering
+
+Validated the requested removal of cart, checkout, quantity controls and favorites. The menu data and prices in `lib/menu.ts` are unchanged. Menu cards, product pages, branch pages and the header now use one contact dialog. The previous `/order` route redirects to `/menu`, including old branch query links.
+
+| Check                                 | Result                                                                            |
+| ------------------------------------- | --------------------------------------------------------------------------------- |
+| Production build                      | Passed; 42 build outputs                                                          |
+| TypeScript                            | Passed; standalone typecheck and final production build                           |
+| ESLint                                | Passed                                                                            |
+| Desktop/mobile Playwright suite       | 25 passed, 1 skipped                                                              |
+| Core pages and open dialog axe checks | Passed for the tested WCAG A/AA rules                                             |
+| Visual review                         | Desktop 1440 × 1000, mobile 390 × 844, narrow 320 × 690, landscape 844 × 390      |
+| Retired-feature cleanup               | Cart/favorites providers, checkout, validation and 209 obsolete CSS rules removed |
+| Impeccable detector                   | Reported design-token advisories; existing design sidecar metadata is stale       |
+
+The skipped test is mobile navigation in the desktop project; it passes on mobile. The first browser pass exposed a reverse-tab focus escape in the native dialog. Explicit keyboard wrapping fixed it, and the final suite verifies forward/reverse Tab, Escape, close-button and backdrop dismissal, restored focus and scrolling, item changes, contact destinations, preserved prices, legacy redirects and absence of restored cart/favorites controls.
+
+Visual captures are in `/tmp/super-sauce-review/`. The menu and dialog have no measured horizontal overflow at the four tested sizes. Order buttons meet a 44-pixel minimum height; at narrow phone widths they sit below the price. The dialog scrolls internally on short screens. The design helper's existing sidecar drift was not refreshed; Impeccable's `document` command can refresh it separately.
+
+Phone and WhatsApp have no restaurant-approved numbers configured in this workspace. Their rows therefore display as unavailable, with the existing Instagram profile available. Link-generation tests verify Iraqi/Arabic-number normalization, invalid/absent configuration, and item/branch text using synthetic data. External calls and messages were not initiated. Final integration with the restaurant's real numbers still needs those values in `NEXT_PUBLIC_ORDER_PHONE` and `NEXT_PUBLIC_ORDER_WHATSAPP`, followed by a rebuild.
+
+Intentional invalid dynamic-route requests produce correct HTTP 404 responses and also log Next.js `NoFallbackError` messages on the server. No browser page errors occurred in the page-render checks. Physical-device Safari and real external-channel behavior were not exercised.
+
+## 5 September 2026 — historical baseline before this change
+
 Validated locally on 5 September 2026 in default demo mode.
 
 | Check                                   | Result                                                   |

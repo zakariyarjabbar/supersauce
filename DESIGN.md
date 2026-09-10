@@ -178,13 +178,13 @@ The shared centered container has a maximum width of (1320px). Its outer gutters
 
 The desktop homepage pairs a large right-hand Arabic headline with a left-hand burger on red. At (760px) and below, the headline and actions center above the image. This is a homepage expression, not a required page template.
 
-Product grids use four columns, then two at (900px); mobile retains two compact product columns. Branch grids progress from three to two to one. Forms and order layouts collapse to one column at (760px); the order summary stops being sticky there. Category controls scroll horizontally rather than squeeze their labels.
+Product grids use four columns, then two at (900px); mobile retains two compact product columns. Branch grids progress from three to two to one. Forms collapse to one column at (760px). The contact-order dialog stays within the viewport and scrolls internally on short screens. Category controls scroll horizontally rather than squeeze their labels.
 
 Use logical alignment and spacing for RTL. The navigation stays sticky: (96px) tall on desktop and (78px) on mobile. Major responsive boundaries are (1550px), (1150px), (900px), (760px), and (380px).
 
 ## Elevation & Depth
 
-The page is flat by default. Color fields, borders, photography, and generous separation carry depth. Branch cards lift slightly on hover; food images gently scale within clipped frames. Shadows are reserved for temporary UI: the mobile menu and basket toast. Selected fulfillment choices use an inset red stroke.
+The page is flat by default. Color fields, borders, photography, and generous separation carry depth. Branch cards lift slightly on hover; food images gently scale within clipped frames. Shadows are reserved for temporary UI: the mobile menu and contact-order dialog.
 
 **The Quiet Utility Rule.** Keep browsing cards and forms visually calm so the red campaign fields and food imagery remain dominant.
 
@@ -202,11 +202,11 @@ The five-point brand star is an SVG silhouette from the shared brand component, 
 
 Confident and compact, with centered text and an SVG icon. Standard buttons have a minimum height of (52px), with the frontmatter padding and typography. Red serves neutral surfaces, yellow serves red campaign surfaces, dark serves yellow bands, and outlined buttons provide secondary actions.
 
-Hover raises buttons by (2px) and changes the fill. Keyboard focus uses a (3px) outline with a (5px) offset; links on red fields switch the outline to yellow. Disabled controls dim and show a disabled cursor. Circular add and favorite controls retain at least (44px) targets.
+Hover raises buttons by (2px) and changes the fill. Keyboard focus uses a (3px) outline with a (5px) offset; links on red fields switch the outline to yellow. Disabled controls dim and show a disabled cursor. Menu cards pair the unchanged price with a red text button labeled «اطلب», with at least a (44px) target. At narrow phone widths the button can sit below the price.
 
 ### Chips
 
-Category tabs are small rounded rectangles with light borders. Selection uses a red fill and white text, paired with `aria-pressed`. Inactive hover uses paper. Selected favorites use the same red state language.
+Category tabs are small rounded rectangles with light borders. Selection uses a red fill and white text, paired with `aria-pressed`. Inactive hover uses paper.
 
 ### Cards / Containers
 
@@ -218,7 +218,11 @@ Visible labels sit above cream fields with warm borders. Focus changes the borde
 
 ### Navigation
 
-The supplied logo anchors the right side of the cream header. Desktop links use red hover and a short red active underline. The basket and ordering action stay visible. Mobile switches to a toggle and a stacked cream panel with divided links; Escape closes it and returns focus to the toggle.
+The supplied logo anchors the right side of the cream header. Desktop links use red hover and a short red active underline. The ordering action opens the shared contact dialog; there is no basket action. Mobile switches to a toggle and a stacked cream panel with divided links; Escape closes it and returns focus to the toggle.
+
+### Contact Order Dialog
+
+One native modal dialog serves the menu cards, product details, branch pages and header. It uses the cream surface, ink heading, red channel icons and warm divider lines. Product requests show the selected image, name and unchanged price. Three rows offer phone, WhatsApp and Instagram; unconfigured numbers are visibly unavailable. WhatsApp prepares the selected item or branch in a message for the customer to send. Focus stays inside the dialog and returns to the trigger on close; Escape, close button and backdrop dismiss it. No favorites, quantity stepper, cart or checkout remain.
 
 ### Brand Star and Campaign Seams
 

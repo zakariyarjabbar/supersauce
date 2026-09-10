@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpLeft, MapPin, Clock3, ShoppingBag } from "lucide-react";
 import { branches, getBranch, branchMapsUrl } from "@/lib/branches";
 import { CtaBand } from "@/components/brand";
+import { OrderButton } from "@/components/order-options";
 
 export const dynamicParams = false;
 
@@ -65,9 +66,7 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
               </div>
             </dl>
             <div className="action-row">
-              <Link className="button button-red" href={`/order?branch=${branch.slug}`}>
-                جهّز طلبك <ArrowLeft size={19} />
-              </Link>
+              <OrderButton branchName={branch.name}>اطلب من هذا الفرع</OrderButton>
               <a
                 className="button button-outline"
                 href={branchMapsUrl(branch)}

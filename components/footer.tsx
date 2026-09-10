@@ -31,7 +31,6 @@ export function Footer() {
             <Link href="/menu">المنيو</Link>
             <Link href="/branches">فروعنا</Link>
             <Link href="/about">حكايتنا</Link>
-            <Link href="/order">طلبك</Link>
           </div>
           <div className="footer-column">
             <h3>خلّينا على تواصل</h3>
@@ -58,8 +57,8 @@ export function Footer() {
         </div>
         {site.demo && (
           <p className="demo-notice">
-            <span>نسخة عرض</span>تصوّر مستقل للموقع. الصور، الأسعار، بيانات الفروع والطلبات توضيحية؛
-            لا تُرسل الطلبات إلى المطعم.
+            <span>نسخة عرض</span>تصوّر مستقل للموقع. الصور، الأسعار وبيانات الفروع توضيحية؛ تأكيد
+            الطلب يتم مباشرة مع المطعم عبر وسيلة التواصل التي تختارها.
           </p>
         )}
       </div>

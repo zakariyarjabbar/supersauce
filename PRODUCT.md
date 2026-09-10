@@ -32,11 +32,11 @@ User states more than 23 branches around Iraq; supplied Instagram screenshot sho
 
 ## Confirmed Content Scope
 
-The user explicitly approved arbitrary mock content: “use anything, its mock website, we will change to real content if they accept my website.” The site therefore uses 18 illustrative menu items, 8 example branch entries, authored Arabic copy and generated concept photography. The 23+ branch statement is supplied by the user. A discreet footer and transactional notices explain the demo. No real order, payment, job application or contact email is sent in default demo mode.
+The user explicitly approved arbitrary mock content: “use anything, its mock website, we will change to real content if they accept my website.” The site therefore uses 18 illustrative menu items, 8 example branch entries, authored Arabic copy and generated concept photography. The 23+ branch statement is supplied by the user. A discreet footer and transactional notices explain the demo. The site submits no order or payment. Order buttons open external contact channels for the customer to complete their request. Job applications and contact-form emails are not sent in default demo mode.
 
 ## Delivery
 
-Complete local Next.js project with responsive home, searchable menu, 18 product pages, favorites, persistent basket, validated demo checkout, branch filtering and detail pages, about, contact, careers, searchable FAQ, privacy, terms, and error states. Deployment belongs to the user. Real form delivery is optional configuration; real orders use linked delivery partners after content approval.
+Complete local Next.js project with responsive home, searchable and sortable menu with prices, 18 product pages, a shared contact-order dialog, branch filtering and detail pages, about, contact, careers, searchable FAQ, privacy, terms, and error states. Cart, favorites, quantity controls and internal checkout were removed at the user’s request on 10 September 2026. Phone and WhatsApp destinations use approved public environment configuration; Instagram uses the existing profile. Deployment belongs to the user. Real contact-form delivery is optional configuration; customers arrange orders directly through their selected contact channel.
 
 ## Accessibility & Inclusion
 

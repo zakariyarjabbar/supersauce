@@ -37,7 +37,7 @@ export default function Home() {
                 شوف المنيو <ArrowLeft size={20} />
               </Link>
               <Link href="/branches" className="hero-location">
-                <MapPin size={19} /> لكه أقرب فرع
+                <MapPin size={19} /> اعثر على أقرب فرع
               </Link>
             </div>
             <div className="hero-proof">
@@ -198,7 +198,7 @@ export default function Home() {
               نفس اللمة، ونفس الطعم اللي تحبه.
             </p>
             <Link href="/branches" className="button button-yellow">
-              لكه أقرب فرع <MapPin size={20} />
+              اعثر على أقرب فرع <MapPin size={20} />
             </Link>
           </div>
           <div className="branch-poster">

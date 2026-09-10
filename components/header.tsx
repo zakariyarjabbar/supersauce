@@ -2,20 +2,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ShoppingBag, ArrowUpLeft } from "lucide-react";
+import { Menu, X, ArrowUpLeft } from "lucide-react";
 import { Logo } from "./brand";
 import { navLinks } from "@/lib/site";
-import { useCart } from "./cart-provider";
+import { OrderButton } from "./order-options";
 
 export function Header() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
-  const { count } = useCart();
   const toggle = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
+      if (document.querySelector("dialog[open]")) return;
       if (event.key === "Escape") {
         setOpen(false);
         toggle.current?.focus();
@@ -54,13 +54,7 @@ export function Header() {
           ))}
         </nav>
         <div className="header-actions">
-          <Link href="/order" className="bag-button" aria-label={`حقيبة طلبك، ${count} أصناف`}>
-            <ShoppingBag size={22} aria-hidden="true" />
-            {count > 0 && <span>{count}</span>}
-          </Link>
-          <Link href="/menu" className="button button-red header-order">
-            اطلب السوبر <ArrowUpLeft size={18} aria-hidden="true" />
-          </Link>
+          <OrderButton className="button button-red header-order">اطلب السوبر</OrderButton>
           <button
             ref={toggle}
             className="icon-button mobile-toggle"
@@ -87,9 +81,6 @@ export function Header() {
                 <ArrowUpLeft size={20} />
               </Link>
             ))}
-            <Link href="/order" onClick={() => setOpen(false)}>
-              طلبك <ShoppingBag size={20} />
-            </Link>
           </nav>
         </div>
       )}

@@ -2,7 +2,7 @@
 
 A complete Arabic, right-to-left Next.js website for presenting a proposed online experience to Super Sauce in Iraq. The supplied logo and restaurant references define the red, cream, yellow-star and checkerboard identity.
 
-**The default is a working sales demo.** Sample prices, branch details, generated photos and order confirmations are illustrative. Orders do not reach the restaurant and no money is collected. The user explicitly approved mock content for this presentation.
+**The default is a working sales demo.** Sample prices, branch details and generated photos are illustrative. Order buttons open contact options so customers can agree on their order directly with the restaurant; the website does not submit orders or collect payments. The user explicitly approved mock content for this presentation.
 
 ## Run locally
 
@@ -26,9 +26,9 @@ npm run start
 ## What is included
 
 - Campaign-style homepage with custom food photography and interactive menu categories.
-- 18 meals and sauce items, product detail pages, Arabic search, category filters, price sorting and saved favorites.
-- Basket with quantities, removal and persistence on the current device.
-- Complete demo checkout: delivery or pickup, branch choice, Arabic/Western Iraqi mobile-number validation, conditional address, calculated totals and printable demo receipt.
+- 18 meals and sauce items, product detail pages, Arabic search, category filters and price sorting.
+- Shared Order dialog on menu cards, product pages, branch pages and the header, with phone, WhatsApp and Instagram contact options. Prices stay visible; WhatsApp drafts include the selected item or branch.
+- Keyboard-accessible native dialog with Escape, close-button and backdrop dismissal. Old `/order` links redirect to `/menu`.
 - Branch directory with search, city filters, eight example branch pages and Google Maps search links.
 - Brand story, contact, careers, searchable FAQ, demo privacy and terms pages.
 - Contact and careers validation on both client and server, error/retry feedback, optional live email integration.
@@ -57,20 +57,20 @@ Public environment variables are embedded during the build. Rebuild after changi
 
 ## Replace the mock content
 
-| Content                                                              | File                                               |
-| -------------------------------------------------------------------- | -------------------------------------------------- |
-| Menu names, prices, categories, descriptions, ingredients and photos | `lib/menu.ts`                                      |
-| Branches, hours, services and addresses                              | `lib/branches.ts`                                  |
-| Brand name, public links, domain and demo setting                    | `lib/site.ts`                                      |
-| Homepage copy and campaign sections                                  | `app/page.tsx`                                     |
-| Brand story                                                          | `app/about/page.tsx`                               |
-| Shared colors, type, spacing and responsive rules                    | `app/globals.css`                                  |
-| Navigation and footer                                                | `components/header.tsx`, `components/footer.tsx`   |
-| FAQ content                                                          | `components/faq-list.tsx`                          |
-| Form fields and validation                                           | `components/contact-form.tsx`, `lib/validation.ts` |
-| Form delivery                                                        | `app/api/contact/route.ts`                         |
-| Demo order behavior and sample delivery fee                          | `components/order-flow.tsx`                        |
-| Usage and privacy copy                                               | `app/terms/page.tsx`, `app/privacy/page.tsx`       |
+| Content                                                              | File                                                                  |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Menu names, prices, categories, descriptions, ingredients and photos | `lib/menu.ts`                                                         |
+| Branches, hours, services and addresses                              | `lib/branches.ts`                                                     |
+| Brand name, public links, domain and demo setting                    | `lib/site.ts`                                                         |
+| Homepage copy and campaign sections                                  | `app/page.tsx`                                                        |
+| Brand story                                                          | `app/about/page.tsx`                                                  |
+| Shared colors, type, spacing and responsive rules                    | `app/globals.css`                                                     |
+| Navigation and footer                                                | `components/header.tsx`, `components/footer.tsx`                      |
+| FAQ content                                                          | `components/faq-list.tsx`                                             |
+| Form fields and validation                                           | `components/contact-form.tsx`, `lib/validation.ts`                    |
+| Form delivery                                                        | `app/api/contact/route.ts`                                            |
+| Order dialog and contact destinations                                | `components/order-options.tsx`, `lib/order-contact.ts`, `lib/site.ts` |
+| Usage and privacy copy                                               | `app/terms/page.tsx`, `app/privacy/page.tsx`                          |
 
 Prices use whole Iraqi dinars. Each product and branch has a unique URL slug. Product cards and detail pages use the same data, so an edit updates both. Photos are shared between a few related sample products; replace them with item-specific photography when the menu is approved.
 
@@ -90,9 +90,11 @@ Then set `NEXT_PUBLIC_DEMO_MODE=false` and rebuild. The sender domain must be ve
 
 API contract: [Resend Send Email](https://resend.com/docs/api-reference/emails/send-email). Live delivery requires your credentials and was not exercised during mock-site validation.
 
-### Activating real orders later
+### Configuring order contact options
 
-When demo mode is disabled, the internal pretend checkout is replaced by links to the restaurant's public Talabat and Baly listings. The basket is a selection aid; it is not transferred into those apps. A direct POS order, delivery dispatch, live stock, online payment or order tracking integration requires the restaurant's chosen service and credentials. None is simulated as a live service.
+Set `NEXT_PUBLIC_ORDER_PHONE` and `NEXT_PUBLIC_ORDER_WHATSAPP` to restaurant-approved numbers in `.env.local` before building. International numbers should include the country code; Iraqi mobile numbers starting with `07`, `9647`, `009647` or `+9647`, including Arabic digits, are normalized automatically. The two numbers may differ. Empty or invalid numbers leave their option visibly unavailable, with Instagram still accessible using the existing account in `lib/site.ts`. Rebuild after changing public environment variables.
+
+The phone option opens a `tel:` link. WhatsApp opens a prepared message that the customer reviews and sends; Instagram opens the restaurant profile to start a conversation. Item prices are displayed without being represented as a confirmed quote. No order is submitted by the site, and there is no basket, favorites storage, checkout, receipt, payment, delivery-fee calculation or customer-address form. This behavior is the same in demo and live modes.
 
 Before the live launch, replace demo-specific FAQ/privacy/terms copy and all illustrative operational details. There is no claim that the restaurant has approved this proposal.
 
@@ -122,9 +124,9 @@ npx playwright install chromium
 npm test
 ```
 
-The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search, favorites, basket persistence, checkout validation and totals, branch filters, demo contact/careers feedback, keyboard navigation, invalid API payloads and 404s. Build with demo mode enabled before running tests. Tests use only synthetic customer data.
+The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search and price sorting, contact dialogs and keyboard focus, removal of cart/favorites, legacy checkout redirects, branch filters, demo contact/careers feedback, keyboard navigation, invalid API payloads and 404s. Build with demo mode enabled before running tests. Tests use only synthetic customer data.
 
-The completed validation run passed 19 tests, with one mobile-only case skipped in the desktop project. Automated axe accessibility checks also run on the core pages. See `VALIDATION.md` for the tested scope.
+Automated axe accessibility checks run on the core pages and the open Order dialog. The mobile-navigation test is skipped in the desktop project. See `VALIDATION.md` for the tested scope.
 
 Visual captures can be generated while the local site is running:
 

@@ -6,7 +6,7 @@ import { FaqList } from "@/components/faq-list";
 
 export const metadata: Metadata = {
   title: "الأسئلة الشائعة",
-  description: "كل ما تريد تعرفه عن منيو سوبر صوص، الفروع، الطلبات والمفضلة.",
+  description: "كل ما تريد تعرفه عن منيو سوبر صوص، الفروع وطرق التواصل للطلب.",
 };
 export default function FaqPage() {
   return (

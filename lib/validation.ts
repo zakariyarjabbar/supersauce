@@ -42,24 +42,6 @@ export const contactSchema = z.object({
   consent: z.literal(true, { error: "وافق على سياسة الخصوصية حتى تكمل" }),
   website: z.string().max(200).optional(),
 });
-export const orderSchema = z
-  .object({
-    name: z.string().trim().min(2, "اكتب اسمك الكامل").max(80),
-    phone: phoneSchema,
-    fulfillment: z.enum(["delivery", "pickup"]),
-    branch: z.string().min(1, "اختار الفرع أولاً"),
-    address: z.string().trim().max(300),
-    notes: z.string().trim().max(500),
-  })
-  .superRefine((value, ctx) => {
-    if (value.fulfillment === "delivery" && value.address.length < 10)
-      ctx.addIssue({
-        code: "custom",
-        path: ["address"],
-        message: "اكتب المنطقة والشارع وأقرب نقطة دالة",
-      });
-  });
-
 export function fieldErrors(error: z.ZodError): Record<string, string> {
   const result: Record<string, string> = {};
   for (const issue of error.issues) {

@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import { Flame, Info } from "lucide-react";
 import { getMenuItem, menuItems, categories } from "@/lib/menu";
 import { formatPrice } from "@/lib/site";
-import { ProductPurchase, FoodCard } from "@/components/menu-browser";
+import { FoodCard } from "@/components/menu-browser";
+import { OrderButton } from "@/components/order-options";
 import { ArrowLink } from "@/components/brand";
 
 export const dynamicParams = false;
@@ -82,7 +83,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <li key={ingredient}>{ingredient}</li>
             ))}
           </ul>
-          <ProductPurchase item={item} />
+          <OrderButton item={item} className="button button-red product-order-button" />
           <p className="product-notice">
             <Info size={17} />
             عندك حساسية غذائية؟ تأكد من المكونات مع الفرع قبل الطلب. الصورة والسعر للتوضيح في نسخة

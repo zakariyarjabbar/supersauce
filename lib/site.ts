@@ -6,8 +6,8 @@ export const site = {
   origin: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   demo: process.env.NEXT_PUBLIC_DEMO_MODE !== "false",
   instagram: "https://www.instagram.com/supersauce.iq/",
-  delivery: "https://www.talabat.com/ar/iraq/super-sauce",
-  baly: "https://food.baly.iq/vendors/super-sauce/",
+  orderPhone: process.env.NEXT_PUBLIC_ORDER_PHONE || "",
+  orderWhatsapp: process.env.NEXT_PUBLIC_ORDER_WHATSAPP || "",
 };
 
 export const navLinks = [

@@ -19,7 +19,7 @@ export function BranchFinder() {
     <section className="container branch-directory">
       <div className="branch-controls">
         <div>
-          <h2>لكه مكانك.</h2>
+          <h2>اعثر على أقرب فرع</h2>
           <p>اختار محافظتك، وشوف تفاصيل الفرع.</p>
         </div>
         <div className="search-field">
