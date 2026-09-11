@@ -182,15 +182,20 @@ test("preview JPEGs are directly downloadable, correctly sized and compact", asy
   }
 });
 
-test("crawlers can fetch previews while demo indexing stays off, with Apple and browser icon fallbacks", async ({
+test("crawlers can index pages and fetch previews, with Apple and browser icon fallbacks", async ({
   request,
 }) => {
-  const head = readHead(await (await request.get("/")).text());
-  expect(head.meta("robots")).toContain("noindex");
+  const homepage = await (await request.get("/")).text();
+  const head = readHead(homepage);
+  expect(homepage).not.toMatch(/<meta[^>]+name="robots"/i);
   const rules = await (await request.get("/robots.txt")).text();
   expect(rules).toMatch(/^Allow: \/$/m);
   expect(rules).not.toMatch(/^Disallow: \/$/m);
   expect(rules).toMatch(/^Disallow: \/api\/$/m);
+  expect(rules).toContain(`Sitemap: ${site.origin}/sitemap.xml`);
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).toContain(`<loc>${site.origin}</loc>`);
+  expect(sitemap).toContain(`<loc>${site.origin}/menu</loc>`);
   expect(head.link("apple-touch-icon").map((icon) => icon.href)).toContain("/apple-touch-icon.png");
   expect(head.link("icon").map((icon) => icon.href)).toContain("/favicon.ico");
   expect(head.link("manifest").map((link) => link.href)).toContain("/manifest.webmanifest");

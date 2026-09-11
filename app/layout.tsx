@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.origin),
   title: { default: homeTitle, template: "%s | سوبر صوص" },
   applicationName: "سوبر صوص",
-  robots: site.demo ? { index: false, follow: false } : { index: true, follow: true },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },

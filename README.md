@@ -62,7 +62,7 @@ The homepage uses a branded Arabic card with the original Super Sauce logo and e
 
 Set `NEXT_PUBLIC_SITE_URL=https://supersauce-rho.vercel.app` before building, or replace it with the final custom domain. Use the public origin without a page path. If it is absent, the site uses Vercel's production domain, then its deployment domain, then this repository's verified public address. Explicit configuration takes priority. The previous localhost fallback made preview images inaccessible outside the development computer.
 
-Preview metadata is included in the initial HTML head, including on the dynamic contact page. Images are static JPEG files under `public/social/`; no JavaScript, cookies or image transformation service is needed to fetch them. Demo mode allows crawlers to fetch the page and images while keeping `noindex, nofollow` on the page and an empty sitemap. A password-protected deployment cannot provide public shared-link previews.
+Preview metadata is included in the initial HTML head, including on the dynamic contact page. Images are static JPEG files under `public/social/`; no JavaScript, cookies or image transformation service is needed to fetch them. Public pages do not emit a `noindex` robots meta tag, and `robots.txt` links to the populated sitemap so search engines can crawl them. A password-protected deployment cannot provide public shared-link previews.
 
 Edit `assets/social/share-card.html` to change the branded image, then export the delivery images and icon fallbacks:
 

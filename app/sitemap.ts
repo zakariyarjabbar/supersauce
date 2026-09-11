@@ -3,7 +3,6 @@ import { site } from "@/lib/site";
 import { menuItems } from "@/lib/menu";
 import { branches } from "@/lib/branches";
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (site.demo) return [];
   return [
     "",
     "/menu",

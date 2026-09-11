@@ -1,5 +1,9 @@
 # Validation record
 
+## 11 September 2026 — search indexing enabled
+
+Removed the root `noindex, nofollow` metadata requested by the user. The public robots file allows normal pages, continues to exclude `/order` and `/api/`, and now advertises a populated sitemap in demo mode as well. Automated metadata checks verify that the homepage has no robots meta tag and that the sitemap contains the homepage and menu URLs.
+
 ## 11 September 2026 — shared-link previews
 
 The deployed homepage was inspected with a preview-crawler user agent before this change. It returned an image URL on `http://localhost:3000` and a blanket `Disallow: /` rule. Both prevented reliable external preview fetching. Public origins now resolve from explicit configuration, Vercel environment settings or the repository's verified public address. Every public page supplies complete, consistent Open Graph and X metadata in the initial HTML head.
