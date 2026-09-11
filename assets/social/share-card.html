@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- URL-preview refinement: preserve the supplied logo, the existing food
+     photograph, Alexandria Arabic and the red/cream/yellow brand. The image is
+     a static export of this editable layout, with no network requests at render. -->
+<html lang="ar-IQ" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Super Sauce share image</title>
+    <style>
+      @font-face {
+        font-family: Alexandria;
+        src: url("{{FONT}}");
+        font-weight: 100 900;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1200px; height: 100%; overflow: hidden; }
+      body { font-family: Alexandria, sans-serif; color: #ce1725; background: #faf7ef; }
+      .card { position: relative; width: 1200px; height: 100%; }
+      .photo { position: absolute; inset: 0 auto 22px 0; width: 610px; overflow: hidden; background: #ce1725; }
+      .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+      .copy { position: absolute; top: 43px; right: 52px; width: 485px; bottom: 55px; display: flex; flex-direction: column; align-items: flex-start; }
+      .logo { position: relative; width: 258px; height: 150px; overflow: hidden; flex: 0 0 auto; border-radius: 25px; }
+      .logo img { position: absolute; width: 306px; height: 306px; max-width: none; top: -77px; left: -24px; mix-blend-mode: multiply; }
+      h1 { font-size: 59px; font-weight: 850; letter-spacing: -0.035em; line-height: 1.55; margin: 24px 0 0; white-space: nowrap; }
+      h1 span { color: #26221f; }
+      .caption { margin: auto 0 0; font-size: 22px; line-height: 1.8; color: #26221f; font-weight: 550; }
+      .star { position: absolute; left: 34px; top: 30px; width: 58px; height: 58px; fill: #ffe044; transform: rotate(-12deg); }
+      .seam { position: absolute; bottom: 0; right: 0; left: 0; height: 22px; background: conic-gradient(#ce1725 25%, #faf7ef 0 50%, #ce1725 0 75%, #faf7ef 0) 0 0 / 22px 22px; }
+      @media (max-height: 610px) {
+        .copy { top: 34px; bottom: 49px; }
+        h1 { margin-top: 18px; font-size: 57px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="photo"><img src="{{PHOTO}}" alt="برغر سوبر صوص" /></div>
+      <svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 3 64 32 96 37 73 60 78 94 50 78 20 94 26 60 3 37 36 32Z" /></svg>
+      <div class="copy">
+        <div class="logo"><img src="{{LOGO}}" alt="Super Sauce" /></div>
+        <h1>مو بس برغر،<br /><span>هذا سوبر.</span></h1>
+        <p class="caption">المنيو، الفروع، وكل شي تحبّه.</p>
+      </div>
+      <div class="seam"></div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "type": "code-rendered-share-asset",
+  "generator": "scripts/prepare-share-assets.mjs — Chromium / Sharp",
+  "source": [
+    "app/icon.svg"
+  ],
+  "origin": "Existing project imagery and supplied identity; no new photograph generated.",
+  "note": "Raster fallback of the existing SVG brand-star favicon.",
+  "sourcePrompts": []
+}

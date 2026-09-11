@@ -1,0 +1,15 @@
+{
+  "type": "code-rendered-share-asset",
+  "generator": "scripts/prepare-share-assets.mjs — Chromium / Sharp",
+  "source": [
+    "public/images/restaurant.webp"
+  ],
+  "origin": "Existing project imagery and supplied identity; no new photograph generated.",
+  "note": "JPEG social-preview crop of the existing illustrative image; not a verified photograph of the restaurant or its products.",
+  "sourcePrompts": [
+    {
+      "key": "restaurant",
+      "prompt": "Use case: photorealistic-natural\nAsset type: website architectural concept photograph for a fictional Iraqi fast-food chain\nPrimary request: Editorial photorealistic architectural concept of a premium contemporary Iraqi burger restaurant at golden-hour evening.\nScene/backdrop: Bright red restaurant storefront with a glass front; warm wood and red seating visible inside; cream and red checkerboard lower panels; a few green planters.\nSubject details: A large simple cream backlit sign reading exactly \"SUPER\" on the first line and \"SAUCE\" on the second line, plus one little yellow star. Render the wording exactly: SUPER SAUCE.\nStyle/medium: Premium editorial architectural photography, believable materials and realistic perspective.\nComposition/framing: Wide landscape 3:2 view of the complete storefront.\nLighting/mood: Golden-hour evening, warm welcoming interior illumination.\nConstraints: No people, no extra signage or text, no watermark. This is a conceptual fictional brand architecture, not a depiction or claim of an actual location."
+    }
+  ]
+}

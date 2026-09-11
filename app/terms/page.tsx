@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PageIntro } from "@/components/brand";
 
-export const metadata: Metadata = { title: "شروط الاستخدام" };
+export const metadata = pageMetadata({
+  path: "/terms",
+  title: "شروط الاستخدام",
+  description: "شروط استخدام موقع سوبر صوص التجريبي والتواصل عبر القنوات الخارجية.",
+});
 export default function TermsPage() {
   return (
     <>

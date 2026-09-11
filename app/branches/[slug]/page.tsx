@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowUpLeft, MapPin, Clock3, ShoppingBag } from "lucide-reac
 import { branches, getBranch, branchMapsUrl } from "@/lib/branches";
 import { CtaBand } from "@/components/brand";
 import { OrderButton } from "@/components/order-options";
+import { pageMetadata, photoShareImage } from "@/lib/metadata";
 
 export const dynamicParams = false;
 
@@ -18,7 +19,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const branch = getBranch((await params).slug);
-  return { title: branch ? `فرع ${branch.name}` : "الفرع غير موجود" };
+  return branch
+    ? pageMetadata({
+        path: `/branches/${branch.slug}`,
+        title: `فرع ${branch.name}`,
+        description: `${branch.city}، ${branch.address}. تعرّف على الخدمات وأوقات العمل وطرق التواصل. بيانات توضيحية لنسخة العرض.`,
+        image: photoShareImage("/images/restaurant.webp", "تصوّر توضيحي لواجهة مطعم سوبر صوص"),
+      })
+    : { title: "الفرع غير موجود" };
 }
 export default async function BranchPage({ params }: { params: Promise<{ slug: string }> }) {
   const branch = getBranch((await params).slug);

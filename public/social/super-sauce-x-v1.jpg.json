@@ -1,0 +1,22 @@
+{
+  "type": "code-rendered-share-asset",
+  "generator": "scripts/prepare-share-assets.mjs — Chromium / Sharp",
+  "source": [
+    "assets/social/share-card.html",
+    "public/images/hero-burger.webp",
+    "public/images/logo-original.webp"
+  ],
+  "origin": "Existing project imagery and supplied identity; no new photograph generated.",
+  "note": "Branded Arabic link card using the existing illustrative burger and original logo. Rebuild when the source layout or imagery changes.",
+  "sourcePrompts": [
+    {
+      "key": "hero-burger",
+      "prompt": "Use case: ads-marketing. Asset: large website hero photograph for Super Sauce, an Iraqi burger restaurant with vivid red, bright yellow and white identity. Create an exceptionally appetizing photorealistic studio advertising photograph of one huge double smashed beef cheeseburger: glossy golden sesame brioche bun, two chargrilled beef patties with craggy edges, melted yellow cheddar, a generous orange signature sauce dripping naturally, pickles, fresh lettuce and tomato. Three-quarter frontal eye-level close-up. The entire burger is visible with generous clean margins, centered slightly low. On a completely seamless solid saturated red background hex #ce1725 and matching red ground with natural soft contact shadow. Strong warm professional food studio key light, crisp juicy textures, editorial food photography, extraordinary realistic detail. Landscape 3:2. No text, letters, logos, watermarks, hands, dishes or utensils. This is a concept food image, not a photograph of the actual menu. Make the burger majestic and sculptural, filling 80 percent width, photo-real, not a 3D render."
+    },
+    {
+      "key": "logo-original",
+      "type": "user-supplied",
+      "prompt": "User-supplied Super Sauce logo from the attached image. No image generation or redrawing. The web version is a resized WebP; CSS frames the original artwork without white outer margins."
+    }
+  ]
+}

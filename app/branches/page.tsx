@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata, photoShareImage } from "@/lib/metadata";
 import { BrandStar, PageIntro, CtaBand } from "@/components/brand";
 import { BranchFinder } from "@/components/branch-finder";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/branches",
   title: "فروعنا",
   description: "سوبر صوص قريب منك. استكشف الفروع حسب المحافظة وتعرّف على الخدمات وأوقات العمل.",
-};
+  image: photoShareImage("/images/restaurant.webp", "تصوّر توضيحي لواجهة مطعم سوبر صوص"),
+});
 export default function BranchesPage() {
   return (
     <>

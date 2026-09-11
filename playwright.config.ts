@@ -23,6 +23,6 @@ export default defineConfig({
     url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
     timeout: 30000,
-    env: { NEXT_PUBLIC_DEMO_MODE: "true", NEXT_PUBLIC_SITE_URL: "http://localhost:3100" },
+    env: { NEXT_PUBLIC_DEMO_MODE: "true" },
   },
 });

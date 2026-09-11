@@ -5,28 +5,21 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { OrderProvider } from "@/components/order-options";
 import { site } from "@/lib/site";
+import { homeTitle, pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
+  ...pageMetadata({ path: "/" }),
   metadataBase: new URL(site.origin),
-  title: { default: "سوبر صوص | مو بس برغر، هذا سوبر", template: "%s | سوبر صوص" },
-  description: site.description,
+  title: { default: homeTitle, template: "%s | سوبر صوص" },
   applicationName: "سوبر صوص",
   robots: site.demo ? { index: false, follow: false } : { index: true, follow: true },
-  openGraph: {
-    type: "website",
-    locale: "ar_IQ",
-    siteName: "سوبر صوص",
-    title: "سوبر صوص | مو بس برغر، هذا سوبر",
-    description: site.description,
-    images: [{ url: "/images/hero-burger.webp", width: 1536, height: 1024, alt: "برغر سوبر صوص" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "سوبر صوص | مو بس برغر، هذا سوبر",
-    description: site.description,
-    images: ["/images/hero-burger.webp"],
-  },
-  icons: { icon: "/icon.svg" },
 };
 export const viewport: Viewport = { themeColor: "#ce1725", colorScheme: "light" };
 

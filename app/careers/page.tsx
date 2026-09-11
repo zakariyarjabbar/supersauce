@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { BrandStar, PageIntro } from "@/components/brand";
 import { ContactForm } from "@/components/contact-form";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/careers",
   title: "انضم للفريق",
   description: "تحب الشغل بروح الفريق؟ عرّفنا بنفسك واكتشف فرص الانضمام إلى عائلة سوبر صوص.",
-};
+});
 export default function CareersPage() {
   return (
     <>

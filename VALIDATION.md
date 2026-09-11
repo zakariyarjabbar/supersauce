@@ -1,5 +1,28 @@
 # Validation record
 
+## 11 September 2026 — shared-link previews
+
+The deployed homepage was inspected with a preview-crawler user agent before this change. It returned an image URL on `http://localhost:3000` and a blanket `Disallow: /` rule. Both prevented reliable external preview fetching. Public origins now resolve from explicit configuration, Vercel environment settings or the repository's verified public address. Every public page supplies complete, consistent Open Graph and X metadata in the initial HTML head.
+
+| Check | Result |
+| --- | --- |
+| Production build and TypeScript | Passed; 43 build outputs |
+| ESLint and diff whitespace | Passed |
+| Desktop/mobile regression suite | 46 passed, 2 intentionally skipped |
+| Raw HTML metadata | All 35 public pages checked for canonical URL, Arabic title/description, image, dimensions, type and alt text |
+| Crawler requests | Nine known/unknown user agents received complete initial-head metadata on the dynamic contact route |
+| Preview delivery | Nine static JPEGs decoded successfully; 1200 × 630 Open Graph and 1200 × 600 branded X card; each under 180KB |
+| Icons and manifest | Apple 180px, PNG 192px/512px, three-frame ICO and Arabic manifest served successfully |
+| Final image export | Centered photo crops visually checked; all 10 metadata/asset tests passed again after export |
+
+The branded card preserves the supplied logo, existing burger photo, Arabic Alexandria font and red/cream/checkerboard identity. It is exported from local HTML/CSS using Chromium; Sharp prepares static JPEGs and icon fallbacks. No new photograph was generated. The source layout and delivery images include provenance, and the README explains regeneration, public domain configuration and cache-versioned filenames.
+
+The first integration pass exposed a local form-origin issue after removing the localhost canonical fallback. The API now compares the Origin header with the actual request Host and canonical site origin; requests from an unrelated origin remain rejected, including a forged forwarded-host header. Contact and careers demo forms pass on both viewports. The metadata tests also normalize equivalent homepage URLs with/without the trailing slash that Next.js removes.
+
+The Impeccable scan ran once in degraded regex mode because its optional HTML parser modules were unavailable. It reported two warnings for the local Alexandria font alias and four size/radius advisories for the fixed-size exported artwork. These values preserve the existing brand and are intentionally scaled for the image canvas; the global design documents were not rewritten. Rendered OG/X cards and product/storefront crops were inspected separately from the detector output.
+
+The two suite skips are existing mobile-only cases in the desktop project. Existing invalid-dynamic-route tests still return HTTP 404 while Next.js logs `NoFallbackError`. Preview tests send HTTP requests using crawler user-agent strings; they do not establish the rendered result inside every third-party app. No real messages, orders or emails were sent. Platforms control whether a particular surface displays a preview, as well as its crop and cache-refresh timing.
+
 ## 11 September 2026 — homepage Iraq branch map
 
 Replaced the homepage branch banner with a local vector Iraq map using the eight shared demonstration branches and user-authorized sample coordinates. The existing menu/contact-order behavior remains covered by the regression suite.

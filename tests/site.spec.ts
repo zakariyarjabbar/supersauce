@@ -263,7 +263,7 @@ test("API rejects invalid requests and never sends in demo mode", async ({ reque
     (
       await request.post("/api/contact", {
         data: payload,
-        headers: { Origin: "https://untrusted.example" },
+        headers: { Origin: "https://untrusted.example", "X-Forwarded-Host": "untrusted.example" },
       })
     ).status(),
   ).toBe(403);
@@ -290,7 +290,9 @@ test("API rejects invalid requests and never sends in demo mode", async ({ reque
   expect(valid.status()).toBe(200);
   expect(await valid.json()).toEqual({ ok: true, demo: true });
   const robots = await request.get("/robots.txt");
-  expect(await robots.text()).toContain("Disallow: /");
+  const rules = await robots.text();
+  expect(rules).toMatch(/^Allow: \/$/m);
+  expect(rules).not.toMatch(/^Disallow: \/$/m);
   expect((await request.get("/menu/not-a-meal")).status()).toBe(404);
   expect((await request.get("/branches/not-a-branch")).status()).toBe(404);
   expect((await request.get("/missing-page")).status()).toBe(404);

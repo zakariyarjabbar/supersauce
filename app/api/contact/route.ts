@@ -6,7 +6,11 @@ const json = (body: object, status = 200) =>
   Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin && origin !== new URL(site.origin).origin)
+  const requestUrl = new URL(request.url);
+  // Next's request URL can use the server bind address (0.0.0.0). Compare
+  // against the browser's actual request host as well as the canonical site.
+  const requestOrigin = `${requestUrl.protocol}//${request.headers.get("host") || requestUrl.host}`;
+  if (origin && origin !== requestOrigin && origin !== site.origin)
     return json({ error: "طلب غير مسموح." }, 403);
   if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json"))
     return json({ error: "صيغة الطلب غير صحيحة." }, 415);

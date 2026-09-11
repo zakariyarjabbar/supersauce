@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PageIntro } from "@/components/brand";
 
-export const metadata: Metadata = { title: "سياسة الخصوصية" };
+export const metadata = pageMetadata({
+  path: "/privacy",
+  title: "سياسة الخصوصية",
+  description: "كيف تستخدم نسخة عرض سوبر صوص بيانات التصفح والموقع ووسائل التواصل.",
+});
 export default function PrivacyPage() {
   return (
     <>

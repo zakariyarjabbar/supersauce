@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { Suspense } from "react";
 import { PageIntro, CtaBand } from "@/components/brand";
 import { MenuBrowser } from "@/components/menu-browser";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/menu",
   title: "المنيو",
   description: "برغر، دجاج مقرمش، فرايز وصوصات. اختار وجبتك المفضلة من منيو سوبر صوص.",
-};
+});
 export default function MenuPage() {
   return (
     <>

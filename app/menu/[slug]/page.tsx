@@ -8,6 +8,7 @@ import { formatPrice } from "@/lib/site";
 import { FoodCard } from "@/components/menu-browser";
 import { OrderButton } from "@/components/order-options";
 import { ArrowLink } from "@/components/brand";
+import { pageMetadata, photoShareImage } from "@/lib/metadata";
 
 export const dynamicParams = false;
 
@@ -21,15 +22,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const item = getMenuItem((await params).slug);
   return item
-    ? {
+    ? pageMetadata({
+        path: `/menu/${item.slug}`,
         title: item.name,
         description: item.description,
-        openGraph: {
-          title: `${item.name} | سوبر صوص`,
-          description: item.description,
-          images: [{ url: item.image, alt: item.imageAlt }],
-        },
-      }
+        image: photoShareImage(item.image, item.imageAlt),
+      })
     : { title: "الوجبة غير موجودة" };
 }
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {

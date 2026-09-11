@@ -34,7 +34,7 @@ npm run start
 - Brand story, contact, careers, searchable FAQ, demo privacy and terms pages.
 - Contact and careers validation on both client and server, error/retry feedback, optional live email integration.
 - Mobile navigation, keyboard focus, reduced-motion support, local Arabic variable font, error/404/loading states.
-- Page metadata, social preview image, sitemap/robots configuration, security headers and optimized WebP images.
+- Page-specific Open Graph and X previews, branded JPEG share cards, browser/Apple/Android icons, sitemap/robots configuration, security headers and optimized WebP website images.
 - Automated desktop/mobile browser tests and readable TypeScript source.
 
 ## Deploy the presentation
@@ -55,6 +55,25 @@ Keep demo mode enabled for the restaurant presentation. It adds the demo disclos
 Copy the source project, run `npm ci`, then `npm run build`. Run `npm run start` behind your host's HTTPS reverse proxy. Set the same environment variables before building. Do not upload `node_modules`, `.next` or `.env.local` from your computer. Install and build on the destination host.
 
 Public environment variables are embedded during the build. Rebuild after changing them.
+
+## Shared-link previews
+
+The homepage uses a branded Arabic card with the original Super Sauce logo and existing burger image. Open Graph clients receive a 1200 × 630 JPEG; X receives a 1200 × 600 version. Meal links use the meal photo, and branch links use the illustrative storefront with that branch's own title and address. Every public page has its own title, description and canonical URL.
+
+Set `NEXT_PUBLIC_SITE_URL=https://supersauce-rho.vercel.app` before building, or replace it with the final custom domain. Use the public origin without a page path. If it is absent, the site uses Vercel's production domain, then its deployment domain, then this repository's verified public address. Explicit configuration takes priority. The previous localhost fallback made preview images inaccessible outside the development computer.
+
+Preview metadata is included in the initial HTML head, including on the dynamic contact page. Images are static JPEG files under `public/social/`; no JavaScript, cookies or image transformation service is needed to fetch them. Demo mode allows crawlers to fetch the page and images while keeping `noindex, nofollow` on the page and an empty sitemap. A password-protected deployment cannot provide public shared-link previews.
+
+Edit `assets/social/share-card.html` to change the branded image, then export the delivery images and icon fallbacks:
+
+```sh
+npx playwright install chromium
+npm run assets:share
+```
+
+The export uses the project's local font, existing imagery and SVG icon. Outputs and adjacent provenance records are committed, so the normal production build does not need a browser or an image-generation service. When replacing preview assets after deployment, increment the `v1` filenames in the export script and `lib/metadata.ts` together; many sharing apps cache images. New product source photos also need a generated JPEG entry in `scripts/prepare-share-assets.mjs` / `content/asset-prompts.json`.
+
+The implementation follows [Open Graph](https://ogp.me/) and X card metadata conventions. Actual preview layout, image cropping, refresh timing and whether a particular sharing surface displays a card are controlled by each platform. Tests simulate crawler requests; they do not send messages through WhatsApp, Instagram or other accounts. After deployment, check a fresh shared URL and use the platform's preview refresh tool when an older cached card remains visible.
 
 ## Replace the mock content
 
@@ -122,6 +141,7 @@ Before the live launch, replace demo-specific FAQ/privacy/terms copy and all ill
 - `public/images/`: optimized WebP delivery assets with adjacent provenance JSON.
 - `content/asset-prompts.json`: complete image-generation prompts and logo source note.
 - `scripts/prepare-assets.mjs`: reproducible WebP generation using Sharp.
+- `assets/social/share-card.html`, `scripts/prepare-share-assets.mjs`, `public/social/`: editable share-card layout, reproducible JPEG exports and their provenance records.
 - `reference-photos/`: the original user reference files, preserved in the working project for design context; omitted from the downloadable source archive.
 
 ```sh
@@ -143,6 +163,8 @@ npm test
 ```
 
 The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search and price sorting, contact dialogs and keyboard focus, removal of cart/favorites, legacy checkout redirects, branch filters, map clusters/selection/search/zoom/list, exact directions, geolocation success and denial, mobile-sheet dismissal and resizing, demo contact/careers feedback, keyboard navigation, invalid API payloads and 404s. Build with demo mode enabled before running tests. Tests use only synthetic customer data.
+
+Metadata tests inspect the original HTML of all 35 public pages, exercise nine crawler user agents against a dynamic route, download and decode every preview JPEG, and verify icons, manifest and crawl rules. Build and test with the same public URL environment settings.
 
 Automated axe accessibility checks run on the core pages, the open Order dialog, the selected branch panel and the mobile branch sheet. The mobile-navigation and mobile-sheet tests are skipped in the desktop project. See `VALIDATION.md` for the tested scope.
 

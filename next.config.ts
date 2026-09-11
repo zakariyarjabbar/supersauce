@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   devIndicators: false,
+  // Metadata is local and cheap. Put it in the initial head for every link
+  // preview client, including apps whose crawler user agents are not known.
+  htmlLimitedBots: /.*/,
   async headers() {
     return [
       {

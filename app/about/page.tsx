@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { BrandStar, CtaBand } from "@/components/brand";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/about",
   title: "حكاية السوبر",
   description: "حكاية سوبر صوص: برغر، صوص، ولمّة عراقية. تعرّف على الروح وراء كل لقمة.",
-};
+});
 export default function AboutPage() {
   return (
     <>

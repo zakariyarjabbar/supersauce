@@ -12,7 +12,8 @@
     "format:check": "prettier --check .",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "assets:prepare": "node scripts/prepare-assets.mjs"
+    "assets:prepare": "node scripts/prepare-assets.mjs",
+    "assets:share": "node scripts/prepare-share-assets.mjs"
   },
   "dependencies": {
     "@fontsource-variable/alexandria": "^5.2.8",

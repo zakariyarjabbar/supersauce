@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { PageIntro } from "@/components/brand";
 import { FaqList } from "@/components/faq-list";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/faq",
   title: "الأسئلة الشائعة",
   description: "كل ما تريد تعرفه عن منيو سوبر صوص، الفروع وطرق التواصل للطلب.",
-};
+});
 export default function FaqPage() {
   return (
     <>
