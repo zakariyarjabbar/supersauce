@@ -13,6 +13,7 @@ import {
 import { BrandStar, ArrowLink } from "@/components/brand";
 import { HomeMenu } from "@/components/menu-browser";
 import { site } from "@/lib/site";
+import { BranchMap } from "@/components/branch-map";
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
               <Link href="/menu" className="button button-yellow">
                 شوف المنيو <ArrowLeft size={20} />
               </Link>
-              <Link href="/branches" className="hero-location">
+              <Link href="#branch-map" className="hero-location">
                 <MapPin size={19} /> اعثر على أقرب فرع
               </Link>
             </div>
@@ -184,39 +185,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="branches-teaser">
-        <div className="container branch-teaser-inner">
-          <div className="branches-copy">
-            <h2>
-              وين ما تكون،
-              <br />
-              السوبر قريب.
-            </h2>
-            <p>
-              أكثر من 23 فرع حول العراق.
-              <br />
-              نفس اللمة، ونفس الطعم اللي تحبه.
-            </p>
-            <Link href="/branches" className="button button-yellow">
-              اعثر على أقرب فرع <MapPin size={20} />
-            </Link>
-          </div>
-          <div className="branch-poster">
-            <span className="branch-big-number" dir="ltr">
-              23<span>+</span>
-            </span>
-            <span className="branch-big-label">فرع حول العراق</span>
-            <BrandStar className="branch-poster-star" />
-            <div className="city-names">
-              <span>بغداد</span>
-              <span>بابل</span>
-              <span>كربلاء</span>
-              <span>النجف</span>
-            </div>
-          </div>
-        </div>
-        <div className="checker-border" />
-      </section>
+      <BranchMap />
       <section className="section container social-section">
         <div className="section-heading">
           <div>

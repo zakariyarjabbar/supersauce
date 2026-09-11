@@ -98,7 +98,6 @@ textarea:focus-visible {
 .site-footer a:focus-visible,
 .red a:focus-visible,
 .sharing-copy a:focus-visible,
-.branches-teaser a:focus-visible,
 .about-hero a:focus-visible {
   outline-color: var(--yellow);
 }
@@ -992,79 +991,7 @@ a svg {
 .sauce-flavors svg {
   color: var(--red);
 }
-.branches-teaser {
-  background: var(--red);
-  color: var(--cream);
-  overflow: hidden;
-}
-.branch-teaser-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  min-height: 460px;
-  gap: 40px;
-}
-.branches-copy {
-  padding-block: 58px;
-}
-.branches-copy h2 {
-  font-size: 45px;
-}
-.branches-copy p {
-  color: #ffe9e5;
-  margin-top: 13px;
-  font-size: 14px;
-}
-.branches-copy .button {
-  margin-top: 25px;
-}
-.branch-poster {
-  position: relative;
-  text-align: center;
-  transform: rotate(-6deg);
-  padding-block: 35px;
-}
-.branch-big-number {
-  font-size: 160px;
-  line-height: 1;
-  font-weight: 850;
-  letter-spacing: -0.075em;
-  display: block;
-  color: var(--yellow);
-}
-.branch-big-number > span {
-  font-size: 95px;
-  vertical-align: super;
-  margin-left: 6px;
-}
-.branch-big-label {
-  font-size: 23px;
-  font-weight: 750;
-  display: block;
-  margin-top: 17px;
-}
-.branch-poster-star {
-  position: absolute;
-  left: 6%;
-  top: 10px;
-  width: 44px;
-  height: 44px;
-  color: var(--yellow);
-}
-.city-names {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-  transform: rotate(6deg);
-  font-size: 11px;
-}
-.city-names span + span:before {
-  content: "/";
-  padding-left: 15px;
-  color: #ffffff60;
-}
+
 .checker-border {
   height: 30px;
   background-color: var(--cream);
@@ -1664,25 +1591,7 @@ a svg {
   .sauce-copy p {
     font-size: 12px;
   }
-  .branches-copy h2 {
-    font-size: 39px;
-  }
-  .branch-big-number {
-    font-size: 130px;
-  }
-  .branch-big-number > span {
-    font-size: 65px;
-  }
-  .branch-big-label {
-    font-size: 20px;
-  }
-  .city-names {
-    font-size: 9px;
-    gap: 8px;
-  }
-  .city-names span + span:before {
-    padding-left: 8px;
-  }
+
   .footer-top {
     grid-template-columns: 1.3fr 1fr 1fr;
   }
@@ -1965,46 +1874,7 @@ a svg {
   .sauce-art img {
     width: 100%;
   }
-  .branch-teaser-inner {
-    grid-template-columns: 1fr;
-    gap: 0;
-    text-align: center;
-  }
-  .branches-copy {
-    padding-block: 45px 12px;
-  }
-  .branches-copy h2 {
-    font-size: 39px;
-  }
-  .branches-copy p {
-    font-size: 12px;
-  }
-  .branches-copy .button {
-    font-size: 12px;
-    margin-top: 19px;
-  }
-  .branch-poster {
-    max-width: 400px;
-    width: 100%;
-    margin: auto;
-    padding-block: 30px 45px;
-  }
-  .branch-big-number {
-    font-size: 125px;
-  }
-  .branch-big-label {
-    font-size: 20px;
-    margin-top: 12px;
-  }
-  .branch-poster-star {
-    left: 10%;
-    width: 35px;
-    height: 35px;
-  }
-  .city-names {
-    margin-top: 22px;
-    font-size: 10px;
-  }
+
   .checker-border {
     height: 22px;
     background-size: 22px 22px;

@@ -38,6 +38,10 @@ The user explicitly approved arbitrary mock content: “use anything, its mock w
 
 Complete local Next.js project with responsive home, searchable and sortable menu with prices, 18 product pages, a shared contact-order dialog, branch filtering and detail pages, about, contact, careers, searchable FAQ, privacy, terms, and error states. Cart, favorites, quantity controls and internal checkout were removed at the user’s request on 10 September 2026. Phone and WhatsApp destinations use approved public environment configuration; Instagram uses the existing profile. Deployment belongs to the user. Real contact-form delivery is optional configuration; customers arrange orders directly through their selected contact channel.
 
+## Homepage Branch Map
+
+The user approved an interactive Iraq map with branch pins and authorized arbitrary sample Iraqi locations on 11 September 2026. The homepage shows the eight shared demo entries, city clusters, searchable pins and a list alternative, zoom/pan, a desktop details panel and a mobile bottom sheet. Branch information includes illustrative photography, address, hours, services, exact-coordinate directions and optional phone/WhatsApp. Phone destinations remain unavailable until configured with approved numbers; Instagram uses the existing account. Location permission is requested only from the explicit location action, and nearest-branch selection happens in the browser. Geography is bundled locally from public-domain Natural Earth data, without map keys or remote tiles. All coordinates and operational details remain labelled examples for later replacement.
+
 ## Accessibility & Inclusion
 
 Arabic language and RTL layout; keyboard operability, visible focus, reduced-motion support and mobile touch targets.

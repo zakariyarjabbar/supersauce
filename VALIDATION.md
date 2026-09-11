@@ -1,5 +1,29 @@
 # Validation record
 
+## 11 September 2026 — homepage Iraq branch map
+
+Replaced the homepage branch banner with a local vector Iraq map using the eight shared demonstration branches and user-authorized sample coordinates. The existing menu/contact-order behavior remains covered by the regression suite.
+
+| Check                           | Result                                                                                                 |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Production build                | Passed; 42 build outputs                                                                               |
+| TypeScript and ESLint           | Passed without errors or warnings                                                                      |
+| Desktop/mobile Playwright suite | 36 passed, 2 intentionally skipped                                                                     |
+| Automated WCAG A/AA checks      | Passed on core pages, Order dialog, selected desktop branch panel and mobile branch sheet              |
+| Layout inspection               | 1536px desktop, 860px tablet, 390px phone and 320px narrow phone; no measured horizontal page overflow |
+| Impeccable detector             | 45 design-system advisories: 37 typography, seven map colors, one radius; no mechanical warning/error  |
+| Production direction contract   | `BRANCH-MAP: THESIS` confirmed in generated homepage HTML                                              |
+
+The two skipped cases are mobile navigation and the mobile branch sheet in the desktop project; both run and pass in the mobile project. Map tests verify separate national-view city pins, Baghdad cluster expansion, keyboard zoom/pan/reset, city filters, Arabic search/empty-state recovery, list selection synchronization, branch hours, exact-coordinate directions, absent-number placeholders, existing Instagram destination, native-sheet focus containment/dismissal/resize, and geolocation success/denial. Browser permission is not requested before the customer's explicit location action. No real calls or messages were initiated.
+
+The initial national-view grouping was adjusted to retain separate cities and use short guide lines when nearby marker buttons need spacing. The first test passes also exposed assertions reading `body.style.overflow` before React completed native-dialog close cleanup; those assertions now wait for the observable cleanup instead of sampling the same frame. The final full suite passes with no retries.
+
+An independent finish review requested one material fix: the map reset button partly covered the Najaf label at 320px. Reset was moved to the upper-right corner, including the mobile override. The production build passed again, and recaptured desktop/tablet/phone layouts plus recorded element rectangles confirm the label is clear at all four widths. The reviewer's follow-up reached the account usage limit, so the verdict and surface documentation were completed locally using the fallback contracts. The local `ship` verdict scores that single fix resolved; it is not a second independent whole-surface approval. The surface brief records the implemented pattern without rewriting the inherited global design system.
+
+Screenshots and capture metrics are in `.impeccable/review/branch-map-*`. Isolated section crops temporarily hide the unrelated sticky header/skip-link to avoid long element-capture artifacts; actual mobile-sheet viewport captures include the normal header. Phone dialog captures use 390 × 664 and 320 × 780 viewports. Short-screen sheets scroll internally. Existing `restaurant.webp` retains its provenance and is labelled illustrative; no new photographic asset was produced for this implementation.
+
+Locations, addresses, hours and photos are demonstration content. Phone and WhatsApp remain unavailable until configured; directions currently point to the sample coordinates. Natural Earth geography loads from the local bundle, and opt-in nearest-branch calculations stay in the browser. Physical-device Safari, real location accuracy and live external-channel behavior were not exercised. The previously documented Next.js `NoFallbackError` logs still occur on intentional invalid dynamic-route requests, which return the expected HTTP 404.
+
 ## 10 September 2026 — menu and contact ordering
 
 Validated the requested removal of cart, checkout, quantity controls and favorites. The menu data and prices in `lib/menu.ts` are unchanged. Menu cards, product pages, branch pages and the header now use one contact dialog. The previous `/order` route redirects to `/menu`, including old branch query links.

@@ -30,6 +30,7 @@ npm run start
 - Shared Order dialog on menu cards, product pages, branch pages and the header, with phone, WhatsApp and Instagram contact options. Prices stay visible; WhatsApp drafts include the selected item or branch.
 - Keyboard-accessible native dialog with Escape, close-button and backdrop dismissal. Old `/order` links redirect to `/menu`.
 - Branch directory with search, city filters, eight example branch pages and Google Maps search links.
+- Interactive Iraq map on the homepage: selectable pins, city clusters, search, map/list views, zoom/pan, a desktop details panel and a mobile bottom sheet. Directions use each entry's coordinates; optional geolocation finds the closest example.
 - Brand story, contact, careers, searchable FAQ, demo privacy and terms pages.
 - Contact and careers validation on both client and server, error/retry feedback, optional live email integration.
 - Mobile navigation, keyboard focus, reduced-motion support, local Arabic variable font, error/404/loading states.
@@ -57,24 +58,41 @@ Public environment variables are embedded during the build. Rebuild after changi
 
 ## Replace the mock content
 
-| Content                                                              | File                                                                  |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| Menu names, prices, categories, descriptions, ingredients and photos | `lib/menu.ts`                                                         |
-| Branches, hours, services and addresses                              | `lib/branches.ts`                                                     |
-| Brand name, public links, domain and demo setting                    | `lib/site.ts`                                                         |
-| Homepage copy and campaign sections                                  | `app/page.tsx`                                                        |
-| Brand story                                                          | `app/about/page.tsx`                                                  |
-| Shared colors, type, spacing and responsive rules                    | `app/globals.css`                                                     |
-| Navigation and footer                                                | `components/header.tsx`, `components/footer.tsx`                      |
-| FAQ content                                                          | `components/faq-list.tsx`                                             |
-| Form fields and validation                                           | `components/contact-form.tsx`, `lib/validation.ts`                    |
-| Form delivery                                                        | `app/api/contact/route.ts`                                            |
-| Order dialog and contact destinations                                | `components/order-options.tsx`, `lib/order-contact.ts`, `lib/site.ts` |
-| Usage and privacy copy                                               | `app/terms/page.tsx`, `app/privacy/page.tsx`                          |
+| Content                                                                  | File                                                                  |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| Menu names, prices, categories, descriptions, ingredients and photos     | `lib/menu.ts`                                                         |
+| Branches, map coordinates, phone/WhatsApp, hours, services and addresses | `lib/branches.ts`                                                     |
+| Homepage map layout and behavior                                         | `components/branch-map.tsx`, `components/branch-map.module.css`       |
+| Brand name, public links, domain and demo setting                        | `lib/site.ts`                                                         |
+| Homepage copy and campaign sections                                      | `app/page.tsx`                                                        |
+| Brand story                                                              | `app/about/page.tsx`                                                  |
+| Shared colors, type, spacing and responsive rules                        | `app/globals.css`                                                     |
+| Navigation and footer                                                    | `components/header.tsx`, `components/footer.tsx`                      |
+| FAQ content                                                              | `components/faq-list.tsx`                                             |
+| Form fields and validation                                               | `components/contact-form.tsx`, `lib/validation.ts`                    |
+| Form delivery                                                            | `app/api/contact/route.ts`                                            |
+| Order dialog and contact destinations                                    | `components/order-options.tsx`, `lib/order-contact.ts`, `lib/site.ts` |
+| Usage and privacy copy                                                   | `app/terms/page.tsx`, `app/privacy/page.tsx`                          |
 
 Prices use whole Iraqi dinars. Each product and branch has a unique URL slug. Product cards and detail pages use the same data, so an edit updates both. Photos are shared between a few related sample products; replace them with item-specific photography when the menu is approved.
 
-The directory intentionally shows **eight example branches**, while the brand headline says **more than 23**, as supplied by the user. Expand the directory with the complete approved list. The map buttons currently open a search, not a verified map pin. Replace `branchMapsUrl` with approved place links if available.
+The directory intentionally shows **eight example branches**, while the brand headline says **more than 23**, as supplied by the user. Expand the directory with the complete approved list. Homepage map coordinates are sample locations in Iraq, explicitly authorized for the demo; they do not establish actual restaurant locations. The existing directory/detail-page map links still search by branch name.
+
+### Editing the Iraq map
+
+Edit or duplicate an entry in `lib/branches.ts`. Give every branch a unique `slug`, then replace `name`, `city`, `area`, `address`, `hours`, `services` and `coordinates: { lat, lng }`. City filters, map pins, the list and branch pages are generated from this shared array. The current eight pins are grouped around Baghdad, Babel, Karbala and Najaf.
+
+Set each branch's `phone` and `whatsapp` to approved numbers, preferably starting with `+964`. Empty fields fall back to the site-wide contact settings below; when neither is configured, the map shows a placeholder with disabled contact buttons. WhatsApp drafts identify the selected branch. Optional `image` accepts a local public image path; otherwise the existing illustrative storefront is used.
+
+Nearby branches within a city form numbered clusters. Adjacent city buttons are separated slightly with guide lines to their coordinate anchors. Clicking a pin updates the desktop information panel or opens a keyboard-accessible mobile sheet. The red directions link opens Google Maps at that entry's exact coordinates. Replace sample coordinates before using those directions for a real visit.
+
+The map uses bundled [Natural Earth vector data](https://github.com/nvkelso/natural-earth-vector/tree/master/geojson), available in the [public domain](https://www.naturalearthdata.com/about/terms-of-use/). It requires no API key, tile service or runtime network request for geography. The checked-in subset is `lib/iraq-map.json`; regenerate it when needed with:
+
+```sh
+node scripts/prepare-iraq-map.mjs
+```
+
+Geolocation runs only after clicking «استخدم موقعي» and accepting the browser prompt, on HTTPS or localhost. The browser computes the closest entry without storing or sending the customer's coordinates to the application server. Search and province filters remain available if permission is denied. `next.config.ts` permits geolocation for the same origin.
 
 ### Activating real contact email later
 
@@ -124,9 +142,9 @@ npx playwright install chromium
 npm test
 ```
 
-The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search and price sorting, contact dialogs and keyboard focus, removal of cart/favorites, legacy checkout redirects, branch filters, demo contact/careers feedback, keyboard navigation, invalid API payloads and 404s. Build with demo mode enabled before running tests. Tests use only synthetic customer data.
+The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search and price sorting, contact dialogs and keyboard focus, removal of cart/favorites, legacy checkout redirects, branch filters, map clusters/selection/search/zoom/list, exact directions, geolocation success and denial, mobile-sheet dismissal and resizing, demo contact/careers feedback, keyboard navigation, invalid API payloads and 404s. Build with demo mode enabled before running tests. Tests use only synthetic customer data.
 
-Automated axe accessibility checks run on the core pages and the open Order dialog. The mobile-navigation test is skipped in the desktop project. See `VALIDATION.md` for the tested scope.
+Automated axe accessibility checks run on the core pages, the open Order dialog, the selected branch panel and the mobile branch sheet. The mobile-navigation and mobile-sheet tests are skipped in the desktop project. See `VALIDATION.md` for the tested scope.
 
 Visual captures can be generated while the local site is running:
 

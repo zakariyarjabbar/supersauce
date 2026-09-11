@@ -29,7 +29,7 @@ test("Arabic pages, imagery and navigation render without errors or overflow", a
       await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
       `horizontal overflow at ${path}`,
     ).toBe(true);
-    for (const img of await page.locator("img").all()) {
+    for (const img of await page.locator("img:visible").all()) {
       await img.scrollIntoViewIfNeeded();
       await expect(img).toHaveJSProperty("complete", true);
       expect(await img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
@@ -102,7 +102,7 @@ test("item ordering opens contact choices with the price and restores keyboard f
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
   await expect(trigger).toBeFocused();
-  expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+  await expect.poll(() => page.evaluate(() => document.body.style.overflow)).toBe("");
   await trigger.click();
   await close.click();
   await expect(dialog).not.toBeVisible();
@@ -117,7 +117,10 @@ test("item ordering opens contact choices with the price and restores keyboard f
 
 test("home, product, header and branch buttons share the contact flow", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "اعثر على أقرب فرع", exact: true })).toHaveCount(2);
+  await expect(page.getByRole("link", { name: "اعثر على أقرب فرع", exact: true })).toHaveAttribute(
+    "href",
+    "#branch-map",
+  );
   await page.locator(".food-card").first().getByRole("button", { name: /^اطلب/ }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog.locator(".order-selected-item")).toBeVisible();
