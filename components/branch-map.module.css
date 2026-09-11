@@ -299,11 +299,14 @@
   background: var(--cream);
   border: 1px solid var(--line);
   cursor: grab;
-  touch-action: pan-y;
+  touch-action: none;
   isolation: isolate;
 }
 .canvas:active {
   cursor: grabbing;
+}
+.canvas[data-list="true"] {
+  touch-action: pan-y;
 }
 .canvas:focus-visible {
   outline: 3px solid var(--red);

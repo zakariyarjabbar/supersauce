@@ -1,5 +1,11 @@
 # Validation record
 
+## 11 September 2026 — map touch and wheel navigation
+
+Added two-finger pinch zoom and one-finger map dragging, plus desktop wheel zoom at the cursor. The map converts screen coordinates through the rendered SVG matrix, retains the zoom anchor, clamps zoom to 1–32, suppresses accidental branch activation after gestures, and cleans up native event listeners when switching to the list. List mode and the surrounding page retain normal scrolling; Ctrl/Command-wheel remains available for browser zoom. Arabic instructions describe the gestures.
+
+Production build, TypeScript and lint passed. The 14 applicable map checks passed across the regression run and focused confirmation, with two desktop skips for mobile-only behavior. Chromium touch injection verified pinch in/out, transition to one-finger dragging, stable page scroll/viewport scale, and no accidental branch dialog. Real wheel input verified the geographic cursor anchor and scrolling outside the canvas. The existing map checks continue to cover branch selection, clusters, keyboard zoom/reset, filters, lists, geolocation and accessibility. Physical-device Safari was not exercised. The scoped detector reported 45 existing design-token advisories and no warnings or errors.
+
 ## 11 September 2026 — search indexing enabled
 
 Removed the root `noindex, nofollow` metadata requested by the user. The public robots file allows normal pages, continues to exclude `/order` and `/api/`, and now advertises a populated sitemap in demo mode as well. Automated metadata checks verify that the homepage has no robots meta tag and that the sitemap contains the homepage and menu URLs.

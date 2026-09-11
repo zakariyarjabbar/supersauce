@@ -7,6 +7,93 @@ test.beforeEach(async ({ page }) => {
   await expect(page.getByRole("heading", { name: "اعثر على أقرب فرع" })).toBeVisible();
 });
 
+test("wheel zoom keeps the cursor anchor steady and leaves page scrolling available outside the map", async ({
+  page,
+}) => {
+  const map = page.getByRole("group", { name: "خريطة فروع سوبر صوص في العراق", exact: true });
+  await map.scrollIntoViewIfNeeded();
+  const box = (await map.boundingBox())!;
+  const cursor = {
+    x: Math.round(box.x + box.width * 0.45),
+    y: Math.round(box.y + box.height * 0.35),
+  };
+  const anchor = () =>
+    map
+      .locator("svg > g")
+      .first()
+      .evaluate((group, position) => {
+        const local = new DOMPoint(position.x, position.y).matrixTransform(
+          (group as SVGGraphicsElement).getScreenCTM()!.inverse(),
+        );
+        return { x: local.x, y: local.y };
+      }, cursor);
+  const beforeAnchor = await anchor();
+  await page.mouse.move(cursor.x, cursor.y);
+  const scroll = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, -150);
+  await expect.poll(async () => Number(await map.getAttribute("data-zoom"))).toBeGreaterThan(1);
+  const afterAnchor = await anchor();
+  expect(afterAnchor.x).toBeCloseTo(beforeAnchor.x, 1);
+  expect(afterAnchor.y).toBeCloseTo(beforeAnchor.y, 1);
+  expect(await page.evaluate(() => scrollY)).toBe(scroll);
+  await page.mouse.wheel(0, 2000);
+  await expect(map).toHaveAttribute("data-zoom", "1.00");
+  await page.mouse.move(5, 150);
+  await page.mouse.wheel(0, 180);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scroll);
+});
+
+test("two-finger touch zooms both ways, supports continued dragging, and does not select a branch", async ({
+  page,
+  context,
+  isMobile,
+}) => {
+  test.skip(!isMobile, "Real touchscreen input on mobile");
+  const map = page.getByRole("group", { name: "خريطة فروع سوبر صوص في العراق", exact: true });
+  await map.scrollIntoViewIfNeeded();
+  const box = (await map.boundingBox())!;
+  const x = box.x + box.width / 2,
+    y = box.y + box.height / 2;
+  const session = await context.newCDPSession(page);
+  const touch = (id: number, px: number, py: number) => ({ id, x: px, y: py });
+  const scroll = await page.evaluate(() => scrollY);
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchStart",
+    touchPoints: [touch(1, x - 35, y), touch(2, x + 35, y)],
+  });
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchMove",
+    touchPoints: [touch(1, x - 70, y), touch(2, x + 70, y)],
+  });
+  await expect.poll(async () => Number(await map.getAttribute("data-zoom"))).toBeGreaterThan(1.8);
+  const drawing = map.locator("svg > g").first();
+  const before = await drawing.getAttribute("transform");
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchMove",
+    touchPoints: [touch(1, x - 70, y)],
+  });
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchMove",
+    touchPoints: [touch(1, x - 40, y + 30)],
+  });
+  await expect(drawing).not.toHaveAttribute("transform", before!);
+  await session.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchStart",
+    touchPoints: [touch(1, x - 70, y), touch(2, x + 70, y)],
+  });
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchMove",
+    touchPoints: [touch(1, x - 30, y), touch(2, x + 30, y)],
+  });
+  await session.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+  await expect(map).toHaveAttribute("data-zoom", "1.00");
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  expect(await page.evaluate(() => scrollY)).toBe(scroll);
+  expect(await page.evaluate(() => visualViewport?.scale)).toBe(1);
+  await session.detach();
+});
+
 test("cluster pins expand, map zooms by keyboard and reset restores Iraq", async ({ page }) => {
   const map = page.getByRole("group", { name: "خريطة فروع سوبر صوص في العراق", exact: true });
   await expect(map).toHaveAttribute("data-zoom", "1.00");

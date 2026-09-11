@@ -182,6 +182,7 @@ export function BranchMap() {
   const sheet = useRef<HTMLDialogElement>(null);
   const sheetTrigger = useRef<HTMLElement | null>(null);
   const locationRequest = useRef(0);
+  const suppressClickUntil = useRef(0);
   const drag = useRef<{ pointer: number; x: number; y: number; view: MapView } | null>(null);
   const visible = branches.filter(
     (branch) =>
@@ -220,6 +221,85 @@ export function BranchMap() {
       pendingRequests.current++;
     };
   }, []);
+
+  useEffect(() => {
+    const element = canvas.current;
+    if (!element || listView || !visible.length) return;
+    type Point = { x: number; y: number };
+    let previous: Point[] = [];
+    const touchIds = new Set<number>();
+    const point = (x: number, y: number): Point => {
+      const matrix = element.querySelector("svg")!.getScreenCTM()!;
+      return new DOMPoint(x, y).matrixTransform(matrix.inverse());
+    };
+    const transform = (from: Point, to: Point, factor: number) => {
+      setView((current) => {
+        const next = Math.min(MAX_MAP_ZOOM, Math.max(1, current.zoom * factor));
+        const ratio = next / current.zoom;
+        return limitView({
+          zoom: next,
+          x: to.x - (from.x - current.x) * ratio,
+          y: to.y - (from.y - current.y) * ratio,
+        });
+      });
+    };
+    const wheel = (event: WheelEvent) => {
+      if (event.ctrlKey || event.metaKey) return;
+      event.preventDefault();
+      const delta =
+        event.deltaY *
+        (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientHeight : 1);
+      const anchor = point(event.clientX, event.clientY);
+      transform(anchor, anchor, Math.exp(-Math.max(-200, Math.min(200, delta)) * 0.003));
+    };
+    const points = (event: TouchEvent) =>
+      Array.from(event.touches)
+        .filter((touch) => touchIds.has(touch.identifier))
+        .slice(0, 2)
+        .map((touch) => point(touch.clientX, touch.clientY));
+    const start = (event: TouchEvent) => {
+      for (const touch of Array.from(event.changedTouches)) {
+        if (element.contains(touch.target as Node)) touchIds.add(touch.identifier);
+      }
+      previous = points(event);
+      if (previous.length > 1) {
+        event.preventDefault();
+        suppressClickUntil.current = Date.now() + 500;
+      }
+    };
+    const move = (event: TouchEvent) => {
+      const next = points(event);
+      if (next.length && next.length === previous.length) {
+        event.preventDefault();
+        const midpoint = (p: Point[]) =>
+          p.length === 1 ? p[0] : { x: (p[0].x + p[1].x) / 2, y: (p[0].y + p[1].y) / 2 };
+        const distance = (p: Point[]) => Math.hypot(p[1].x - p[0].x, p[1].y - p[0].y);
+        transform(
+          midpoint(previous),
+          midpoint(next),
+          next.length === 2 ? distance(next) / Math.max(1, distance(previous)) : 1,
+        );
+        suppressClickUntil.current = Date.now() + 500;
+      }
+      previous = next;
+    };
+    const end = (event: TouchEvent) => {
+      for (const touch of Array.from(event.changedTouches)) touchIds.delete(touch.identifier);
+      previous = points(event);
+    };
+    element.addEventListener("wheel", wheel, { passive: false });
+    element.addEventListener("touchstart", start, { passive: false });
+    element.addEventListener("touchmove", move, { passive: false });
+    element.addEventListener("touchend", end);
+    element.addEventListener("touchcancel", end);
+    return () => {
+      element.removeEventListener("wheel", wheel);
+      element.removeEventListener("touchstart", start);
+      element.removeEventListener("touchmove", move);
+      element.removeEventListener("touchend", end);
+      element.removeEventListener("touchcancel", end);
+    };
+  }, [listView, visible.length]);
 
   useEffect(() => {
     const dialog = sheet.current;
@@ -430,6 +510,12 @@ export function BranchMap() {
               role="group"
               aria-label="خريطة فروع سوبر صوص في العراق"
               aria-describedby="branch-map-instructions"
+              onClickCapture={(event) => {
+                if (event.detail && Date.now() < suppressClickUntil.current) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+              }}
               onKeyDown={(event) => {
                 if (event.target !== event.currentTarget) return;
                 if (
@@ -466,6 +552,7 @@ export function BranchMap() {
               onPointerDown={(event) => {
                 if (
                   listView ||
+                  event.pointerType === "touch" ||
                   event.button !== 0 ||
                   (event.target as Element).closest("button, a")
                 )
@@ -481,6 +568,8 @@ export function BranchMap() {
               onPointerMove={(event) => {
                 const start = drag.current;
                 if (!start || start.pointer !== event.pointerId) return;
+                if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 5)
+                  suppressClickUntil.current = Date.now() + 500;
                 setView(
                   limitView({
                     ...start.view,
@@ -684,7 +773,8 @@ export function BranchMap() {
               )}
             </div>
             <p className={styles.mapInstructions} id="branch-map-instructions">
-              اضغط على دبوس لعرض الفرع، أو على رقم لتكبير التجمع.
+              اسحب لتحريك الخريطة، وقرّب أو باعد بإصبعين للتكبير والتصغير، أو استخدم عجلة الماوس.
+              اضغط على دبوس لعرض الفرع.
               <span className="sr-only">
                 {" "}
                 اسحب لتحريك الخريطة. بلوحة المفاتيح استخدم الأسهم للتحريك، والزائد والناقص للتكبير،

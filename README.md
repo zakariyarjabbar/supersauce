@@ -99,6 +99,8 @@ The directory intentionally shows **eight example branches**, while the brand he
 
 ### Editing the Iraq map
 
+The map supports mouse dragging, wheel zoom centered on the cursor, one-finger dragging and two-finger pinch zoom centered between the fingers. Gestures stay inside the map; scroll the surrounding page normally, or switch to the list for a scrollable branch directory. Zoom buttons, keyboard controls and the Iraq reset button remain available. Ctrl/Command-wheel is reserved for browser zoom.
+
 Edit or duplicate an entry in `lib/branches.ts`. Give every branch a unique `slug`, then replace `name`, `city`, `area`, `address`, `hours`, `services` and `coordinates: { lat, lng }`. City filters, map pins, the list and branch pages are generated from this shared array. The current eight pins are grouped around Baghdad, Babel, Karbala and Najaf.
 
 Set each branch's `phone` and `whatsapp` to approved numbers, preferably starting with `+964`. Empty fields fall back to the site-wide contact settings below; when neither is configured, the map shows a placeholder with disabled contact buttons. WhatsApp drafts identify the selected branch. Optional `image` accepts a local public image path; otherwise the existing illustrative storefront is used.
