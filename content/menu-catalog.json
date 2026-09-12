@@ -1,0 +1,876 @@
+[
+  {
+    "slug": "k-burger",
+    "name": "كي برجر",
+    "englishName": "K Burger",
+    "category": "krisket",
+    "price": 7500,
+    "sourcePage": 1,
+    "ingredients": [
+      "صمون بريوش",
+      "سبيشل صوص",
+      "خس",
+      "طماطة",
+      "بصل",
+      "مخلل",
+      "برجر لحم",
+      "شريحتان من الجبن السويسري"
+    ],
+    "description": "صمون بريوش، سبيشل صوص، خس، طماطة، بصل، مخلل، برجر لحم، شريحتان من الجبن السويسري."
+  },
+  {
+    "slug": "krisket-burger",
+    "name": "كرسكت برجر",
+    "englishName": "Krisket Burger",
+    "category": "krisket",
+    "price": 11500,
+    "sourcePage": 1,
+    "ingredients": [
+      "صمون بريوش",
+      "شريحة برجر لحم",
+      "جبن شيدر",
+      "لحم بريسكت مدخن",
+      "بصل مكرمل",
+      "مخلل",
+      "جبن موزريلا",
+      "صوص كرز",
+      "صوص كوكتيل"
+    ],
+    "description": "صمون بريوش، شريحة برجر لحم، جبن شيدر، لحم بريسكت مدخن، بصل مكرمل، مخلل، جبن موزريلا، صوص كرز، صوص كوكتيل.",
+    "featured": true
+  },
+  {
+    "slug": "truffle-burger",
+    "name": "ترفل برجر",
+    "englishName": "Truffle Burger",
+    "category": "krisket",
+    "price": 9000,
+    "sourcePage": 1,
+    "ingredients": [
+      "صمون بريوش",
+      "صوص أساسي",
+      "صوص خاص",
+      "خس",
+      "برجر لحم",
+      "شريحتان من الجبن السويسري",
+      "بصل مقلي",
+      "سويس مشروم",
+      "صوص ترفل"
+    ],
+    "description": "صمون بريوش، صوص أساسي، صوص خاص، خس، برجر لحم، شريحتان من الجبن السويسري، بصل مقلي، سويس مشروم، صوص ترفل.",
+    "tag": "جديد"
+  },
+  {
+    "slug": "toreno-meat",
+    "name": "تورينو لحم",
+    "englishName": "Toreno Meat",
+    "category": "krisket",
+    "price": 7500,
+    "sourcePage": 1,
+    "ingredients": ["صمون ماستر", "لحم بريسكت مدخن", "خضار", "شريحتان من جبن الشيدر", "صوص"],
+    "description": "صمون ماستر، لحم بريسكت مدخن، خضار، شريحتان من جبن الشيدر، صوص.",
+    "tag": "جديد"
+  },
+  {
+    "slug": "krisket-hotdog",
+    "name": "كرسكت هوت دوغ",
+    "englishName": "Krisket Hotdog",
+    "category": "krisket",
+    "price": 7500,
+    "sourcePage": 1,
+    "ingredients": ["صمون ماستر", "لحم بريسكت مدخن", "مشروم", "هوت دوغ", "شريحة جبن", "صوص"],
+    "description": "صمون ماستر، لحم بريسكت مدخن، مشروم، هوت دوغ، شريحة جبن، صوص.",
+    "tag": "جديد"
+  },
+  {
+    "slug": "krisket-fries",
+    "name": "كرسكت فرايز",
+    "englishName": "Krisket Fries",
+    "category": "krisket",
+    "price": 5500,
+    "sourcePage": 1,
+    "ingredients": [
+      "فنجر",
+      "لحم بريسكت مدخن",
+      "ثلاثة أنواع من الصوص",
+      "دوريتوس",
+      "قطعتان من البصل المقرمش"
+    ],
+    "description": "فنجر، لحم بريسكت مدخن، ثلاثة أنواع من الصوص، دوريتوس، قطعتان من البصل المقرمش."
+  },
+  {
+    "slug": "beef-parmesan",
+    "name": "بيف بارميزان",
+    "englishName": "Beef Parmesan",
+    "category": "krisket",
+    "price": 5500,
+    "sourcePage": 1,
+    "ingredients": ["فنجر", "لحم مفروم", "مكس صوص", "مكس جبن", "جبن بارميزان"],
+    "description": "فنجر، لحم مفروم، مكس صوص، مكس جبن، جبن بارميزان.",
+    "tag": "جديد"
+  },
+  {
+    "slug": "keto-burger",
+    "name": "كيتو برجر",
+    "englishName": "Keto Burger",
+    "category": "krisket",
+    "price": 7500,
+    "sourcePage": 1,
+    "ingredients": [
+      "سبيشل صوص",
+      "طماطة",
+      "بصل",
+      "مخلل",
+      "برجر لحم",
+      "شريحتان من الجبن السويسري",
+      "غلاف من الخضار"
+    ],
+    "description": "سبيشل صوص، طماطة، بصل، مخلل، برجر لحم، شريحتان من الجبن السويسري، غلاف من الخضار.",
+    "tag": "جديد"
+  },
+  {
+    "slug": "classic-burger",
+    "name": "كلاسك برجر",
+    "englishName": "Classic Burger",
+    "category": "burgers",
+    "price": 5500,
+    "sourcePage": 4,
+    "ingredients": ["صمون بريوش", "صوص أساسي", "خضار", "برجر لحم"],
+    "description": "صمون بريوش، صوص أساسي، خضار، برجر لحم.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "smoky-burger",
+    "name": "سموكي برجر",
+    "englishName": "Smokey Burger",
+    "category": "burgers",
+    "price": 5500,
+    "sourcePage": 4,
+    "ingredients": [
+      "صمون بريوش",
+      "صوص أساسي",
+      "خس",
+      "طماطة",
+      "مخلل",
+      "برجر لحم",
+      "بصل مقرمش",
+      "صوص سموك"
+    ],
+    "description": "صمون بريوش، صوص أساسي، خس، طماطة، مخلل، برجر لحم، بصل مقرمش، صوص سموك.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "cheese-burger",
+    "name": "جيز برجر",
+    "englishName": "Cheese Burger",
+    "category": "burgers",
+    "price": 6000,
+    "sourcePage": 4,
+    "ingredients": ["صمون بريوش", "صوص أساسي", "خس", "بصل", "مخلل", "برجر لحم", "شريحتان من الجبن"],
+    "description": "صمون بريوش، صوص أساسي، خس، بصل، مخلل، برجر لحم، شريحتان من الجبن.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "swiss-mushroom-burger",
+    "name": "سويس مشروم برجر",
+    "englishName": "Swiss Mushroom Burger",
+    "category": "burgers",
+    "price": 7000,
+    "sourcePage": 4,
+    "ingredients": ["صمون بريوش", "صوص أساسي", "مخلل", "سويس مشروم", "برجر لحم", "جبن سويسري"],
+    "description": "صمون بريوش، صوص أساسي، مخلل، سويس مشروم، برجر لحم، جبن سويسري.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "hungry-burger",
+    "name": "هانكري برجر",
+    "englishName": "Hungry Burger",
+    "category": "burgers",
+    "price": 7500,
+    "sourcePage": 4,
+    "ingredients": ["صمون بريوش", "صوص أساسي", "مخلل", "خس", "برجر لحم", "لحم مفروم"],
+    "description": "صمون بريوش، صوص أساسي، مخلل، خس، برجر لحم، لحم مفروم.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "commandos-burger",
+    "name": "كوماندوز برجر",
+    "englishName": "Commandos Burger",
+    "category": "burgers",
+    "price": 8000,
+    "sourcePage": 4,
+    "ingredients": [
+      "صمون بريوش",
+      "صوص أساسي",
+      "خس",
+      "مخلل",
+      "طماطة",
+      "شريحتان من برجر اللحم",
+      "لحم مقدد",
+      "بصل مقرمش"
+    ],
+    "description": "صمون بريوش، صوص أساسي، خس، مخلل، طماطة، شريحتان من برجر اللحم، لحم مقدد، بصل مقرمش.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "omg-burger",
+    "name": "أو إم جي برجر",
+    "englishName": "OMG Burger",
+    "category": "burgers",
+    "price": 8500,
+    "sourcePage": 4,
+    "ingredients": [
+      "صمون بريوش",
+      "صوص أساسي",
+      "خس",
+      "طماطة",
+      "بصل",
+      "مخلل",
+      "شريحتان من برجر اللحم",
+      "شريحة جبن",
+      "صوص شيدر",
+      "لحم مفروم"
+    ],
+    "description": "صمون بريوش، صوص أساسي، خس، طماطة، بصل، مخلل، شريحتان من برجر اللحم، شريحة جبن، صوص شيدر، لحم مفروم.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "ayam-zaman-burger",
+    "name": "أيام زمان برجر",
+    "englishName": "Ayam Zaman Burger",
+    "category": "burgers",
+    "price": 4500,
+    "sourcePage": 4,
+    "ingredients": ["صمون كلاسك", "كاتشب", "مايونيز", "خضار", "برجر لحم", "فنجر"],
+    "description": "صمون كلاسك، كاتشب، مايونيز، خضار، برجر لحم، فنجر.",
+    "mealUpgrade": 2000,
+    "cheeseExtra": 500
+  },
+  {
+    "slug": "zinger",
+    "name": "زنجر",
+    "englishName": "Zinger",
+    "category": "sandwiches",
+    "price": 4500,
+    "sourcePage": 9,
+    "ingredients": ["صمون كلاسك", "صوص أساسي", "خس", "دجاج زنجر", "فنجر"],
+    "description": "صمون كلاسك، صوص أساسي، خس، دجاج زنجر، فنجر.",
+    "mealUpgrade": 2000,
+    "cheeseExtra": 500
+  },
+  {
+    "slug": "twister",
+    "name": "تويستر",
+    "englishName": "Twister",
+    "category": "sandwiches",
+    "price": 5500,
+    "sourcePage": 9,
+    "ingredients": ["خبز صاج", "صوص أساسي", "خس", "طماطة", "دجاج زنجر", "صوص شيدر", "صوص سموك"],
+    "description": "خبز صاج، صوص أساسي، خس، طماطة، دجاج زنجر، صوص شيدر، صوص سموك.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "chicken-torino",
+    "name": "تورينو دجاج",
+    "englishName": "Chicken Torino",
+    "category": "sandwiches",
+    "price": 6000,
+    "sourcePage": 9,
+    "ingredients": ["صمون ماستر", "كاتشب", "مايونيز", "فنجر", "دجاج تورينو مع الصلصة والخضار"],
+    "description": "صمون ماستر، كاتشب، مايونيز، فنجر، دجاج تورينو مع الصلصة والخضار.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "supreme",
+    "name": "سوبريم",
+    "englishName": "Supreme",
+    "category": "sandwiches",
+    "price": 5500,
+    "sourcePage": 9,
+    "ingredients": [
+      "صمون ماستر",
+      "صوص أساسي",
+      "خس",
+      "دجاج زنجر",
+      "صوص شيدر",
+      "لحم مقدد",
+      "صوص سموك"
+    ],
+    "description": "صمون ماستر، صوص أساسي، خس، دجاج زنجر، صوص شيدر، لحم مقدد، صوص سموك.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "hummer-zinger",
+    "name": "همر زنجر",
+    "englishName": "Hummer Zinger",
+    "category": "sandwiches",
+    "price": 7000,
+    "sourcePage": 9,
+    "ingredients": [
+      "صمون بريوش",
+      "صوص خاص",
+      "خس",
+      "طماطة",
+      "دجاج زنجر",
+      "شريحتان من الجبن السويسري"
+    ],
+    "description": "صمون بريوش، صوص خاص، خس، طماطة، دجاج زنجر، شريحتان من الجبن السويسري.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "hungry-hotdog",
+    "name": "هانكري هوت دوغ",
+    "englishName": "Hungry Hotdog",
+    "category": "sandwiches",
+    "price": 4500,
+    "sourcePage": 9,
+    "ingredients": ["صمون ماستر", "صوص أساسي", "خضار", "فنجر", "هوت دوغ مشوي", "لحم مفروم"],
+    "description": "صمون ماستر، صوص أساسي، خضار، فنجر، هوت دوغ مشوي، لحم مفروم.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "extra-cheese-zinger",
+    "name": "إكسترا جيز زنجر",
+    "englishName": "Extra Cheese Zinger",
+    "category": "sandwiches",
+    "price": 6000,
+    "sourcePage": 12,
+    "ingredients": ["صمون ماستر", "دجاج زنجر", "ثومية", "طماطة", "إكسترا جبن", "كاتشب"],
+    "description": "صمون ماستر، دجاج زنجر، ثومية، طماطة، إكسترا جبن، كاتشب.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "nashville",
+    "name": "ناشفل",
+    "englishName": "Nashville",
+    "category": "sandwiches",
+    "price": 7500,
+    "sourcePage": 12,
+    "ingredients": [
+      "صمون بريوش",
+      "صوص هني مسترد",
+      "خس",
+      "دجاج ناشفل",
+      "جبن سويسري",
+      "كول سلو",
+      "جبن شيدر"
+    ],
+    "description": "صمون بريوش، صوص هني مسترد، خس، دجاج ناشفل، جبن سويسري، كول سلو، جبن شيدر.",
+    "mealUpgrade": 2000,
+    "featured": true,
+    "tag": "جديد"
+  },
+  {
+    "slug": "double-bite",
+    "name": "دبل بايت",
+    "englishName": "Double Bite",
+    "category": "sandwiches",
+    "price": 7500,
+    "sourcePage": 12,
+    "ingredients": ["صمون بريوش", "صوص خاص", "خس", "قطعتان من الدجاج", "شريحة جبن سويسري", "مخلل"],
+    "description": "صمون بريوش، صوص خاص، خس، قطعتان من الدجاج، شريحة جبن سويسري، مخلل.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "boomber",
+    "name": "بومبير",
+    "englishName": "Boomber",
+    "category": "sandwiches",
+    "price": 7000,
+    "sourcePage": 12,
+    "ingredients": ["صمون بريوش", "خس", "دجاج زنجر", "حبش", "جبن شيدر", "صوص خاص"],
+    "description": "صمون بريوش، خس، دجاج زنجر، حبش، جبن شيدر، صوص خاص.",
+    "mealUpgrade": 2000,
+    "tag": "جديد"
+  },
+  {
+    "slug": "chicken-burger",
+    "name": "جكن برجر",
+    "englishName": "Chicken Burger",
+    "category": "sandwiches",
+    "price": 5500,
+    "sourcePage": 12,
+    "ingredients": ["صمون بريوش", "خس", "مخلل", "صوص", "شريحة برجر دجاج"],
+    "description": "صمون بريوش، خس، مخلل، صوص، شريحة برجر دجاج.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "diet-sandwich",
+    "name": "دايت ساندويش",
+    "englishName": "Diet Sandwich",
+    "category": "sandwiches",
+    "price": 6000,
+    "sourcePage": 12,
+    "ingredients": ["صمون أسمر", "صوص دايت", "خس", "مخلل", "جبن لايت", "قطعة دجاج مشوية"],
+    "description": "صمون أسمر، صوص دايت، خس، مخلل، جبن لايت، قطعة دجاج مشوية.",
+    "mealUpgrade": 2000
+  },
+  {
+    "slug": "small-broasted-meal",
+    "name": "وجبة بروستد صغير",
+    "englishName": "Small Broasted Meal",
+    "category": "chicken",
+    "price": 7500,
+    "sourcePage": 3,
+    "ingredients": [
+      "قطعتان من الدجاج الكرسبي",
+      "بطاطا",
+      "١ كولسلو",
+      "١ ثومية",
+      "قطعتان صمون",
+      "علبة مشروب غازي"
+    ],
+    "description": "قطعتان من الدجاج الكرسبي، بطاطا، ١ كولسلو، ١ ثومية، قطعتان صمون، علبة مشروب غازي."
+  },
+  {
+    "slug": "broasted-meal",
+    "name": "وجبة بروستد",
+    "englishName": "Broasted Meal",
+    "category": "chicken",
+    "price": 9000,
+    "sourcePage": 3,
+    "ingredients": [
+      "٣ قطع دجاج كرسبي",
+      "بطاطا",
+      "١ كولسلو",
+      "١ ثومية",
+      "قطعتان صمون",
+      "علبة مشروب غازي"
+    ],
+    "description": "٣ قطع دجاج كرسبي، بطاطا، ١ كولسلو، ١ ثومية، قطعتان صمون، علبة مشروب غازي."
+  },
+  {
+    "slug": "family-broasted-meal",
+    "name": "وجبة بروستد عائلي",
+    "englishName": "Family Broasted Meal",
+    "category": "chicken",
+    "price": 25000,
+    "sourcePage": 3,
+    "ingredients": [
+      "١٠ قطع دجاج كرسبي",
+      "بطاطا",
+      "٣ كولسلو",
+      "٣ ثومية",
+      "٨ قطع صمون",
+      "مشروب غازي عائلي"
+    ],
+    "description": "١٠ قطع دجاج كرسبي، بطاطا، ٣ كولسلو، ٣ ثومية، ٨ قطع صمون، مشروب غازي عائلي.",
+    "featured": true
+  },
+  {
+    "slug": "jumbo-broasted-meal",
+    "name": "وجبة بروستد جامبو",
+    "englishName": "Jumbo Broasted Meal",
+    "category": "chicken",
+    "price": 33000,
+    "sourcePage": 3,
+    "ingredients": [
+      "١٤ قطعة دجاج كرسبي",
+      "بطاطا",
+      "٤ كولسلو",
+      "٤ ثومية",
+      "١٢ قطعة صمون",
+      "مشروب غازي عائلي"
+    ],
+    "description": "١٤ قطعة دجاج كرسبي، بطاطا، ٤ كولسلو، ٤ ثومية، ١٢ قطعة صمون، مشروب غازي عائلي."
+  },
+  {
+    "slug": "small-strips-meal",
+    "name": "وجبة ستربس صغير",
+    "englishName": "Small Strips Meal",
+    "category": "chicken",
+    "price": 9000,
+    "sourcePage": 10,
+    "ingredients": ["٥ قطع ستربس", "بطاطا", "١ كولسلو", "١ ثومية", "٣ قطع صمون", "علبة مشروب غازي"],
+    "description": "٥ قطع ستربس، بطاطا، ١ كولسلو، ١ ثومية، ٣ قطع صمون، علبة مشروب غازي."
+  },
+  {
+    "slug": "medium-strips-meal",
+    "name": "وجبة ستربس وسط",
+    "englishName": "Medium Strips Meal",
+    "category": "chicken",
+    "price": 17500,
+    "sourcePage": 10,
+    "ingredients": [
+      "١٠ قطع ستربس",
+      "بطاطا",
+      "٣ كولسلو",
+      "٣ ثومية",
+      "٨ قطع صمون",
+      "مشروب غازي عائلي"
+    ],
+    "description": "١٠ قطع ستربس، بطاطا، ٣ كولسلو، ٣ ثومية، ٨ قطع صمون، مشروب غازي عائلي."
+  },
+  {
+    "slug": "jumbo-strips-meal",
+    "name": "وجبة ستربس جامبو",
+    "englishName": "Jumbo Strips Meal",
+    "category": "chicken",
+    "price": 25000,
+    "sourcePage": 10,
+    "ingredients": [
+      "١٥ قطعة ستربس",
+      "بطاطا",
+      "٤ كولسلو",
+      "٤ ثومية",
+      "١٢ قطعة صمون",
+      "مشروب غازي عائلي"
+    ],
+    "description": "١٥ قطعة ستربس، بطاطا، ٤ كولسلو، ٤ ثومية، ١٢ قطعة صمون، مشروب غازي عائلي."
+  },
+  {
+    "slug": "sauce-fries",
+    "name": "فنجر صوص",
+    "englishName": "Sauce Fries",
+    "category": "fries",
+    "price": 2500,
+    "sourcePage": 6,
+    "ingredients": ["فنجر", "ثلاثة أنواع من الصوص"],
+    "description": "فنجر، ثلاثة أنواع من الصوص."
+  },
+  {
+    "slug": "onion-rings",
+    "name": "بصل مقرمش",
+    "englishName": "Onion Rings",
+    "category": "fries",
+    "price": 2500,
+    "sourcePage": 6,
+    "ingredients": ["١٠ قطع بصل مقرمش", "صوص سموك", "خس"],
+    "description": "١٠ قطع بصل مقرمش، صوص سموك، خس."
+  },
+  {
+    "slug": "crazy-fries",
+    "name": "كريزي فرايز",
+    "englishName": "Crazy Fries",
+    "category": "fries",
+    "price": 4500,
+    "sourcePage": 6,
+    "ingredients": ["فنجر", "٤ قطع بصل مقرمش", "ثلاثة أنواع من الصوص", "دوريتوس"],
+    "description": "فنجر، ٤ قطع بصل مقرمش، ثلاثة أنواع من الصوص، دوريتوس.",
+    "featured": true
+  },
+  {
+    "slug": "french-fries",
+    "name": "فرنش فرايز",
+    "englishName": "French Fries",
+    "category": "fries",
+    "price": 4500,
+    "sourcePage": 6,
+    "ingredients": ["فنجر", "لحم مفروم", "ثلاثة أنواع من الصوص"],
+    "description": "فنجر، لحم مفروم، ثلاثة أنواع من الصوص."
+  },
+  {
+    "slug": "chicken-fries",
+    "name": "جكن فرايز",
+    "englishName": "Chicken Fries",
+    "category": "fries",
+    "price": 5500,
+    "sourcePage": 6,
+    "ingredients": ["فنجر", "شريحة جبن شيدر", "دجاج مقطع", "ثلاثة أنواع من الصوص"],
+    "description": "فنجر، شريحة جبن شيدر، دجاج مقطع، ثلاثة أنواع من الصوص."
+  },
+  {
+    "slug": "swiss-mushroom-fries",
+    "name": "سويس مشروم فرايز",
+    "englishName": "Swiss Mushroom Fries",
+    "category": "fries",
+    "price": 5500,
+    "sourcePage": 6,
+    "ingredients": ["فنجر", "لحم مفروم", "مشروم", "ثلاثة أنواع من الصوص"],
+    "description": "فنجر، لحم مفروم، مشروم، ثلاثة أنواع من الصوص."
+  },
+  {
+    "slug": "honey-mustard-wings",
+    "name": "هني مسترد ونكز",
+    "englishName": "Honey Mustard Wings",
+    "category": "sides",
+    "price": 5000,
+    "sourcePage": 7,
+    "ingredients": ["أجنحة بصلصة الهني مسترد"],
+    "description": "أجنحة بصلصة الهني مسترد.",
+    "sizes": [
+      {
+        "label": "٦ قطع",
+        "price": 5000
+      },
+      {
+        "label": "١٢ قطعة",
+        "price": 9000
+      }
+    ]
+  },
+  {
+    "slug": "buffalo-wings",
+    "name": "بافلو ونكز",
+    "englishName": "Buffalo Wings",
+    "category": "sides",
+    "price": 5000,
+    "sourcePage": 7,
+    "ingredients": ["أجنحة بصلصة البافلو الحارة"],
+    "description": "أجنحة بصلصة البافلو الحارة.",
+    "sizes": [
+      {
+        "label": "٦ قطع",
+        "price": 5000
+      },
+      {
+        "label": "١٢ قطعة",
+        "price": 9000
+      }
+    ],
+    "spicy": true
+  },
+  {
+    "slug": "barbecue-wings",
+    "name": "باربيكيو ونكز",
+    "englishName": "Barbecue Wings",
+    "category": "sides",
+    "price": 5000,
+    "sourcePage": 7,
+    "ingredients": ["أجنحة بصلصة الباربيكيو الحلوة"],
+    "description": "أجنحة بصلصة الباربيكيو الحلوة.",
+    "sizes": [
+      {
+        "label": "٦ قطع",
+        "price": 5000
+      },
+      {
+        "label": "١٢ قطعة",
+        "price": 9000
+      }
+    ]
+  },
+  {
+    "slug": "caesar-salad",
+    "name": "سلطة السيزر",
+    "englishName": "Caesar Salad",
+    "category": "sides",
+    "price": 5000,
+    "sourcePage": 7,
+    "ingredients": ["خس", "قطع دجاج مشوي", "قطع خبز محمص", "جبن بارميزان", "صوص"],
+    "description": "خس، قطع دجاج مشوي، قطع خبز محمص، جبن بارميزان، صوص."
+  },
+  {
+    "slug": "mozzarella-sticks",
+    "name": "أصابع الموزريلا",
+    "englishName": "Mozzarella Sticks",
+    "category": "sides",
+    "price": 4000,
+    "sourcePage": 7,
+    "ingredients": ["أصابع مقرمشة محشية بجبن الموزريلا", "صوص"],
+    "description": "أصابع مقرمشة محشية بجبن الموزريلا، صوص."
+  },
+  {
+    "slug": "classic-rezo",
+    "name": "كلاسك ريزو",
+    "englishName": "Classic Rezo",
+    "category": "rezo",
+    "price": 6000,
+    "sourcePage": 8,
+    "ingredients": ["رز", "قطع دجاج مقرمش", "صوص كلاسك"],
+    "description": "رز، قطع دجاج مقرمش، صوص كلاسك."
+  },
+  {
+    "slug": "spicy-rezo",
+    "name": "سبايسي ريزو",
+    "englishName": "Spicy Rezo",
+    "category": "rezo",
+    "price": 6000,
+    "sourcePage": 8,
+    "ingredients": ["رز", "قطع دجاج مقرمش", "هالابينو", "صوص سبايسي"],
+    "description": "رز، قطع دجاج مقرمش، هالابينو، صوص سبايسي.",
+    "spicy": true
+  },
+  {
+    "slug": "signature-rezo",
+    "name": "سكنتشر ريزو",
+    "englishName": "Signature Rezo",
+    "category": "rezo",
+    "price": 6500,
+    "sourcePage": 8,
+    "ingredients": ["رز", "قطع دجاج مقرمش", "لحم مفروم", "صوص"],
+    "description": "رز، قطع دجاج مقرمش، لحم مفروم، صوص."
+  },
+  {
+    "slug": "super-rezo",
+    "name": "سوبر ريزو",
+    "englishName": "Super Rezo",
+    "category": "rezo",
+    "price": 6000,
+    "sourcePage": 8,
+    "ingredients": ["رز", "قطع دجاج مقرمش", "صوص سبيشل"],
+    "description": "رز، قطع دجاج مقرمش، صوص سبيشل."
+  },
+  {
+    "slug": "cheese-sauce",
+    "name": "جيز صوص",
+    "englishName": "Cheese Sauce",
+    "category": "sauces",
+    "price": 750,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "جيز صوص للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "spicy-sauce",
+    "name": "سبايسي",
+    "englishName": "Spicy Sauce",
+    "category": "sauces",
+    "price": 750,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "سبايسي للتغميس أو مع وجبتك.",
+    "spicy": true
+  },
+  {
+    "slug": "double-bite-sauce",
+    "name": "دبل بايت صوص",
+    "englishName": "Double Bite Sauce",
+    "category": "sauces",
+    "price": 750,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "دبل بايت صوص للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "garlic-sauce",
+    "name": "ثومية",
+    "englishName": "Garlic Sauce",
+    "category": "sauces",
+    "price": 500,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "ثومية للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "thousand-island-sauce",
+    "name": "ثاوزند آيلند",
+    "englishName": "Thousand Island",
+    "category": "sauces",
+    "price": 500,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "ثاوزند آيلند للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "caesar-sauce",
+    "name": "سيزر صوص",
+    "englishName": "Caesar Sauce",
+    "category": "sauces",
+    "price": 1000,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "سيزر صوص للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "honey-mustard-sauce",
+    "name": "هني مسترد",
+    "englishName": "Honey Mustard",
+    "category": "sauces",
+    "price": 1000,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "هني مسترد للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "mayonnaise",
+    "name": "مايونيز",
+    "englishName": "Mayonnaise",
+    "category": "sauces",
+    "price": 500,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "مايونيز للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "k-sauce",
+    "name": "صوص كي",
+    "englishName": "K Sauce",
+    "category": "sauces",
+    "price": 750,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "صوص كي للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "smoky-sauce",
+    "name": "سموكي",
+    "englishName": "Smoky Sauce",
+    "category": "sauces",
+    "price": 750,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "سموكي للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "ketchup",
+    "name": "كاتشب",
+    "englishName": "Ketchup",
+    "category": "sauces",
+    "price": 500,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "كاتشب للتغميس أو مع وجبتك."
+  },
+  {
+    "slug": "buffalo-sauce",
+    "name": "صوص بافلو",
+    "englishName": "Buffalo Sauce",
+    "category": "sauces",
+    "price": 750,
+    "sourcePage": 5,
+    "ingredients": [],
+    "description": "صوص بافلو للتغميس أو مع وجبتك.",
+    "spicy": true
+  },
+  {
+    "slug": "fountain-cola",
+    "name": "كوكاكولا ماكينة",
+    "englishName": "Fountain Coca-Cola",
+    "category": "drinks",
+    "price": 1000,
+    "sourcePage": 2,
+    "ingredients": [],
+    "description": "كوكاكولا ماكينة مع الثلج."
+  },
+  {
+    "slug": "coca-cola",
+    "name": "كوكاكولا",
+    "englishName": "Coca-Cola",
+    "category": "drinks",
+    "price": 500,
+    "sourcePage": 2,
+    "ingredients": [],
+    "description": "علبة كوكاكولا."
+  },
+  {
+    "slug": "sprite",
+    "name": "سبرايت",
+    "englishName": "Sprite",
+    "category": "drinks",
+    "price": 500,
+    "sourcePage": 2,
+    "ingredients": [],
+    "description": "علبة سبرايت."
+  },
+  {
+    "slug": "fanta",
+    "name": "فانتا",
+    "englishName": "Fanta",
+    "category": "drinks",
+    "price": 500,
+    "sourcePage": 2,
+    "ingredients": [],
+    "description": "علبة فانتا."
+  },
+  {
+    "slug": "water",
+    "name": "ماء",
+    "englishName": "Water",
+    "category": "drinks",
+    "price": 250,
+    "sourcePage": 2,
+    "ingredients": [],
+    "description": "قنينة ماء."
+  }
+]

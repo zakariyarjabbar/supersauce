@@ -1,0 +1,72 @@
+{
+  "source": "12 menu images supplied by the owner on 2026-09-12",
+  "uniqueItems": 67,
+  "duplicates": "Pages 9, 11 and 12 overlap; repeated sandwiches are included once.",
+  "confirmedPrices": {
+    "nashville": 7500,
+    "boomber": 7000,
+    "confirmation": "Owner explicitly selected the final page's prices on 2026-09-12."
+  },
+  "pages": [
+    {
+      "page": 1,
+      "file": "assets/menu-reference/page-01.jpg",
+      "original": "codex-clipboard-5afe1689-36a4-45d0-b558-2eab2bf78e59.jpg"
+    },
+    {
+      "page": 2,
+      "file": "assets/menu-reference/page-02.jpg",
+      "original": "codex-clipboard-a78b973e-16de-45fe-bd37-c69ea90254b0.jpg"
+    },
+    {
+      "page": 3,
+      "file": "assets/menu-reference/page-03.jpg",
+      "original": "codex-clipboard-7f2e03c4-9202-4696-bdba-94ea1e7e2e5f.jpg"
+    },
+    {
+      "page": 4,
+      "file": "assets/menu-reference/page-04.jpg",
+      "original": "codex-clipboard-0224aac3-eb73-4561-92d6-ea760ecd9b07.jpg"
+    },
+    {
+      "page": 5,
+      "file": "assets/menu-reference/page-05.jpg",
+      "original": "codex-clipboard-2e582a42-2e0b-4faf-826a-87639a1db804.jpg"
+    },
+    {
+      "page": 6,
+      "file": "assets/menu-reference/page-06.jpg",
+      "original": "codex-clipboard-37129466-827c-407a-9216-799f07aa278f.jpg"
+    },
+    {
+      "page": 7,
+      "file": "assets/menu-reference/page-07.jpg",
+      "original": "codex-clipboard-520fcdd2-abd2-4a6a-a402-e2dcc4c21411.jpg"
+    },
+    {
+      "page": 8,
+      "file": "assets/menu-reference/page-08.jpg",
+      "original": "codex-clipboard-865a22a3-9bda-4616-a136-4c5843b23d2e.jpg"
+    },
+    {
+      "page": 9,
+      "file": "assets/menu-reference/page-09.jpg",
+      "original": "codex-clipboard-8827370a-d5f8-4f73-82b2-0d0c1aa6023e.jpg"
+    },
+    {
+      "page": 10,
+      "file": "assets/menu-reference/page-10.jpg",
+      "original": "codex-clipboard-7b049a49-b4ea-4a27-8f79-6c43b1d1e322.jpg"
+    },
+    {
+      "page": 11,
+      "file": "assets/menu-reference/page-11.jpg",
+      "original": "codex-clipboard-5c3ab9ef-d3da-48de-b4c0-7ce9d1173fef.jpg"
+    },
+    {
+      "page": 12,
+      "file": "assets/menu-reference/page-12.jpg",
+      "original": "codex-clipboard-ca1990d6-9a44-4763-a50d-fd5957d2b707.jpg"
+    }
+  ]
+}

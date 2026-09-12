@@ -598,7 +598,7 @@ a svg {
 }
 .food-photo {
   position: relative;
-  aspect-ratio: 1.15;
+  aspect-ratio: 1.5;
   background: var(--paper);
   border-radius: 12px;
   overflow: hidden;
@@ -614,7 +614,7 @@ a svg {
   transition: transform 0.5s var(--ease);
 }
 .food-card:hover .food-photo img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 .food-tag {
   position: absolute;
@@ -1343,7 +1343,7 @@ a svg {
 }
 .product-image {
   position: relative;
-  aspect-ratio: 1.05;
+  aspect-ratio: 1.5;
   border-radius: 15px;
   overflow: hidden;
   background: var(--paper);
@@ -1777,7 +1777,7 @@ a svg {
     gap: 26px 15px;
   }
   .food-photo {
-    aspect-ratio: 1.1;
+    aspect-ratio: 1.5;
     border-radius: 9px;
   }
   .food-info {

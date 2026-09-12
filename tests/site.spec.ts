@@ -42,14 +42,14 @@ test("menu keeps categories, Arabic search, sorting and prices without favorites
   page,
 }) => {
   await page.goto("/menu?category=chicken");
-  await expect(page.locator(".food-card")).toHaveCount(4);
+  await expect(page.locator(".food-card")).toHaveCount(7);
   await page.getByRole("button", { name: "كل المنيو", exact: true }).click();
-  await expect(page.locator(".food-card")).toHaveCount(18);
+  await expect(page.locator(".food-card")).toHaveCount(67);
   await page.getByRole("searchbox").fill("سْمُوكي");
-  await expect(page.locator(".food-card")).toHaveCount(3);
-  await page.getByRole("searchbox").fill("سموكي برغر");
+  await expect(page.locator(".food-card")).toHaveCount(2);
+  await page.getByRole("searchbox").fill("سموكي برجر");
   await expect(page.locator(".food-card")).toHaveCount(1);
-  await expect(page.locator(".food-card .price")).toContainText("6,500");
+  await expect(page.locator(".food-card .price")).toContainText("5,500");
   await expect(page.getByRole("button", { name: /المفضلة|أضف/ })).toHaveCount(0);
   await page.getByRole("button", { name: "مسح البحث" }).click();
   await page.getByLabel("ترتيب المنيو").selectOption("low");
@@ -61,19 +61,19 @@ test("menu keeps categories, Arabic search, sorting and prices without favorites
   await page.getByRole("searchbox").fill("لايوجدمنتجبهذاالاسم");
   await expect(page.getByText("ما لقينا هالاختيار")).toBeVisible();
   await page.getByRole("button", { name: "شوف كل المنيو", exact: true }).click();
-  await expect(page.locator(".food-card")).toHaveCount(18);
+  await expect(page.locator(".food-card")).toHaveCount(67);
 });
 
 test("item ordering opens contact choices with the price and restores keyboard focus", async ({
   page,
 }) => {
   await page.goto("/menu");
-  const trigger = page.getByRole("button", { name: "اطلب سموكي برغر", exact: true });
+  const trigger = page.getByRole("button", { name: "اطلب سموكي برجر", exact: true });
   await trigger.click();
   const dialog = page.getByRole("dialog", { name: "شلون تحب تطلب؟" });
   await expect(dialog).toBeVisible();
-  await expect(dialog.locator(".order-selected-item")).toContainText("سموكي برغر");
-  await expect(dialog.locator(".price")).toContainText("6,500");
+  await expect(dialog.locator(".order-selected-item")).toContainText("سموكي برجر");
+  await expect(dialog.locator(".price")).toContainText("5,500");
   const links = getOrderContactLinks({
     phone: site.orderPhone,
     whatsapp: site.orderWhatsapp,
@@ -109,9 +109,9 @@ test("item ordering opens contact choices with the price and restores keyboard f
   await trigger.click();
   await page.mouse.click(2, 2);
   await expect(dialog).not.toBeVisible();
-  await page.getByRole("button", { name: "اطلب تشيزي برغر", exact: true }).click();
-  await expect(dialog.locator(".order-selected-item")).toContainText("تشيزي برغر");
-  await expect(dialog.locator(".price")).toContainText("7,000");
+  await page.getByRole("button", { name: "اطلب جيز برجر", exact: true }).click();
+  await expect(dialog.locator(".order-selected-item")).toContainText("جيز برجر");
+  await expect(dialog.locator(".price")).toContainText("6,000");
   expect(await page.evaluate(() => ({ ...localStorage }))).toEqual({});
 });
 
@@ -130,10 +130,10 @@ test("home, product, header and branch buttons share the contact flow", async ({
   await expect(dialog.locator(".order-selected-item")).toHaveCount(0);
   await page.keyboard.press("Escape");
   await page.goto("/menu/smoky-burger");
-  await expect(page.locator(".product-price")).toContainText("6,500");
+  await expect(page.locator(".product-price")).toContainText("5,500");
   await expect(page.getByRole("button", { name: /الكمية|أضف/ })).toHaveCount(0);
-  await page.getByRole("button", { name: "اطلب سموكي برغر", exact: true }).click();
-  await expect(dialog.locator(".order-selected-item")).toContainText("سموكي برغر");
+  await page.getByRole("button", { name: "اطلب سموكي برجر", exact: true }).click();
+  await expect(dialog.locator(".order-selected-item")).toContainText("سموكي برجر");
   await page.keyboard.press("Escape");
   await page.goto("/branches/al-jamia");
   await page.getByRole("button", { name: "اطلب من هذا الفرع" }).click();
@@ -152,7 +152,7 @@ test("old checkout URLs go to the menu and stored cart data cannot restore remov
   });
   await page.goto("/order?branch=al-jamia");
   await expect(page).toHaveURL(/\/menu$/);
-  await expect(page.locator(".food-card")).toHaveCount(18);
+  await expect(page.locator(".food-card")).toHaveCount(67);
   await expect(page.locator('a[href^="/order"]')).toHaveCount(0);
   await expect(page.locator(".bag-button, .favorite, .cart-line, .quantity-control")).toHaveCount(
     0,
@@ -173,7 +173,7 @@ test("contact links normalize Iraqi numbers and prepare item and branch details 
   expect(links.phone).toBe("tel:+9647701234567");
   const whatsapp = new URL(links.whatsapp!);
   expect(whatsapp.origin + whatsapp.pathname).toBe("https://wa.me/9647701234567");
-  expect(whatsapp.searchParams.get("text")).toContain("سموكي برغر");
+  expect(whatsapp.searchParams.get("text")).toContain("سموكي برجر");
   expect(whatsapp.searchParams.get("text")).toContain("حي الجامعة");
   expect(getOrderContactLinks({ phone: "", whatsapp: "not-a-number" })).toEqual({
     phone: null,

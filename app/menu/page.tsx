@@ -6,7 +6,8 @@ import { MenuBrowser } from "@/components/menu-browser";
 export const metadata = pageMetadata({
   path: "/menu",
   title: "المنيو",
-  description: "برغر، دجاج مقرمش، فرايز وصوصات. اختار وجبتك المفضلة من منيو سوبر صوص.",
+  description:
+    "منيو سوبر صوص الكامل: كرسكت، برجر، ساندويشات، بروستد، ستربس، فرايز، ريزو، صوصات ومشروبات. الأسعار بالدينار العراقي.",
 });
 export default function MenuPage() {
   return (

@@ -25,7 +25,7 @@ export async function generateMetadata({
     ? pageMetadata({
         path: `/menu/${item.slug}`,
         title: item.name,
-        description: item.description,
+        description: `${item.name} — ${formatPrice(item.price)} د.ع. ${item.description}`,
         image: photoShareImage(item.image, item.imageAlt),
       })
     : { title: "الوجبة غير موجودة" };
@@ -49,13 +49,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <span>{item.name}</span>
       </nav>
       <section className="product-detail">
-        <div className={`product-image ${item.category === "burgers" ? "red-photo" : ""}`}>
+        <div className="product-image">
           <Image
             src={item.image}
             alt={item.imageAlt}
             width={900}
-            height={700}
-            priority
+            height={600}
+            preload
             sizes="(max-width: 760px) 100vw, 50vw"
           />
           {item.tag && (
@@ -70,22 +70,61 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             {categories.find((c) => c.id === item.category)?.label}
           </Link>
           <h1>{item.name}</h1>
+          <span className="product-english-name" lang="en" dir="ltr">
+            {item.englishName}
+          </span>
           <p>{item.description}</p>
           <div className="product-price">
             <b dir="ltr">{formatPrice(item.price)}</b>
             <span>د.ع</span>
+            {item.mealUpgrade && <small>ساندويش</small>}
+            {item.sizes && <small>{item.sizes[0].label}</small>}
           </div>
-          <h2>شنو بيها؟</h2>
-          <ul className="ingredient-list">
-            {item.ingredients.map((ingredient) => (
-              <li key={ingredient}>{ingredient}</li>
-            ))}
-          </ul>
+          {(item.sizes || item.mealUpgrade || item.cheeseExtra) && (
+            <dl className="product-price-options">
+              {item.sizes?.map((size) => (
+                <div key={size.label}>
+                  <dt>{size.label}</dt>
+                  <dd>
+                    <b dir="ltr">{formatPrice(size.price)}</b> د.ع
+                  </dd>
+                </div>
+              ))}
+              {item.mealUpgrade && (
+                <div>
+                  <dt>
+                    مع وجبة <small>(+{formatPrice(item.mealUpgrade)} د.ع)</small>
+                  </dt>
+                  <dd>
+                    <b dir="ltr">{formatPrice(item.price + item.mealUpgrade)}</b> د.ع
+                  </dd>
+                </div>
+              )}
+              {item.cheeseExtra && (
+                <div>
+                  <dt>إضافة جبن</dt>
+                  <dd>
+                    +<b dir="ltr">{formatPrice(item.cheeseExtra)}</b> د.ع
+                  </dd>
+                </div>
+              )}
+            </dl>
+          )}
+          {item.ingredients.length > 0 && (
+            <>
+              <h2>شنو بيها؟</h2>
+              <ul className="ingredient-list">
+                {item.ingredients.map((ingredient) => (
+                  <li key={ingredient}>{ingredient}</li>
+                ))}
+              </ul>
+            </>
+          )}
           <OrderButton item={item} className="button button-red product-order-button" />
           <p className="product-notice">
             <Info size={17} />
-            عندك حساسية غذائية؟ تأكد من المكونات مع الفرع قبل الطلب. الصورة والسعر للتوضيح في نسخة
-            العرض.
+            عندك حساسية غذائية؟ تأكد من المكونات مع الفرع قبل الطلب. الصورة توضيحية محسّنة، والسعر
+            حسب المنيو.
           </p>
         </div>
       </section>

@@ -2,7 +2,7 @@
 
 A complete Arabic, right-to-left Next.js website for presenting a proposed online experience to Super Sauce in Iraq. The supplied logo and restaurant references define the red, cream, yellow-star and checkerboard identity.
 
-**The default is a working sales demo.** Sample prices, branch details and generated photos are illustrative. Order buttons open contact options so customers can agree on their order directly with the restaurant; the website does not submit orders or collect payments. The user explicitly approved mock content for this presentation.
+**The menu uses the owner's supplied restaurant menu.** All 67 unique items, prices, meal upgrades and wing sizes were transcribed from 12 supplied pages. Branch details remain examples and the enhanced product photos are illustrative. Order buttons open contact options; the website does not submit orders or collect payments.
 
 ## Run locally
 
@@ -26,7 +26,7 @@ npm run start
 ## What is included
 
 - Campaign-style homepage with custom food photography and interactive menu categories.
-- 18 meals and sauce items, product detail pages, Arabic search, category filters and price sorting.
+- 67 items across nine categories, individual product images and pages, Arabic/English search, category filters and price sorting.
 - Shared Order dialog on menu cards, product pages, branch pages and the header, with phone, WhatsApp and Instagram contact options. Prices stay visible; WhatsApp drafts include the selected item or branch.
 - Keyboard-accessible native dialog with Escape, close-button and backdrop dismissal. Old `/order` links redirect to `/menu`.
 - Branch directory with search, city filters, eight example branch pages and Google Maps search links.
@@ -48,7 +48,7 @@ The project runs on a Next.js-compatible Node host. It includes an API route, so
 3. Set `NEXT_PUBLIC_DEMO_MODE=true` and `NEXT_PUBLIC_SITE_URL` to the full deployed origin, for example `https://your-project.vercel.app`.
 4. Deploy. No database, payment key or email key is required for the demo.
 
-Keep demo mode enabled for the restaurant presentation. It adds the demo disclosures and prevents search indexing. Search engine directives are not password protection; use your hosting provider's access controls if you want a private preview.
+Demo mode adds disclosures for sample branches and forms. Public pages remain indexable, as requested by the owner. Use your hosting provider's access controls if you want a private preview.
 
 ### A Node server
 
@@ -71,7 +71,7 @@ npx playwright install chromium
 npm run assets:share
 ```
 
-The export uses the project's local font, existing imagery and SVG icon. Outputs and adjacent provenance records are committed, so the normal production build does not need a browser or an image-generation service. When replacing preview assets after deployment, increment the `v1` filenames in the export script and `lib/metadata.ts` together; many sharing apps cache images. New product source photos also need a generated JPEG entry in `scripts/prepare-share-assets.mjs` / `content/asset-prompts.json`.
+The export uses the project's local font, existing imagery and SVG icon. Outputs and provenance records are committed, so the normal production build does not need a browser or an image-generation service. Product previews use `menu-*-v2.jpg` to avoid old cached sample photos. Increment the matching asset version in the export script and `lib/metadata.ts` when replacing published images. Catalog entries automatically receive a JPEG preview through `scripts/prepare-menu-assets.mjs`.
 
 The implementation follows [Open Graph](https://ogp.me/) and X card metadata conventions. Actual preview layout, image cropping, refresh timing and whether a particular sharing surface displays a card are controlled by each platform. Tests simulate crawler requests; they do not send messages through WhatsApp, Instagram or other accounts. After deployment, check a fresh shared URL and use the platform's preview refresh tool when an older cached card remains visible.
 
@@ -79,7 +79,10 @@ The implementation follows [Open Graph](https://ogp.me/) and X card metadata con
 
 | Content                                                                  | File                                                                  |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| Menu names, prices, categories, descriptions, ingredients and photos     | `lib/menu.ts`                                                         |
+| Menu names, prices, descriptions, ingredients and options                | `content/menu-catalog.json`                                           |
+| Menu categories and image paths                                          | `lib/menu.ts`                                                         |
+| Original menu pages, duplicate handling and approved price conflicts     | `assets/menu-reference/`, `content/menu-source.json`                  |
+| Product image prompts and delivery export                                | `content/menu-photo-prompts.json`, `scripts/prepare-menu-assets.mjs`  |
 | Branches, map coordinates, phone/WhatsApp, hours, services and addresses | `lib/branches.ts`                                                     |
 | Homepage map layout and behavior                                         | `components/branch-map.tsx`, `components/branch-map.module.css`       |
 | Brand name, public links, domain and demo setting                        | `lib/site.ts`                                                         |
@@ -93,7 +96,9 @@ The implementation follows [Open Graph](https://ogp.me/) and X card metadata con
 | Order dialog and contact destinations                                    | `components/order-options.tsx`, `lib/order-contact.ts`, `lib/site.ts` |
 | Usage and privacy copy                                                   | `app/terms/page.tsx`, `app/privacy/page.tsx`                          |
 
-Prices use whole Iraqi dinars. Each product and branch has a unique URL slug. Product cards and detail pages use the same data, so an edit updates both. Photos are shared between a few related sample products; replace them with item-specific photography when the menu is approved.
+Prices use whole Iraqi dinars. Product cards, detail pages and the contact dialog use the same catalog. Wings offer 6 pieces for 5,000 IQD or 12 for 9,000 IQD. Burgers and sandwiches offer the printed 2,000 IQD meal upgrade; Zinger and Ayam Zaman also offer a 500 IQD cheese addition. Nashville (7,500) and Boomber (7,000) follow the final supplied page, explicitly confirmed by the owner.
+
+Every product has its own branded image under `public/images/menu/`. The built-in ImageGen prompt set is saved in `content/menu-photo-prompts.json`; locally retained full-resolution PNGs are in `assets/menu-generated/` (excluded from Git). Run `npm run assets:menu` to export optimized WebP images and `menu-*-v2.jpg` social previews. The normal build only needs the checked-in delivery assets. Source menu pages are retained for future price and ingredient edits.
 
 The directory intentionally shows **eight example branches**, while the brand headline says **more than 23**, as supplied by the user. Expand the directory with the complete approved list. Homepage map coordinates are sample locations in Iraq, explicitly authorized for the demo; they do not establish actual restaurant locations. The existing directory/detail-page map links still search by branch name.
 
@@ -142,6 +147,7 @@ Before the live launch, replace demo-specific FAQ/privacy/terms copy and all ill
 - `assets/source/`: original supplied logo and seven generated PNG concept images.
 - `public/images/`: optimized WebP delivery assets with adjacent provenance JSON.
 - `content/asset-prompts.json`: complete image-generation prompts and logo source note.
+- `content/menu-photo-prompts.json`: the 67 product prompts used with built-in ImageGen; `assets/menu-generated/` retains the selected PNGs locally and `public/images/menu/` contains the committed WebP files.
 - `scripts/prepare-assets.mjs`: reproducible WebP generation using Sharp.
 - `assets/social/share-card.html`, `scripts/prepare-share-assets.mjs`, `public/social/`: editable share-card layout, reproducible JPEG exports and their provenance records.
 - `reference-photos/`: the original user reference files, preserved in the working project for design context; omitted from the downloadable source archive.

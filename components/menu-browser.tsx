@@ -11,14 +11,14 @@ import { OrderButton } from "./order-options";
 export function FoodCard({ item }: { item: MenuItem }) {
   return (
     <article className="food-card">
-      <div className={`food-photo ${item.category === "burgers" ? "red-photo" : ""}`}>
+      <div className="food-photo">
         <Link href={`/menu/${item.slug}`} tabIndex={-1} aria-hidden="true">
           <Image
             src={item.image}
             alt={item.imageAlt}
-            width={600}
-            height={400}
-            sizes="(max-width: 600px) 90vw, (max-width: 1000px) 45vw, 25vw"
+            width={900}
+            height={600}
+            sizes="(max-width: 600px) 45vw, (max-width: 1000px) 45vw, 23vw"
           />
         </Link>
         {item.tag && (
@@ -32,12 +32,33 @@ export function FoodCard({ item }: { item: MenuItem }) {
         <h3>
           <Link href={`/menu/${item.slug}`}>{item.name}</Link>
         </h3>
-        <p>{item.description}</p>
+        <span className="food-english-name" lang="en" dir="ltr">
+          {item.englishName}
+        </span>
+        <p className="food-description">{item.description}</p>
         <div className="food-bottom">
           <span className="price">
             <b dir="ltr">{formatPrice(item.price)}</b> <small>د.ع</small>
           </span>
           <OrderButton item={item} className="food-order-button" />
+        </div>
+        <div className="food-options-note">
+          {item.sizes && (
+            <span>
+              {item.sizes[0].label} · {item.sizes[1].label} بـ{" "}
+              <b dir="ltr">{formatPrice(item.sizes[1].price)}</b> د.ع
+            </span>
+          )}
+          {item.mealUpgrade && (
+            <span>
+              وجبة +<b dir="ltr">{formatPrice(item.mealUpgrade)}</b> د.ع
+            </span>
+          )}
+          {item.cheeseExtra && (
+            <span>
+              إضافة جبن +<b dir="ltr">{formatPrice(item.cheeseExtra)}</b> د.ع
+            </span>
+          )}
         </div>
       </div>
     </article>
@@ -85,7 +106,9 @@ export function MenuBrowser() {
   const items = menuItems.filter(
     (item) =>
       (category === "all" || item.category === category) &&
-      normalizeArabic(`${item.name} ${item.description}`).includes(normalizeArabic(query)),
+      normalizeArabic(`${item.name} ${item.englishName} ${item.description}`)
+        .toLowerCase()
+        .includes(normalizeArabic(query.trim()).toLowerCase()),
   );
   if (sort !== "recommended")
     items.sort((a, b) => (sort === "low" ? a.price - b.price : b.price - a.price));

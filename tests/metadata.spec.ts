@@ -3,6 +3,7 @@ import sharp from "sharp";
 import { menuItems } from "../lib/menu";
 import { branches } from "../lib/branches";
 import { site } from "../lib/site";
+import { photoShareImage } from "../lib/metadata";
 import { DEFAULT_SITE_ORIGIN, resolveSiteOrigin } from "../lib/site-origin";
 
 // Read the original response, never the hydrated DOM: sharing clients do not
@@ -100,16 +101,14 @@ test("every public page has its own canonical and complete Arabic social metadat
       for (const key of ["og:image", "twitter:image"]) {
         const image = new URL(head.meta(key));
         expect(image.origin).toBe(site.origin);
-        expect(image.pathname).toMatch(/^\/social\/[a-z-]+-v1\.jpg$/);
+        expect(image.pathname).toMatch(/^\/social\/[a-z-]+-v[12]\.jpg$/);
       }
       if (site.origin.startsWith("https://"))
         expect(head.meta("og:image:secure_url")).toBe(head.meta("og:image"));
       const item = menuItems.find((item) => path === `/menu/${item.slug}`);
       if (item) {
         expect(head.meta("og:title")).toBe(`${item.name} | سوبر صوص`);
-        expect(head.meta("og:image")).toContain(
-          item.image.split("/").pop()!.replace(".webp", "-v1.jpg"),
-        );
+        expect(head.meta("og:image")).toContain(photoShareImage(item.image, item.imageAlt).url);
       }
       const branch = branches.find((branch) => path === `/branches/${branch.slug}`);
       if (branch) {
@@ -166,6 +165,7 @@ test("preview JPEGs are directly downloadable, correctly sized and compact", asy
     "super-sauce-v1.jpg",
     "super-sauce-x-v1.jpg",
     ...[...photos].map((photo) => `${photo}-v1.jpg`),
+    ...menuItems.map((item) => `menu-${item.slug}-v2.jpg`),
   ];
   for (const file of files) {
     const response = await request.get(`/social/${file}`, {

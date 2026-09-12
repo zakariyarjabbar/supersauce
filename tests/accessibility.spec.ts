@@ -21,7 +21,7 @@ test("core pages have no automated WCAG A/AA violations", async ({ page }) => {
 
 test("contact order dialog has no automated WCAG A/AA violations", async ({ page }) => {
   await page.goto("/menu");
-  await page.getByRole("button", { name: "اطلب سموكي برغر", exact: true }).click();
+  await page.getByRole("button", { name: "اطلب سموكي برجر", exact: true }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   const result = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])

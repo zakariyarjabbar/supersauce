@@ -1,0 +1,192 @@
+/* Product photography uses a consistent 3:2 frame so logos and food stay visible. */
+.food-photo,
+.product-image {
+  aspect-ratio: 3 / 2;
+}
+.food-photo img,
+.product-image img {
+  object-fit: contain;
+}
+.food-card {
+  display: flex;
+  flex-direction: column;
+}
+.food-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.food-info h3 {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.food-english-name,
+.product-english-name {
+  display: block;
+  color: var(--muted);
+  text-align: end;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 3px;
+}
+.food-info > .food-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: 3.8em;
+  font-size: 12px;
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+.food-bottom {
+  margin-top: auto;
+}
+.food-options-note {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  padding-top: 8px;
+}
+.food-options-note:empty {
+  display: none;
+}
+.food-options-note b {
+  font-variant-numeric: tabular-nums;
+}
+.category-tabs {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) var(--paper);
+}
+.category-tabs button {
+  flex-shrink: 0;
+  min-height: 44px;
+}
+.product-english-name {
+  font-size: 16px;
+}
+.product-price small {
+  color: var(--muted);
+  font-size: 14px;
+}
+.product-price-options {
+  margin: 12px 0 28px;
+  font-size: 14px;
+}
+.product-price-options > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.product-price-options dd {
+  margin: 0;
+  white-space: nowrap;
+}
+.product-price-options small {
+  color: var(--muted);
+}
+.order-selected-item > div {
+  min-width: 0;
+}
+.order-dialog {
+  --order-inset: 28px;
+  overflow: hidden;
+}
+.order-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.order-dialog-heading {
+  flex: none;
+  margin: 0;
+  padding: var(--order-inset) var(--order-inset) 12px;
+}
+.order-dialog-content {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 var(--order-inset) var(--order-inset);
+}
+.order-selected-item img {
+  object-fit: contain;
+}
+.order-selection-label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.order-item-options {
+  border: 0;
+  padding: 0;
+  margin: 16px 0;
+  min-width: 0;
+}
+.order-item-options legend {
+  font-size: 14px;
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+.order-item-options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding-block: 9px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.order-item-options label + label {
+  border-top: 1px solid var(--line);
+}
+.order-item-options input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--red);
+  flex-shrink: 0;
+}
+.order-item-options label > b {
+  margin-inline-start: auto;
+  font-size: 13px;
+  white-space: nowrap;
+}
+@media (min-width: 1001px) {
+  .category-tabs {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 600px) {
+  .order-dialog {
+    --order-inset: 22px;
+  }
+  .food-info h3 {
+    font-size: 14px;
+  }
+  .food-english-name {
+    font-size: 11px;
+  }
+  .food-info > .food-description {
+    font-size: 12px;
+  }
+  .food-bottom {
+    flex-wrap: wrap;
+  }
+  .food-options-note {
+    font-size: 11px;
+  }
+  .menu-content .search-field input,
+  .results-bar select {
+    font-size: 16px;
+  }
+}
+@media (max-width: 380px) {
+  .order-dialog {
+    --order-inset: 18px;
+  }
+}

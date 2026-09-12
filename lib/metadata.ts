@@ -11,10 +11,10 @@ export const shareImage = {
 
 export function photoShareImage(photo: string, alt: string) {
   return {
-    url: `/social/${photo
+    url: `/social/${photo.startsWith("/images/menu/") ? "menu-" : ""}${photo
       .split("/")
       .pop()!
-      .replace(/\.[^.]+$/, "")}-v1.jpg`,
+      .replace(/\.[^.]+$/, "")}-${photo.startsWith("/images/menu/") ? "v2" : "v1"}.jpg`,
     width: 1200,
     height: 630,
     alt,

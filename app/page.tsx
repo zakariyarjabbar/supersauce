@@ -127,17 +127,17 @@ export default function Home() {
           <p>
             للمباراة، للطلعة، أو لقعدة «شنو ناكل؟».
             <br />
-            بوكساتنا تجمع كل الأذواق على سفرة وحدة.
+            بروستد وستربس بأحجام للعائلة واللّمة.
           </p>
-          <Link href="/menu?category=boxes" className="button button-yellow">
-            اختار بوكس اللمة <ArrowLeft size={19} />
+          <Link href="/menu?category=chicken" className="button button-yellow">
+            اختار وجبة اللمة <ArrowLeft size={19} />
           </Link>
           <BrandStar outline className="sharing-star" />
         </div>
         <div className="sharing-photo">
           <Image
-            src="/images/sharing-meal.webp"
-            alt="سفرة للمشاركة من البرغر والدجاج المقرمش والفرايز"
+            src="/images/menu/family-broasted-meal.webp"
+            alt="وجبة بروستد عائلي من سوبر صوص مع البطاطا والكولسلو والصوص"
             fill
             sizes="(max-width: 760px) 100vw, 60vw"
           />

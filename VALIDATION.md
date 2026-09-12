@@ -1,5 +1,15 @@
 # Validation record
 
+## 12 September 2026 — complete restaurant menu
+
+Replaced 18 sample entries with the 67 unique products in the owner's 12 menu pages. All prices, the 20 meal upgrades, two cheese extras and three wing size pairs are covered by an independent source-price regression check. Overlapping sandwich pages were deduplicated. The owner confirmed Nashville at 7,500 IQD and Boomber at 7,000 IQD; Boomber's turkey ingredient was checked against the final page.
+
+Created 67 individual Super Sauce product illustrations with built-in ImageGen, retained the selected PNGs locally, and committed optimized WebP delivery assets (6.90 MB total, approximately 105 KB each) plus 67 static JPEG social previews. The 12 supplied menu pages and prompt set are retained. Website copy identifies the photos as enhanced illustrations. Original branch and form demo disclosures remain applicable.
+
+Validation: production build, ESLint and TypeScript passed; all 57 applicable Playwright checks passed with three desktop skips for mobile-specific behavior. Coverage includes the complete price matrix, bilingual search, every product page's metadata, downloadable social images, old sample-page removal, wing/meal/cheese selections and reset, WhatsApp draft details, keyboard focus, automated WCAG A/AA, and existing map gestures. Desktop and mobile visual reviews covered the catalog, product page and extended order dialog; the dialog now keeps its title and close control visible while its contents scroll. All 67 generated photos were visually reviewed in four contact sheets. Next.js logs its existing NoFallbackError on intentionally missing static routes; those requests correctly return 404.
+
+No real orders, messages or payments were sent. Physical-device Safari and actual social-platform caches were not exercised.
+
 ## 11 September 2026 — map touch and wheel navigation
 
 Added two-finger pinch zoom and one-finger map dragging, plus desktop wheel zoom at the cursor. The map converts screen coordinates through the rendered SVG matrix, retains the zoom anchor, clamps zoom to 1–32, suppresses accidental branch activation after gestures, and cleans up native event listeners when switching to the list. List mode and the surrounding page retain normal scrolling; Ctrl/Command-wheel remains available for browser zoom. Arabic instructions describe the gestures.
@@ -14,16 +24,16 @@ Removed the root `noindex, nofollow` metadata requested by the user. The public 
 
 The deployed homepage was inspected with a preview-crawler user agent before this change. It returned an image URL on `http://localhost:3000` and a blanket `Disallow: /` rule. Both prevented reliable external preview fetching. Public origins now resolve from explicit configuration, Vercel environment settings or the repository's verified public address. Every public page supplies complete, consistent Open Graph and X metadata in the initial HTML head.
 
-| Check | Result |
-| --- | --- |
-| Production build and TypeScript | Passed; 43 build outputs |
-| ESLint and diff whitespace | Passed |
-| Desktop/mobile regression suite | 46 passed, 2 intentionally skipped |
-| Raw HTML metadata | All 35 public pages checked for canonical URL, Arabic title/description, image, dimensions, type and alt text |
-| Crawler requests | Nine known/unknown user agents received complete initial-head metadata on the dynamic contact route |
-| Preview delivery | Nine static JPEGs decoded successfully; 1200 × 630 Open Graph and 1200 × 600 branded X card; each under 180KB |
-| Icons and manifest | Apple 180px, PNG 192px/512px, three-frame ICO and Arabic manifest served successfully |
-| Final image export | Centered photo crops visually checked; all 10 metadata/asset tests passed again after export |
+| Check                           | Result                                                                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Production build and TypeScript | Passed; 43 build outputs                                                                                      |
+| ESLint and diff whitespace      | Passed                                                                                                        |
+| Desktop/mobile regression suite | 46 passed, 2 intentionally skipped                                                                            |
+| Raw HTML metadata               | All 35 public pages checked for canonical URL, Arabic title/description, image, dimensions, type and alt text |
+| Crawler requests                | Nine known/unknown user agents received complete initial-head metadata on the dynamic contact route           |
+| Preview delivery                | Nine static JPEGs decoded successfully; 1200 × 630 Open Graph and 1200 × 600 branded X card; each under 180KB |
+| Icons and manifest              | Apple 180px, PNG 192px/512px, three-frame ICO and Arabic manifest served successfully                         |
+| Final image export              | Centered photo crops visually checked; all 10 metadata/asset tests passed again after export                  |
 
 The branded card preserves the supplied logo, existing burger photo, Arabic Alexandria font and red/cream/checkerboard identity. It is exported from local HTML/CSS using Chromium; Sharp prepares static JPEGs and icon fallbacks. No new photograph was generated. The source layout and delivery images include provenance, and the README explains regeneration, public domain configuration and cache-versioned filenames.
 

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/alexandria";
 import "./globals.css";
+import "@/components/menu-catalog.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { OrderProvider } from "@/components/order-options";

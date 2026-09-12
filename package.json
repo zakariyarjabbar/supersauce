@@ -13,6 +13,7 @@
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "assets:prepare": "node scripts/prepare-assets.mjs",
+    "assets:menu": "node scripts/prepare-menu-assets.mjs",
     "assets:share": "node scripts/prepare-share-assets.mjs"
   },
   "dependencies": {

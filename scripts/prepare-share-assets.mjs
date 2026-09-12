@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { chromium } from "@playwright/test";
+import { prepareMenuPreviews } from "./prepare-menu-assets.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "public/social");
@@ -130,4 +131,5 @@ await provenance(
   ["app/icon.svg"],
   "16px, 32px and 48px favicon fallbacks of the existing SVG mark.",
 );
-console.log("Prepared branded OG/X images, seven photo previews and platform icons.");
+await prepareMenuPreviews();
+console.log("Prepared branded OG/X images, catalog photo previews and platform icons.");

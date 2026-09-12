@@ -10,3 +10,4 @@ out/
 test-results/
 playwright-report/
 deliverables/
+assets/menu-generated/*.png
