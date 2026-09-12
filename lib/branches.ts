@@ -77,6 +77,18 @@ export const branches: Branch[] = [
     services: ["صالة", "سفري"],
   },
   {
+    slug: "al-haswa",
+    coordinates: { lat: 32.88735656561854, lng: 44.38283954912842 },
+    phone: "",
+    whatsapp: "",
+    name: "الحسوة",
+    city: "بابل",
+    area: "الحسوة",
+    address: "الحسوة، مركز المدينة",
+    hours: "١٢ ظهراً – ١ بعد منتصف الليل",
+    services: ["صالة", "سفري"],
+  },
+  {
     slug: "al-mahawil",
     coordinates: { lat: 32.6672, lng: 44.4054 },
     phone: "",
