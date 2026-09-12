@@ -10,7 +10,6 @@ export const site = {
     productionUrl: process.env.VERCEL_PROJECT_PRODUCTION_URL,
     deploymentUrl: process.env.VERCEL_URL,
   }),
-  demo: process.env.NEXT_PUBLIC_DEMO_MODE !== "false",
   instagram: "https://www.instagram.com/supersauce.iq/",
   orderPhone: process.env.NEXT_PUBLIC_ORDER_PHONE || "",
   orderWhatsapp: process.env.NEXT_PUBLIC_ORDER_WHATSAPP || "",

@@ -123,8 +123,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <OrderButton item={item} className="button button-red product-order-button" />
           <p className="product-notice">
             <Info size={17} />
-            عندك حساسية غذائية؟ تأكد من المكونات مع الفرع قبل الطلب. الصورة توضيحية محسّنة، والسعر
-            حسب المنيو.
+            عندك حساسية غذائية؟ تأكد من المكونات وطرق التحضير مع الفرع قبل الطلب.
           </p>
         </div>
       </section>

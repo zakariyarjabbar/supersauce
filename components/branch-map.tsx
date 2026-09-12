@@ -73,7 +73,7 @@ function BranchDetails({ branch }: { branch: Branch }) {
       <Image
         className={styles.branchImage}
         src={branch.image || "/images/restaurant.webp"}
-        alt="تصوّر توضيحي لواجهة سوبر صوص"
+        alt="واجهة سوبر صوص بالأحمر والأبيض"
         width={720}
         height={420}
         sizes="(max-width: 760px) 100vw, 380px"
@@ -91,16 +91,17 @@ function BranchDetails({ branch }: { branch: Branch }) {
             </dt>
             <dd>{branch.address}</dd>
           </div>
-          <div>
-            <dt>
-              <Phone size={19} aria-hidden="true" />
-              <span className="sr-only">رقم الهاتف</span>
-            </dt>
-            <dd>
-              <bdi dir="ltr">{links.phone ? phone : "07XX XXX XXXX"}</bdi>
-              {!links.phone && <small>يُضاف رقم الفرع قريباً</small>}
-            </dd>
-          </div>
+          {links.phone && (
+            <div>
+              <dt>
+                <Phone size={19} aria-hidden="true" />
+                <span className="sr-only">رقم الهاتف</span>
+              </dt>
+              <dd>
+                <bdi dir="ltr">{phone}</bdi>
+              </dd>
+            </div>
+          )}
           <div>
             <dt>
               <Clock3 size={19} aria-hidden="true" />
@@ -129,27 +130,21 @@ function BranchDetails({ branch }: { branch: Branch }) {
           <Navigation size={19} aria-hidden="true" /> افتح الاتجاهات
           <span className="sr-only">، يفتح في نافذة جديدة</span>
         </a>
-        <div className={styles.contactActions}>
-          {links.phone ? (
-            <a href={links.phone}>
-              <Phone size={17} aria-hidden="true" /> اتصل بالفرع
-            </a>
-          ) : (
-            <button type="button" disabled>
-              <Phone size={17} aria-hidden="true" /> اتصل بالفرع
-            </button>
-          )}
-          {links.whatsapp ? (
-            <a href={links.whatsapp} target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={18} aria-hidden="true" /> واتساب
-              <span className="sr-only">، يفتح في نافذة جديدة</span>
-            </a>
-          ) : (
-            <button type="button" disabled>
-              <MessageCircle size={18} aria-hidden="true" /> واتساب
-            </button>
-          )}
-        </div>
+        {(links.phone || links.whatsapp) && (
+          <div className={styles.contactActions}>
+            {links.phone && (
+              <a href={links.phone}>
+                <Phone size={17} aria-hidden="true" /> اتصل بالفرع
+              </a>
+            )}
+            {links.whatsapp && (
+              <a href={links.whatsapp} target="_blank" rel="noopener noreferrer">
+                <MessageCircle size={18} aria-hidden="true" /> واتساب
+                <span className="sr-only">، يفتح في نافذة جديدة</span>
+              </a>
+            )}
+          </div>
+        )}
         <div className={styles.detailLinks}>
           <Link href={`/branches/${branch.slug}`}>
             تفاصيل الفرع <ArrowLeft size={15} aria-hidden="true" />
@@ -392,7 +387,7 @@ export function BranchMap() {
         setQuery("");
         const nextView = fitBranches(branches.filter((item) => item.city === branch.city));
         setView(nextView);
-        setLocationMessage(`أقرب موقع في دليل العرض: فرع ${branch.name}.`);
+        setLocationMessage(`أقرب فرع إلك: فرع ${branch.name}.`);
         selectBranch(branch, trigger, nextView);
       },
       (error) => {
@@ -488,7 +483,7 @@ export function BranchMap() {
           <div className={styles.mapColumn}>
             <div className={styles.mapTopline}>
               <span aria-live="polite">
-                {visible.length} {visible.length === 1 ? "فرع" : "فروع"} في دليل العرض
+                {visible.length} {visible.length === 1 ? "فرع" : "فروع"}
               </span>
               <div className={styles.viewSwitch} aria-label="طريقة عرض الفروع">
                 <button type="button" aria-pressed={!listView} onClick={() => setListView(false)}>
@@ -798,7 +793,7 @@ export function BranchMap() {
           </div>
         </div>
         <div className={styles.bottomline}>
-          <p>مواقع الفروع وبياناتها أمثلة للعرض، وتُستبدل بالمعلومات المعتمدة.</p>
+          <p>اختار فرعك وشوف تفاصيله والطريق إله.</p>
           <Link href="/branches">
             دليل الفروع كامل <ArrowUpLeft size={17} aria-hidden="true" />
           </Link>

@@ -23,8 +23,8 @@ export async function generateMetadata({
     ? pageMetadata({
         path: `/branches/${branch.slug}`,
         title: `فرع ${branch.name}`,
-        description: `${branch.city}، ${branch.address}. تعرّف على الخدمات وأوقات العمل وطرق التواصل. بيانات توضيحية لنسخة العرض.`,
-        image: photoShareImage("/images/restaurant.webp", "تصوّر توضيحي لواجهة مطعم سوبر صوص"),
+        description: `${branch.city}، ${branch.address}. تعرّف على الخدمات وأوقات العمل وطرق التواصل مع فرع ${branch.name}.`,
+        image: photoShareImage("/images/restaurant.webp", "واجهة سوبر صوص بالأحمر والأبيض"),
       })
     : { title: "الفرع غير موجود" };
 }
@@ -84,19 +84,15 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
                 ابحث بالخريطة <ArrowUpLeft size={19} />
               </a>
             </div>
-            <p className="small-note">
-              بيانات الفرع والصورة تصوّر توضيحي لنسخة العرض، وليست معلومات زيارة معتمدة.
-            </p>
           </div>
           <figure className="branch-detail-photo">
             <Image
               src="/images/restaurant.webp"
-              alt="تصوّر معماري لمطعم سوبر صوص بواجهة حمراء وإضاءة دافئة"
+              alt="واجهة سوبر صوص الحمراء بإضاءة دافئة"
               fill
               priority
               sizes="(max-width: 760px) 100vw, 50vw"
             />
-            <figcaption>تصوّر بصري للمكان</figcaption>
           </figure>
         </section>
         <div className="inline-help">

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, type FormEvent } from "react";
 import Link from "next/link";
-import { ArrowLeft, Check, LoaderCircle } from "lucide-react";
+import { ArrowLeft, ArrowUpLeft, Check, Instagram, LoaderCircle } from "lucide-react";
 import { contactSchema, fieldErrors } from "@/lib/validation";
 import { site } from "@/lib/site";
 
@@ -29,16 +29,17 @@ const provinces = [
 export function ContactForm({
   kind = "contact",
   initialTopic = "",
+  emailAvailable = false,
 }: {
   kind?: "contact" | "careers";
   initialTopic?: string;
+  emailAvailable?: boolean;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
-  const [demoResult, setDemoResult] = useState(site.demo);
   const [messageLength, setMessageLength] = useState(0);
   const careers = kind === "careers";
   const inputProps = (name: string) => ({
@@ -89,11 +90,10 @@ export function ContactForm({
         signal: AbortSignal.timeout(15000),
       });
       const body = await response.json();
-      if (!response.ok) {
+      if (!response.ok || body.ok !== true) {
         setServerMessage(body.error || "ما اكتمل الإرسال. حاول مرة ثانية.");
         setStatus("error");
       } else {
-        setDemoResult(body.demo === true);
         setStatus("success");
       }
     } catch {
@@ -102,18 +102,40 @@ export function ContactForm({
     }
     requestAnimationFrame(() => statusRef.current?.focus());
   }
+  if (!emailAvailable)
+    return (
+      <section className="contact-form contact-direct" aria-labelledby={`${kind}-direct-title`}>
+        <div className="form-heading">
+          <h2 id={`${kind}-direct-title`}>{careers ? "خطوتك الأولى ويّانا." : "رسالتك تهمّنا."}</h2>
+          <p>
+            {careers
+              ? "راسلنا على إنستغرام باسمك، محافظتك وخبرتك، واسأل عن فرص الانضمام لفريق سوبر صوص."
+              : "عندك سؤال، اقتراح أو ملاحظة على زيارتك؟ راسلنا على إنستغرام واحچيلنا التفاصيل."}
+          </p>
+        </div>
+        <a
+          className="button button-red button-wide"
+          href={site.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Instagram size={20} aria-hidden="true" />
+          راسلنا على إنستغرام
+          <ArrowUpLeft size={19} aria-hidden="true" />
+        </a>
+        <p className="contact-handle" dir="ltr">
+          @supersauce.iq
+        </p>
+      </section>
+    );
   if (status === "success")
     return (
       <div className="form-success" ref={statusRef} tabIndex={-1} role="status">
         <span className="success-icon">
           <Check size={35} />
         </span>
-        <h2>{demoResult ? "اكتملت التجربة!" : "وصلتنا رسالتك."}</h2>
-        <p>
-          {demoResult
-            ? "هذا نموذج تجريبي. ما أرسلنا معلوماتك إلى المطعم وما حفظناها، لكن تقدر تشوف شلون راح تكون التجربة كاملة."
-            : "شكراً لوقتك. نراجع رسالتك ونتواصل وياك على البريد اللي كتبته."}
-        </p>
+        <h2>وصلتنا رسالتك.</h2>
+        <p>شكراً لوقتك. نراجع رسالتك ونتواصل وياك على البريد اللي كتبته.</p>
         <button
           className="button button-red"
           onClick={() => {
@@ -285,16 +307,11 @@ export function ContactForm({
           </>
         ) : (
           <>
-            {site.demo ? "جرّب إرسال الرسالة" : "أرسل الرسالة"}
+            أرسل الرسالة
             <ArrowLeft size={19} />
           </>
         )}
       </button>
-      {site.demo && (
-        <p className="form-demo-note">
-          نسخة عرض: الرسالة للتجربة ولا تُرسل إلى المطعم. استخدم بيانات وهمية.
-        </p>
-      )}
     </form>
   );
 }

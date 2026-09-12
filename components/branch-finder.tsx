@@ -49,7 +49,7 @@ export function BranchFinder() {
         ))}
       </div>
       <div className="results-bar">
-        <span aria-live="polite">{visible.length} فروع في دليل العرض</span>
+        <span aria-live="polite">{visible.length} فروع</span>
         <span>أكثر من 23 فرع حول العراق</span>
       </div>
       <div className="branch-grid">
@@ -109,10 +109,6 @@ export function BranchFinder() {
           </button>
         </div>
       )}
-      <p className="small-note">
-        دليل مصغّر لنسخة العرض. عناوين الفروع وأوقات العمل توضيحية، وروابط الخرائط تفتح نتائج بحث؛
-        تُعتمد البيانات النهائية من المطعم.
-      </p>
     </section>
   );
 }

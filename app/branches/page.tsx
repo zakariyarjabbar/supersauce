@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   path: "/branches",
   title: "فروعنا",
   description: "سوبر صوص قريب منك. استكشف الفروع حسب المحافظة وتعرّف على الخدمات وأوقات العمل.",
-  image: photoShareImage("/images/restaurant.webp", "تصوّر توضيحي لواجهة مطعم سوبر صوص"),
+  image: photoShareImage("/images/restaurant.webp", "واجهة سوبر صوص بالأحمر والأبيض"),
 });
 export default function BranchesPage() {
   return (

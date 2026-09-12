@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { BrandStar, PageIntro } from "@/components/brand";
 import { ContactForm } from "@/components/contact-form";
+import { getContactDeliveryConfig } from "@/lib/contact-delivery";
 
 export const metadata = pageMetadata({
   path: "/careers",
@@ -21,7 +22,7 @@ export default function CareersPage() {
           <div className="career-photo">
             <Image
               src="/images/restaurant.webp"
-              alt="تصوّر لبيئة سوبر صوص الدافئة والحيوية"
+              alt="واجهة سوبر صوص وإضاءتها الدافئة"
               width={700}
               height={500}
               sizes="(max-width: 760px) 100vw, 40vw"
@@ -47,11 +48,9 @@ export default function CareersPage() {
               اهتمام بكل تفصيلة
             </li>
           </ul>
-          <p className="small-note">
-            هذا نموذج اهتمام عام في نسخة العرض، ولا يمثّل إعلاناً عن وظائف شاغرة حالياً.
-          </p>
+          <p className="small-note">للاستفسار عن فرص العمل، عرّفنا بخبرتك والمجال اللي يهمك.</p>
         </aside>
-        <ContactForm kind="careers" />
+        <ContactForm kind="careers" emailAvailable={!!getContactDeliveryConfig()} />
       </section>
     </>
   );

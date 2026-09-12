@@ -112,12 +112,11 @@ export default function AboutPage() {
         <div>
           <Image
             src="/images/restaurant.webp"
-            alt="تصوّر تصميمي لواجهة مطعم سوبر صوص بالأحمر والأبيض"
+            alt="واجهة سوبر صوص بالأحمر والأبيض"
             width={900}
             height={600}
             sizes="(max-width: 760px) 100vw, 55vw"
           />
-          <p className="small-note">صورة تصوّرية لهوية المكان.</p>
         </div>
       </section>
       <CtaBand />

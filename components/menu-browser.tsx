@@ -186,7 +186,7 @@ export function MenuBrowser() {
           </button>
         </div>
       )}
-      <p className="small-note">الصور توضيحية. تفاصيل المكونات والأسعار قابلة للتغيير حسب الفرع.</p>
+      <p className="small-note">الأسعار بالدينار العراقي. تأكد من توفر وجبتك مع الفرع عند الطلب.</p>
     </div>
   );
 }

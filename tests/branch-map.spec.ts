@@ -97,7 +97,7 @@ test("two-finger touch zooms both ways, supports continued dragging, and does no
 test("cluster pins expand, map zooms by keyboard and reset restores Iraq", async ({ page }) => {
   const map = page.getByRole("group", { name: "خريطة فروع سوبر صوص في العراق", exact: true });
   await expect(map).toHaveAttribute("data-zoom", "1.00");
-  await expect(map.getByRole("button", { name: /^عرض فرع/ })).toHaveCount(3);
+  await expect(map.getByRole("button", { name: /^عرض فرع/ })).toHaveCount(2);
   await expect(map.getByRole("button", { name: "تكبير تجمع 5 فروع", exact: true })).toBeVisible();
   await map
     .getByRole("button", { name: /^تكبير تجمع/ })
@@ -124,7 +124,7 @@ test("city and Arabic search reveal branch information and its exact directions"
 }) => {
   const section = page.locator("#branch-map");
   await section.getByRole("button", { name: "كربلاء", exact: true }).click();
-  await expect(section.getByText("1 فرع في دليل العرض")).toBeVisible();
+  await expect(section.getByText("1 فرع", { exact: true })).toBeVisible();
   await section.getByRole("button", { name: "عرض فرع كربلاء، كربلاء", exact: true }).click();
   const details = isMobile ? page.getByRole("dialog") : section.locator("aside");
   await expect(details.getByRole("heading", { name: "فرع كربلاء" })).toBeVisible();
@@ -133,9 +133,9 @@ test("city and Arabic search reveal branch information and its exact directions"
     "href",
     branchDirectionsUrl(branches.find((branch) => branch.slug === "karbala")!),
   );
-  await expect(details.getByText("يُضاف رقم الفرع قريباً")).toBeVisible();
-  await expect(details.getByRole("button", { name: "اتصل بالفرع", exact: true })).toBeDisabled();
-  await expect(details.getByRole("button", { name: "واتساب", exact: true })).toBeDisabled();
+  await expect(details).not.toContainText("07XX XXX XXXX");
+  await expect(details.getByRole("button", { name: "اتصل بالفرع", exact: true })).toHaveCount(0);
+  await expect(details.getByRole("button", { name: "واتساب", exact: true })).toHaveCount(0);
   await expect(details.getByRole("link", { name: /تواصل عبر إنستغرام/ })).toHaveAttribute(
     "href",
     "https://www.instagram.com/supersauce.iq/",
@@ -147,15 +147,15 @@ test("city and Arabic search reveal branch information and its exact directions"
   if (isMobile) await page.keyboard.press("Escape");
   await section.getByRole("button", { name: "كل المحافظات", exact: true }).click();
   await section.getByRole("searchbox").fill("الْكَاظِمِيَّة");
-  await expect(section.getByText("1 فرع في دليل العرض")).toBeVisible();
+  await expect(section.getByText("1 فرع", { exact: true })).toBeVisible();
   await expect(section.getByRole("button", { name: "عرض فرع الكاظمية، بغداد" })).toBeVisible();
   await section.getByRole("searchbox").fill("منطقةغيرموجودة");
   await expect(section.getByRole("status").getByText("ما لقينا فرع بهالبحث.")).toBeVisible();
   await section.getByRole("status").getByRole("button", { name: "عرض كل الفروع" }).click();
-  await expect(section.getByText("8 فروع في دليل العرض")).toBeVisible();
+  await expect(section.getByText(`${branches.length} فروع`, { exact: true })).toBeVisible();
 });
 
-test("list view reaches every example branch and stays synchronized with the map", async ({
+test("list view reaches every branch and stays synchronized with the map", async ({
   page,
   isMobile,
 }) => {
@@ -178,7 +178,7 @@ test("list view reaches every example branch and stays synchronized with the map
   );
 });
 
-test("location is requested only by the customer and chooses the closest demo branch", async ({
+test("location is requested only by the customer and chooses the closest branch", async ({
   page,
   context,
   isMobile,
@@ -193,7 +193,7 @@ test("location is requested only by the customer and chooses the closest demo br
   const details = isMobile ? page.getByRole("dialog") : page.locator("#branch-map aside");
   await expect(details.getByRole("heading", { name: "فرع النجف" })).toBeVisible();
   await expect(page.locator("#branch-map").getByRole("status")).toHaveText(
-    "أقرب موقع في دليل العرض: فرع النجف.",
+    "أقرب فرع إلك: فرع النجف.",
   );
 });
 
@@ -226,6 +226,7 @@ test("mobile sheet contains focus, closes, and adapts to a desktop resize", asyn
   test.skip(!isMobile, "Mobile bottom sheet only");
   const section = page.locator("#branch-map");
   await section.getByRole("button", { name: "بابل", exact: true }).click();
+  await section.getByRole("searchbox").fill("المحاويل");
   const trigger = section.getByRole("button", { name: "عرض فرع المحاويل، بابل" });
   await trigger.click();
   const dialog = page.getByRole("dialog", { name: "تفاصيل فرع المحاويل" });

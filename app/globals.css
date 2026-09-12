@@ -1149,20 +1149,6 @@ a svg {
 .footer-bottom a:hover {
   color: var(--white);
 }
-.demo-notice {
-  font-size: 9px;
-  padding: 15px 0 23px;
-  border-top: 1px solid #ffffff14;
-  color: #bdb4a8;
-  line-height: 2;
-}
-.demo-notice > span {
-  border: 1px solid #ffffff35;
-  border-radius: 3px;
-  padding: 3px 7px;
-  margin-left: 10px;
-  color: #e5dbcb;
-}
 .page-intro {
   padding-block: 25px 48px;
   background: var(--paper);
@@ -1966,13 +1952,6 @@ a svg {
   .footer-bottom > div {
     gap: 12px;
   }
-  .demo-notice {
-    font-size: 8px;
-    line-height: 2.3;
-  }
-  .demo-notice > span {
-    margin-left: 5px;
-  }
   .page-intro {
     padding-block: 19px 35px;
   }
@@ -2678,8 +2657,11 @@ a svg {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.form-demo-note {
-  font-size: 10px;
+.contact-direct {
+  align-self: start;
+}
+.contact-handle {
+  font-size: 12px;
   text-align: center;
   margin-top: 15px;
   line-height: 2;
@@ -3288,9 +3270,6 @@ a svg {
   .field-error {
     font-size: 11px;
   }
-  .form-demo-note {
-    font-size: 10px;
-  }
   .form-success {
     padding: 45px 25px;
   }
@@ -3380,9 +3359,6 @@ a svg {
   }
   .footer-bottom a {
     min-height: 44px;
-  }
-  .demo-notice {
-    font-size: 9px;
   }
   .product-copy .product-notice {
     font-size: 11px;

@@ -37,7 +37,7 @@ export const menuItems: MenuItem[] = catalog.map((item) => ({
   ...item,
   category: item.category as MenuItem["category"],
   image: `/images/menu/${item.slug}.webp`,
-  imageAlt: `${item.name} بتقديم سوبر صوص — صورة توضيحية محسّنة`,
+  imageAlt: `${item.name} من سوبر صوص`,
 }));
 
 export const getMenuItem = (slug: string) => menuItems.find((item) => item.slug === slug);

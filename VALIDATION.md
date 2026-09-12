@@ -1,5 +1,13 @@
 # Validation record
 
+## 12 September 2026 — customer-facing website copy
+
+Removed public demo/proposal labels from the footer, branch map and directory, branch pages, photo captions and alt text, FAQ, menu notes, metadata, privacy and terms. The map's placeholder phone number and unavailable branch contact controls are omitted. Branch information, including the owner's Al Haswa addition, remains intact. Existing source and image provenance notes stay in the repository.
+
+Removed the legacy demo flag and simulated form success. Contact and careers now show an Instagram action unless all email credentials are configured. The API reports success only after the email provider accepts a message; missing configuration, rejected submissions and provider failures return errors. Provider tests use a stubbed fetch and never send messages.
+
+Production build and ESLint passed. The desktop/mobile suite passed 59 checks with three skips for mobile-only behavior on desktop. Checks cover customer-facing copy, available contact channels, delivery failures, prices, metadata, accessibility, nine branch entries and map gestures. Desktop/mobile screenshots were inspected together; the map's placeholder phone was removed in the resulting correction pass. Visual captures are in `deliverables/site-copy-review/`. Operational branch details were not independently verified by this copy change.
+
 ## 12 September 2026 — complete restaurant menu
 
 Replaced 18 sample entries with the 67 unique products in the owner's 12 menu pages. All prices, the 20 meal upgrades, two cheese extras and three wing size pairs are covered by an independent source-price regression check. Overlapping sandwich pages were deduplicated. The owner confirmed Nashville at 7,500 IQD and Boomber at 7,000 IQD; Boomber's turkey ingredient was checked against the final page.

@@ -1,5 +1,6 @@
 import { contactSchema, fieldErrors } from "@/lib/validation";
 import { site } from "@/lib/site";
+import { getContactDeliveryConfig } from "@/lib/contact-delivery";
 
 export const runtime = "nodejs";
 const json = (body: object, status = 200) =>
@@ -49,12 +50,11 @@ export async function POST(request: Request) {
       { error: "راجع الحقول المطلوبة وحاول ثانية.", fields: fieldErrors(result.error) },
       422,
     );
-  if (site.demo || result.data.website) return json({ ok: true, demo: true });
-  const apiKey = process.env.RESEND_API_KEY,
-    from = process.env.CONTACT_FROM_EMAIL,
-    to = process.env.CONTACT_TO_EMAIL;
-  if (!apiKey || !from || !to)
+  if (result.data.website) return json({ error: "تعذّر إرسال الرسالة." }, 422);
+  const delivery = getContactDeliveryConfig();
+  if (!delivery)
     return json({ error: "الإرسال غير متاح حالياً. تواصل ويانا عبر إنستغرام." }, 503);
+  const { apiKey, from, to } = delivery;
   const data = result.data;
   try {
     const response = await fetch("https://api.resend.com/emails", {
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     });
     if (!response.ok)
       return json({ error: "تعذّر الإرسال الآن. حاول لاحقاً أو تواصل عبر إنستغرام." }, 502);
-    return json({ ok: true, demo: false });
+    return json({ ok: true });
   } catch {
     return json({ error: "انتهت مهلة الاتصال. حاول لاحقاً." }, 502);
   }

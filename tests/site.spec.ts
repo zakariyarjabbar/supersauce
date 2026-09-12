@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { getOrderContactLinks } from "../lib/order-contact";
 import { menuItems } from "../lib/menu";
 import { site } from "../lib/site";
+import { branches } from "../lib/branches";
 
 test("Arabic pages, imagery and navigation render without errors or overflow", async ({ page }) => {
   const errors: string[] = [];
@@ -24,6 +25,9 @@ test("Arabic pages, imagery and navigation render without errors or overflow", a
     expect(response?.status(), path).toBe(200);
     await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
     await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("body")).not.toContainText(
+      /نسخة عرض|نسخة العرض|دليل العرض|مواقع الفروع وبياناتها أمثلة|تجريبي|توضيحي|تصوّر|نموذج مقترح/,
+    );
     await page.evaluate(() => document.fonts.ready);
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
@@ -187,12 +191,13 @@ test("contact links normalize Iraqi numbers and prepare item and branch details 
 test("branch filtering, empty state and map destination", async ({ page }) => {
   await page.goto("/branches");
   await page.getByRole("button", { name: "بابل", exact: true }).click();
-  await expect(page.locator(".branch-card")).toHaveCount(1);
-  await expect(page.locator(".branch-card")).toContainText("المحاويل");
+  await expect(page.locator(".branch-card")).toHaveCount(2);
+  await expect(page.locator(".branch-card").filter({ hasText: "المحاويل" })).toHaveCount(1);
+  await expect(page.locator(".branch-card").filter({ hasText: "الحسوة" })).toHaveCount(1);
   await page.getByRole("searchbox").fill("قمر");
   await expect(page.getByText("ما لقينا فرع بهالبحث.")).toBeVisible();
   await page.getByRole("button", { name: "عرض كل الفروع" }).click();
-  await expect(page.locator(".branch-card")).toHaveCount(8);
+  await expect(page.locator(".branch-card")).toHaveCount(branches.length);
   await page.locator(".branch-card").first().getByRole("link", { name: "تفاصيل الفرع" }).click();
   await expect(page).toHaveURL(/\/branches\/al-jamia$/);
   await expect(page.getByRole("link", { name: "ابحث بالخريطة" })).toHaveAttribute(
@@ -201,22 +206,17 @@ test("branch filtering, empty state and map destination", async ({ page }) => {
   );
 });
 
-test("contact and careers forms validate and explicitly return demo success", async ({ page }) => {
+test("contact and careers offer a working channel when email is not configured", async ({
+  page,
+}) => {
   for (const path of ["/contact", "/careers"]) {
     await page.goto(path);
-    await page.getByRole("button", { name: "جرّب إرسال الرسالة" }).click();
-    await expect(page.getByText("اكتب اسمك الكامل", { exact: true })).toBeVisible();
-    await page.getByLabel("الاسم الكامل", { exact: false }).fill("مستخدم تجريبي");
-    await page.getByLabel("البريد الإلكتروني", { exact: false }).fill("demo@example.com");
-    await page.getByLabel("المحافظة", { exact: false }).selectOption("بغداد");
-    await page.locator('select[name="topic"]:visible').selectOption({ index: 1 });
-    await page
-      .locator('textarea[name="message"]:visible')
-      .fill("هذه رسالة وهمية لاختبار عمل النموذج فقط.");
-    await page.locator('input[name="consent"]:visible').check();
-    await page.getByRole("button", { name: "جرّب إرسال الرسالة" }).click();
-    await expect(page.getByRole("heading", { name: "اكتملت التجربة!" })).toBeVisible();
-    await expect(page.locator(".form-success")).toContainText("ما أرسلنا معلوماتك إلى المطعم");
+    const channel = page.getByRole("link", { name: "راسلنا على إنستغرام", exact: true });
+    await expect(channel).toBeVisible();
+    await expect(channel).toHaveAttribute("href", site.instagram);
+    await expect(channel).toHaveAttribute("target", "_blank");
+    await expect(page.locator("form.contact-form")).toHaveCount(0);
+    await expect(page.locator(".form-success")).toHaveCount(0);
   }
 });
 
@@ -246,7 +246,9 @@ test("mobile navigation closes with Escape and routes correctly", async ({ page,
   await expect(page.locator(".mobile-menu")).toHaveCount(0);
 });
 
-test("API rejects invalid requests and never sends in demo mode", async ({ request }) => {
+test("API rejects invalid requests and never claims delivery without email configuration", async ({
+  request,
+}) => {
   const payload = {
     kind: "contact",
     name: "Demo user",
@@ -287,8 +289,10 @@ test("API rejects invalid requests and never sends in demo mode", async ({ reque
     ).status(),
   ).toBe(413);
   const valid = await request.post("/api/contact", { data: payload });
-  expect(valid.status()).toBe(200);
-  expect(await valid.json()).toEqual({ ok: true, demo: true });
+  expect(valid.status()).toBe(503);
+  expect(await valid.json()).toEqual({
+    error: "الإرسال غير متاح حالياً. تواصل ويانا عبر إنستغرام.",
+  });
   const robots = await request.get("/robots.txt");
   const rules = await robots.text();
   expect(rules).toMatch(/^Allow: \/$/m);

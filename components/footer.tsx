@@ -55,12 +55,6 @@ export function Footer() {
             <Link href="/terms">شروط الاستخدام</Link>
           </div>
         </div>
-        {site.demo && (
-          <p className="demo-notice">
-            <span>نسخة عرض</span>المنيو والأسعار من قائمة المطعم. صور المنتجات محسّنة وتوضيحية،
-            وبيانات الفروع تجريبية. تأكيد الطلب مباشرة مع المطعم.
-          </p>
-        )}
       </div>
     </footer>
   );

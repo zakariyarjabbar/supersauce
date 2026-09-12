@@ -1,6 +1,6 @@
 # Super Sauce — Arabic restaurant website
 
-A complete Arabic, right-to-left Next.js website for presenting a proposed online experience to Super Sauce in Iraq. The supplied logo and restaurant references define the red, cream, yellow-star and checkerboard identity.
+A complete Arabic, right-to-left Next.js website for Super Sauce in Iraq. The supplied logo and restaurant references define the red, cream, yellow-star and checkerboard identity.
 
 **The menu uses the owner's supplied restaurant menu.** All 67 unique items, prices, meal upgrades and wing sizes were transcribed from 12 supplied pages. Branch details remain examples and the enhanced product photos are illustrative. Order buttons open contact options; the website does not submit orders or collect payments.
 
@@ -29,15 +29,15 @@ npm run start
 - 67 items across nine categories, individual product images and pages, Arabic/English search, category filters and price sorting.
 - Shared Order dialog on menu cards, product pages, branch pages and the header, with phone, WhatsApp and Instagram contact options. Prices stay visible; WhatsApp drafts include the selected item or branch.
 - Keyboard-accessible native dialog with Escape, close-button and backdrop dismissal. Old `/order` links redirect to `/menu`.
-- Branch directory with search, city filters, eight example branch pages and Google Maps search links.
+- Branch directory with search, city filters, nine branch pages and Google Maps search links.
 - Interactive Iraq map on the homepage: selectable pins, city clusters, search, map/list views, zoom/pan, a desktop details panel and a mobile bottom sheet. Directions use each entry's coordinates; optional geolocation finds the closest example.
-- Brand story, contact, careers, searchable FAQ, demo privacy and terms pages.
+- Brand story, contact, careers, searchable FAQ, privacy and terms pages with customer-facing copy.
 - Contact and careers validation on both client and server, error/retry feedback, optional live email integration.
 - Mobile navigation, keyboard focus, reduced-motion support, local Arabic variable font, error/404/loading states.
 - Page-specific Open Graph and X previews, branded JPEG share cards, browser/Apple/Android icons, sitemap/robots configuration, security headers and optimized WebP website images.
 - Automated desktop/mobile browser tests and readable TypeScript source.
 
-## Deploy the presentation
+## Deploy the website
 
 The project runs on a Next.js-compatible Node host. It includes an API route, so it is **not** a folder of static HTML files.
 
@@ -45,10 +45,10 @@ The project runs on a Next.js-compatible Node host. It includes an API route, so
 
 1. Put the project in a Git repository and import it into Vercel as a Next.js project.
 2. Use the project root as the root directory. The default install/build settings work: `npm ci`, `npm run build`.
-3. Set `NEXT_PUBLIC_DEMO_MODE=true` and `NEXT_PUBLIC_SITE_URL` to the full deployed origin, for example `https://your-project.vercel.app`.
-4. Deploy. No database, payment key or email key is required for the demo.
+3. Set `NEXT_PUBLIC_SITE_URL` to the full deployed origin, for example `https://your-project.vercel.app`.
+4. Deploy. No database, payment key or email key is required. Contact and careers direct visitors to Instagram unless email delivery is configured.
 
-Demo mode adds disclosures for sample branches and forms. Public pages remain indexable, as requested by the owner. Use your hosting provider's access controls if you want a private preview.
+Public pages remain indexable. The former `NEXT_PUBLIC_DEMO_MODE` setting is no longer used; an old value in hosting settings has no effect. Use your hosting provider's access controls if you want a private preview.
 
 ### A Node server
 
@@ -85,7 +85,7 @@ The implementation follows [Open Graph](https://ogp.me/) and X card metadata con
 | Product image prompts and delivery export                                | `content/menu-photo-prompts.json`, `scripts/prepare-menu-assets.mjs`  |
 | Branches, map coordinates, phone/WhatsApp, hours, services and addresses | `lib/branches.ts`                                                     |
 | Homepage map layout and behavior                                         | `components/branch-map.tsx`, `components/branch-map.module.css`       |
-| Brand name, public links, domain and demo setting                        | `lib/site.ts`                                                         |
+| Brand name, public links and domain                                      | `lib/site.ts`                                                         |
 | Homepage copy and campaign sections                                      | `app/page.tsx`                                                        |
 | Brand story                                                              | `app/about/page.tsx`                                                  |
 | Shared colors, type, spacing and responsive rules                        | `app/globals.css`                                                     |
@@ -100,7 +100,7 @@ Prices use whole Iraqi dinars. Product cards, detail pages and the contact dialo
 
 Every product has its own branded image under `public/images/menu/`. The built-in ImageGen prompt set is saved in `content/menu-photo-prompts.json`; locally retained full-resolution PNGs are in `assets/menu-generated/` (excluded from Git). Run `npm run assets:menu` to export optimized WebP images and `menu-*-v2.jpg` social previews. The normal build only needs the checked-in delivery assets. Source menu pages are retained for future price and ingredient edits.
 
-The directory intentionally shows **eight example branches**, while the brand headline says **more than 23**, as supplied by the user. Expand the directory with the complete approved list. Homepage map coordinates are sample locations in Iraq, explicitly authorized for the demo; they do not establish actual restaurant locations. The existing directory/detail-page map links still search by branch name.
+The directory has **nine branch entries**, including the user's Al Haswa addition, while the brand headline says **more than 23**, as supplied by the user. Expand the directory with the complete approved list. The original map coordinates were authorized sample locations in Iraq; source notes remain in the repository. The existing directory/detail-page map links search by branch name.
 
 ### Editing the Iraq map
 
@@ -108,7 +108,7 @@ The map supports mouse dragging, wheel zoom centered on the cursor, one-finger d
 
 Edit or duplicate an entry in `lib/branches.ts`. Give every branch a unique `slug`, then replace `name`, `city`, `area`, `address`, `hours`, `services` and `coordinates: { lat, lng }`. City filters, map pins, the list and branch pages are generated from this shared array. The current eight pins are grouped around Baghdad, Babel, Karbala and Najaf.
 
-Set each branch's `phone` and `whatsapp` to approved numbers, preferably starting with `+964`. Empty fields fall back to the site-wide contact settings below; when neither is configured, the map shows a placeholder with disabled contact buttons. WhatsApp drafts identify the selected branch. Optional `image` accepts a local public image path; otherwise the existing illustrative storefront is used.
+Set each branch's `phone` and `whatsapp` to approved numbers, preferably starting with `+964`. Empty fields fall back to the site-wide contact settings below; the map omits absent numbers and their actions while keeping directions and Instagram available. WhatsApp drafts identify the selected branch. Optional `image` accepts a local public image path; otherwise the existing illustrative storefront is used.
 
 Nearby branches within a city form numbered clusters. Adjacent city buttons are separated slightly with guide lines to their coordinate anchors. Clicking a pin updates the desktop information panel or opens a keyboard-accessible mobile sheet. The red directions link opens Google Maps at that entry's exact coordinates. Replace sample coordinates before using those directions for a real visit.
 
@@ -120,9 +120,9 @@ node scripts/prepare-iraq-map.mjs
 
 Geolocation runs only after clicking «استخدم موقعي» and accepting the browser prompt, on HTTPS or localhost. The browser computes the closest entry without storing or sending the customer's coordinates to the application server. Search and province filters remain available if permission is denied. `next.config.ts` permits geolocation for the same origin.
 
-### Activating real contact email later
+### Configuring contact email
 
-After the restaurant accepts the project, supply all three private server variables:
+To enable the contact and careers forms, supply all three private server variables:
 
 ```dotenv
 RESEND_API_KEY=your_resend_key
@@ -130,7 +130,7 @@ CONTACT_FROM_EMAIL=Super Sauce <website@your-verified-domain.com>
 CONTACT_TO_EMAIL=the-restaurant-inbox@example.com
 ```
 
-Then set `NEXT_PUBLIC_DEMO_MODE=false` and rebuild. The sender domain must be verified with Resend. The handler sends a plain-text message to the configured inbox with the visitor email as `reply_to`. It checks request origin, content type, payload size, field validation and a honeypot. Unconfigured or failed delivery returns a visible error; it never reports a sent message on a failed request. For a public live form, enable your host's rate limiting/abuse controls. Demo mode never calls Resend, even if keys exist.
+Rebuild after configuring email. The sender domain must be verified with Resend. Without all three values, the pages show an Instagram contact action instead of collecting form data. The handler sends a plain-text message to the configured inbox with the visitor email as `reply_to`. It checks request origin, content type, payload size, field validation and a honeypot. Unconfigured or failed delivery returns an error; success is returned only after the provider accepts the message. For a public email form, enable your host's rate limiting/abuse controls. Tests mock the mail provider and never send messages.
 
 API contract: [Resend Send Email](https://resend.com/docs/api-reference/emails/send-email). Live delivery requires your credentials and was not exercised during mock-site validation.
 
@@ -138,9 +138,9 @@ API contract: [Resend Send Email](https://resend.com/docs/api-reference/emails/s
 
 Set `NEXT_PUBLIC_ORDER_PHONE` and `NEXT_PUBLIC_ORDER_WHATSAPP` to restaurant-approved numbers in `.env.local` before building. International numbers should include the country code; Iraqi mobile numbers starting with `07`, `9647`, `009647` or `+9647`, including Arabic digits, are normalized automatically. The two numbers may differ. Empty or invalid numbers leave their option visibly unavailable, with Instagram still accessible using the existing account in `lib/site.ts`. Rebuild after changing public environment variables.
 
-The phone option opens a `tel:` link. WhatsApp opens a prepared message that the customer reviews and sends; Instagram opens the restaurant profile to start a conversation. Item prices are displayed without being represented as a confirmed quote. No order is submitted by the site, and there is no basket, favorites storage, checkout, receipt, payment, delivery-fee calculation or customer-address form. This behavior is the same in demo and live modes.
+The phone option opens a `tel:` link. WhatsApp opens a prepared message that the customer reviews and sends; Instagram opens the restaurant profile to start a conversation. Item prices are displayed without being represented as a confirmed quote. No order is submitted by the site, and there is no basket, favorites storage, checkout, receipt, payment, delivery-fee calculation or customer-address form.
 
-Before the live launch, replace demo-specific FAQ/privacy/terms copy and all illustrative operational details. There is no claim that the restaurant has approved this proposal.
+The owner requested removal of public demo notices on 12 September 2026. Branch-source notes and image provenance remain in the repository; removing presentation notices does not verify operational data or change the source images.
 
 ## Photos and provenance
 
@@ -170,7 +170,7 @@ npx playwright install chromium
 npm test
 ```
 
-The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search and price sorting, contact dialogs and keyboard focus, removal of cart/favorites, legacy checkout redirects, branch filters, map clusters/selection/search/zoom/list, exact directions, geolocation success and denial, mobile-sheet dismissal and resizing, demo contact/careers feedback, keyboard navigation, invalid API payloads and 404s. Build with demo mode enabled before running tests. Tests use only synthetic customer data.
+The browser tests start a production server on port 3100 and cover desktop and phone layouts, Arabic menu search and price sorting, contact dialogs and keyboard focus, removal of cart/favorites, legacy checkout redirects, branch filters, map clusters/selection/search/zoom/list, exact directions, geolocation success and denial, mobile-sheet dismissal and resizing, contact/careers Instagram fallback, keyboard navigation, invalid API payloads and 404s. Build without email credentials before running tests. Provider-delivery tests use a stubbed fetch and synthetic customer data.
 
 Metadata tests inspect the original HTML of all 35 public pages, exercise nine crawler user agents against a dynamic route, download and decode every preview JPEG, and verify icons, manifest and crawl rules. Build and test with the same public URL environment settings.
 

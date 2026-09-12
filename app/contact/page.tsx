@@ -4,6 +4,7 @@ import { Instagram, ArrowUpLeft, MapPin, ArrowLeft, MessageCircle, Utensils } fr
 import { PageIntro } from "@/components/brand";
 import { ContactForm } from "@/components/contact-form";
 import { site } from "@/lib/site";
+import { getContactDeliveryConfig } from "@/lib/contact-delivery";
 
 export const metadata = pageMetadata({
   path: "/contact",
@@ -68,7 +69,7 @@ export default async function ContactPage({
             </Link>
           </div>
         </aside>
-        <ContactForm initialTopic={initialTopic} />
+        <ContactForm initialTopic={initialTopic} emailAvailable={!!getContactDeliveryConfig()} />
       </section>
     </>
   );
