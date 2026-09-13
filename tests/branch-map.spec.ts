@@ -133,7 +133,7 @@ test("city and Arabic search reveal branch information and its exact directions"
     "href",
     branchDirectionsUrl(branches.find((branch) => branch.slug === "karbala")!),
   );
-  await expect(details).not.toContainText("07XX XXX XXXX");
+  await expect(details.getByText("07XX XXX XXXX", { exact: true })).toBeVisible();
   await expect(details.getByRole("button", { name: "اتصل بالفرع", exact: true })).toHaveCount(0);
   await expect(details.getByRole("button", { name: "واتساب", exact: true })).toHaveCount(0);
   await expect(details.getByRole("link", { name: /تواصل عبر إنستغرام/ })).toHaveAttribute(

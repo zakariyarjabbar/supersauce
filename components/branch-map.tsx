@@ -91,17 +91,15 @@ function BranchDetails({ branch }: { branch: Branch }) {
             </dt>
             <dd>{branch.address}</dd>
           </div>
-          {links.phone && (
-            <div>
-              <dt>
-                <Phone size={19} aria-hidden="true" />
-                <span className="sr-only">رقم الهاتف</span>
-              </dt>
-              <dd>
-                <bdi dir="ltr">{phone}</bdi>
-              </dd>
-            </div>
-          )}
+          <div>
+            <dt>
+              <Phone size={19} aria-hidden="true" />
+              <span className="sr-only">رقم الهاتف</span>
+            </dt>
+            <dd>
+              <bdi dir="ltr">{links.phone ? phone : "07XX XXX XXXX"}</bdi>
+            </dd>
+          </div>
           <div>
             <dt>
               <Clock3 size={19} aria-hidden="true" />

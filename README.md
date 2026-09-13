@@ -108,7 +108,7 @@ The map supports mouse dragging, wheel zoom centered on the cursor, one-finger d
 
 Edit or duplicate an entry in `lib/branches.ts`. Give every branch a unique `slug`, then replace `name`, `city`, `area`, `address`, `hours`, `services` and `coordinates: { lat, lng }`. City filters, map pins, the list and branch pages are generated from this shared array. The current eight pins are grouped around Baghdad, Babel, Karbala and Najaf.
 
-Set each branch's `phone` and `whatsapp` to approved numbers, preferably starting with `+964`. Empty fields fall back to the site-wide contact settings below; the map omits absent numbers and their actions while keeping directions and Instagram available. WhatsApp drafts identify the selected branch. Optional `image` accepts a local public image path; otherwise the existing illustrative storefront is used.
+Set each branch's `phone` and `whatsapp` to approved numbers, preferably starting with `+964`. Empty fields fall back to the site-wide contact settings below; the map shows `07XX XXX XXXX` when no phone is configured and omits unavailable contact actions while keeping directions and Instagram available. WhatsApp drafts identify the selected branch. Optional `image` accepts a local public image path; otherwise the existing illustrative storefront is used.
 
 Nearby branches within a city form numbered clusters. Adjacent city buttons are separated slightly with guide lines to their coordinate anchors. Clicking a pin updates the desktop information panel or opens a keyboard-accessible mobile sheet. The red directions link opens Google Maps at that entry's exact coordinates. Replace sample coordinates before using those directions for a real visit.
 
