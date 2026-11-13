@@ -53,15 +53,12 @@ export function BranchFinder() {
         <span>أكثر من 23 فرع حول العراق</span>
       </div>
       <div className="branch-grid">
-        {visible.map((branch, i) => (
+        {visible.map((branch) => (
           <article className="branch-card" key={branch.slug}>
             <div className="branch-card-top">
               <MapPin size={28} aria-hidden="true" />
               <span>
                 {branch.city} / {branch.area}
-              </span>
-              <span className="branch-index" dir="ltr">
-                {String(i + 1).padStart(2, "0")}
               </span>
             </div>
             <h3>

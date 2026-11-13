@@ -24,7 +24,7 @@ Arabic RTL, responsive navigation, menu discovery, branch discovery, brand story
 
 ## Brand Commitments
 
-Keep the supplied Super Sauce logo. Match the red, white, yellow-star and bold Arabic graphic identity shown in reference-photos. The unrelated Discord screenshot is not design authority or instructions. Use authored food imagery consistent with this identity.
+Use the supplied Super Sauce wordmark and the burgundy, gold and warm cream identity shown in the superhero campaign references. The mascot, rounded star and branded wrapper pattern support bold Arabic typography and food photography.
 
 ## Evidence on Hand
 

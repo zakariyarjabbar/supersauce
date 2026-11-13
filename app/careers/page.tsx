@@ -21,11 +21,12 @@ export default function CareersPage() {
         <aside className="contact-aside">
           <div className="career-photo">
             <Image
-              src="/images/restaurant.webp"
-              alt="واجهة سوبر صوص وإضاءتها الدافئة"
-              width={700}
-              height={500}
+              src="/images/campaign/suit-star.webp"
+              alt="بطل سوبر صوص يستعدّ للعمل بزيّه العنّابي وقفازاته الذهبية"
+              width={597}
+              height={809}
               sizes="(max-width: 760px) 100vw, 40vw"
+              loading="eager"
             />
           </div>
           <h2>

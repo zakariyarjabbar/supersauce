@@ -6,6 +6,7 @@ import { Menu, X, ArrowUpLeft } from "lucide-react";
 import { Logo } from "./brand";
 import { navLinks } from "@/lib/site";
 import { OrderButton } from "./order-options";
+import styles from "./site-shell.module.css";
 
 export function Header() {
   const path = usePathname();
@@ -37,10 +38,10 @@ export function Header() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
   return (
-    <header className="site-header">
-      <div className="container header-inner">
+    <header className={styles.header}>
+      <div className={`container ${styles.headerInner}`}>
         <Logo />
-        <nav aria-label="القائمة الرئيسية" className="desktop-nav">
+        <nav aria-label="القائمة الرئيسية" className={styles.desktopNav}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -53,11 +54,13 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="header-actions">
-          <OrderButton className="button button-red header-order">اطلب السوبر</OrderButton>
+        <div className={styles.headerActions}>
+          <OrderButton className={`button button-yellow ${styles.headerOrder}`}>
+            اطلب السوبر
+          </OrderButton>
           <button
             ref={toggle}
-            className="icon-button mobile-toggle"
+            className={`icon-button mobile-toggle ${styles.mobileToggle}`}
             aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -68,7 +71,7 @@ export function Header() {
         </div>
       </div>
       {open && (
-        <div className="mobile-menu" id="mobile-menu" ref={panel}>
+        <div className={`mobile-menu ${styles.mobileMenu}`} id="mobile-menu" ref={panel}>
           <nav aria-label="قائمة الهاتف">
             {navLinks.map((link) => (
               <Link

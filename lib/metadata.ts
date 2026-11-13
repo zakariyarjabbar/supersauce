@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { site } from "./site";
 
-export const homeTitle = "سوبر صوص | مو بس برغر، هذا سوبر";
+export const homeTitle = "سوبر صوص | طعم غير. طعم سوبر.";
 export const shareImage = {
   url: "/social/super-sauce-v1.jpg",
   width: 1200,
   height: 630,
-  alt: "شعار سوبر صوص وبرغر على خلفية حمراء، مع عبارة مو بس برغر، هذا سوبر",
+  alt: "شعار سوبر صوص وبرغر على خلفية عنابية، مع عبارة طعم غير. طعم سوبر.",
 };
 
 export function photoShareImage(photo: string, alt: string) {

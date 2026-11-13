@@ -2,12 +2,13 @@ import Link from "next/link";
 import { Instagram, ArrowUpLeft } from "lucide-react";
 import { Logo, BrandStar } from "./brand";
 import { site } from "@/lib/site";
+import styles from "./site-shell.module.css";
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className={styles.siteFooter}>
       <div className="container">
-        <div className="footer-top">
-          <div className="footer-brand">
+        <div className={styles.footerTop}>
+          <div className={styles.footerBrand}>
             <Logo footer />
             <p>
               طعم يجمعنا.
@@ -15,7 +16,7 @@ export function Footer() {
               وصوص يخلّينا نرجع.
             </p>
             <a
-              className="social-link"
+              className={styles.socialLink}
               href={site.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -26,29 +27,29 @@ export function Footer() {
               <ArrowUpLeft size={16} />
             </a>
           </div>
-          <div className="footer-column">
+          <div className={styles.footerColumn}>
             <h3>عالم السوبر</h3>
             <Link href="/menu">المنيو</Link>
             <Link href="/branches">فروعنا</Link>
             <Link href="/about">حكايتنا</Link>
           </div>
-          <div className="footer-column">
+          <div className={styles.footerColumn}>
             <h3>خلّينا على تواصل</h3>
             <Link href="/contact">نسمعك</Link>
             <Link href="/careers">انضم للفريق</Link>
             <Link href="/faq">أسئلة على بالك</Link>
             <Link href="/contact?subject=partnership">تعاون ويّانا</Link>
           </div>
-          <div className="footer-signoff">
-            <BrandStar />
-            <span>
-              من العراق،
+          <div className={styles.footerSignoff}>
+            <BrandStar outline />
+            <span lang="en" dir="ltr">
+              TASTE THE
               <br />
-              بكل حب.
+              DIFFERENCE.
             </span>
           </div>
         </div>
-        <div className="footer-bottom">
+        <div className={styles.footerBottom}>
           <span>© {new Date().getFullYear()} سوبر صوص.</span>
           <div>
             <Link href="/privacy">الخصوصية</Link>

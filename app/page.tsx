@@ -1,241 +1,216 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowDown,
-  MapPin,
-  Instagram,
-  ArrowUpLeft,
-  Utensils,
-  Heart,
-  Flame,
-} from "lucide-react";
-import { BrandStar, ArrowLink } from "@/components/brand";
+import { ArrowLeft, ArrowUpLeft, Instagram, MapPin } from "lucide-react";
+import { ArrowLink, BrandStar } from "@/components/brand";
 import { HomeMenu } from "@/components/menu-browser";
-import { site } from "@/lib/site";
 import { BranchMap } from "@/components/branch-map";
+import { site } from "@/lib/site";
+import styles from "./home.module.css";
+
+const campaignPosts = [
+  { image: "arrival", title: "البطل وصل", alt: "بطل سوبر صوص أمام محطة قطار بغداد" },
+  { image: "train-ticket", title: "السوبر عالطريق", alt: "تذكرة سفر وأكياس سوبر صوص في قطار" },
+  { image: "suit-star", title: "نجمة السوبر", alt: "نجمة ذهبية على بدلة البطل البورغندية" },
+  {
+    image: "mascot-bag",
+    title: "السوبر بحجم أكبر",
+    alt: "لوحة كبيرة لبطل سوبر صوص يحمل كيس الطلب",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <section className="hero">
-        <div className="hero-word" aria-hidden="true">
-          SUPER SAUCE
-        </div>
-        <div className="container hero-inner">
-          <div className="hero-copy">
-            <h1>
-              مو بس برغر.
-              <br />
-              <span>هذا سوبر.</span>
+      <section className={styles.hero} aria-labelledby="home-title">
+        <div className={`container ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
+            <h1 id="home-title">
+              الجوع إله <span>بطل.</span>
             </h1>
-            <p>
-              لحم مشوي، قرمشة غير شكل، وصوص
-              <br className="desktop-break" /> يخلّي كل لقمة أحلى من الثانية.
-            </p>
-            <div className="hero-buttons">
+            <p>برغر مشوي، دجاج يقرمش، وصوص يخليك ترجع.</p>
+            <div className={styles.heroActions}>
               <Link href="/menu" className="button button-yellow">
-                شوف المنيو <ArrowLeft size={20} />
+                شوف المنيو <ArrowLeft size={20} aria-hidden="true" />
               </Link>
-              <Link href="#branch-map" className="hero-location">
-                <MapPin size={19} /> اعثر على أقرب فرع
+              <Link href="#branch-map" className={styles.heroLocation}>
+                <MapPin size={18} aria-hidden="true" /> اعثر على أقرب فرع
               </Link>
             </div>
-            <div className="hero-proof">
-              <span className="mini-stars">
-                <BrandStar />
-                <BrandStar />
-                <BrandStar />
-              </span>
-              <span>
-                لمة تكبر، وأكثر من <b>23 فرع</b> حول العراق.
-              </span>
+            <div className={styles.heroCaption} lang="en" dir="ltr">
+              <BrandStar /> TASTE THE DIFFERENCE
             </div>
           </div>
-          <div className="hero-art">
-            <Image
-              className="hero-burger"
-              src="/images/hero-burger.webp"
-              alt="برغر سوبر صوص بطبقتين من اللحم المشوي والجبن الذائب والصوص"
-              width={1536}
-              height={1024}
-              sizes="(max-width: 760px) 100vw, 60vw"
-              priority
+          <picture className={styles.heroVisual}>
+            <img
+              src="/images/campaign/hero-star-cutout-960.webp"
+              srcSet="/images/campaign/hero-star-cutout-640.webp 640w, /images/campaign/hero-star-cutout-960.webp 960w, /images/campaign/hero-star-cutout-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 760px) 360px, (max-width: 1350px) 48vw, 640px"
+              width={1280}
+              height={1086}
+              alt="بطل سوبر صوص يقدّم برغر بطبقتين من اللحم والجبن أمام نجمة ذهبية"
+              loading="eager"
               fetchPriority="high"
             />
-            <div className="hero-stamp">
-              <BrandStar />
-              <span>
-                سرّ
-                <br />
-                الطعم!
-              </span>
-            </div>
-            <svg
-              className="hero-doodle"
-              viewBox="0 0 140 90"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              aria-hidden="true"
-            >
-              <path
-                d="M130 8C97 0 32 8 40 33c8 23 37 4 26-8-12-14-48 2-49 47m-12-8 12 15 18-11"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="burger-caption">لقمة وتعرف السالفة.</span>
-          </div>
-          <a className="hero-scroll" href="#home-menu" aria-label="اكتشف المنيو">
-            <ArrowDown size={19} />
-          </a>
+          </picture>
         </div>
-        <BrandStar className="hero-star-one" outline />
       </section>
-      <div className="flavor-ribbon" aria-label="صوص أكثر، طعم أكبر، مزاج سوبر">
-        <div>
-          {Array.from({ length: 3 }, (_, index) => (
-            <span key={index} aria-hidden={index > 0}>
-              صوص أكثر
-              <BrandStar />
-              طعم أكبر
-              <BrandStar />
-              مزاج سوبر
-              <BrandStar />
-            </span>
-          ))}
+
+      <div className={styles.ribbon}>
+        <div className={`container ${styles.ribbonInner}`}>
+          <span>صوص أكثر</span>
+          <BrandStar />
+          <span>قرمشة أعلى</span>
+          <BrandStar />
+          <span>مزاج سوبر</span>
+          <BrandStar />
+          <span>نكهة غير</span>
         </div>
       </div>
-      <section className="section container" id="home-menu">
-        <div className="section-heading">
+
+      <section className={`container ${styles.menu}`} id="home-menu">
+        <div className={styles.sectionHead}>
           <div>
             <h2>شنو مشتهي اليوم؟</h2>
-            <p>من أول لقمة لآخر صوص. اختار السوبر مالك.</p>
+            <p>من أول لقمة لآخر غمسة. اختار السوبر مالك.</p>
           </div>
           <ArrowLink href="/menu">المنيو كامل</ArrowLink>
         </div>
         <HomeMenu />
       </section>
-      <section className="sharing-section container">
-        <div className="sharing-copy">
-          <h2>
-            اللّمة تحلى
-            <br />
-            بالسوبر.
-          </h2>
-          <p>
-            للمباراة، للطلعة، أو لقعدة «شنو ناكل؟».
-            <br />
-            بروستد وستربس بأحجام للعائلة واللّمة.
-          </p>
-          <Link href="/menu?category=chicken" className="button button-yellow">
-            اختار وجبة اللمة <ArrowLeft size={19} />
-          </Link>
-          <BrandStar outline className="sharing-star" />
-        </div>
-        <div className="sharing-photo">
+
+      <section className={`container ${styles.foodFeatures}`} aria-label="اختيارات سوبر صوص">
+        <Link
+          href="/menu?category=chicken"
+          className={`${styles.foodFeature} ${styles.chickenFeature}`}
+        >
           <Image
-            src="/images/menu/family-broasted-meal.webp"
-            alt="وجبة بروستد عائلي من سوبر صوص مع البطاطا والكولسلو والصوص"
+            src="/images/campaign/chicken-feast.webp"
+            alt=""
             fill
-            sizes="(max-width: 760px) 100vw, 60vw"
+            sizes="(max-width: 760px) 90vw, 56vw"
           />
-          <span className="sharing-note">
-            لمّ أصحابك.
-            <br />
-            وخلي الباقي علينا.
-          </span>
+          <div className={styles.featureCopy}>
+            <h2>اللّمة تحلى بالسوبر.</h2>
+            <span>
+              اختار وجبة اللّمة <ArrowLeft size={18} aria-hidden="true" />
+            </span>
+          </div>
+        </Link>
+        <Link
+          href="/menu?category=burgers"
+          className={`${styles.foodFeature} ${styles.burgerFeature}`}
+        >
+          <Image
+            src="/images/campaign/burger-packaging.webp"
+            alt=""
+            fill
+            sizes="(max-width: 760px) 90vw, 34vw"
+          />
+          <div className={styles.featureCopy}>
+            <h2>عضّة تسوى.</h2>
+            <span>
+              شوف البرغر <ArrowLeft size={18} aria-hidden="true" />
+            </span>
+          </div>
+        </Link>
+      </section>
+
+      <section className={styles.campaign}>
+        <div className={`container ${styles.campaignInner}`}>
+          <div className={styles.campaignCopy}>
+            <h2>
+              مو بطل جديد.
+              <br />
+              <span>نسخة أقوى.</span>
+            </h2>
+            <p>نجمة جديدة، كاب ذهبي، ونفس الحب للّقمة اللي تجمعنا.</p>
+            <ArrowLink href="/about">اقرأ حكاية السوبر</ArrowLink>
+          </div>
+          <div className={styles.campaignArt}>
+            <div className={styles.campaignMain}>
+              <Image
+                src="/images/campaign/mascot-store.webp"
+                alt="بطل سوبر صوص أمام واجهة المطعم بشعارها الجديد"
+                fill
+                sizes="(max-width: 760px) 70vw, 30vw"
+              />
+            </div>
+            <div className={styles.campaignInset}>
+              <Image
+                src="/images/campaign/suit-reveal.webp"
+                alt=""
+                fill
+                sizes="(max-width: 760px) 26vw, 15vw"
+              />
+            </div>
+            <BrandStar className={styles.campaignStar} />
+          </div>
         </div>
       </section>
-      <section className="sauce-section section container">
-        <div className="sauce-art">
-          <Image
-            src="/images/sauces.webp"
-            alt="صوص السوبر الكريمي، صوص الشيدر والصوص الحار مع بطاطا للتغميس"
-            width={850}
-            height={567}
-            sizes="(max-width: 760px) 95vw, 50vw"
-          />
-          <span className="sauce-doodle">
-            <BrandStar />
-          </span>
-        </div>
-        <div className="sauce-copy">
+
+      <section className={`container ${styles.sauce}`}>
+        <div>
           <h2>
             السر؟
             <br />
             <span>بالصوص.</span>
           </h2>
-          <p>
-            مو صدفة اسمنا سوبر صوص. نعرف إن اللمسة الأخيرة هي اللي تسوي الفرق. كريمي، سموكي، لو حار؟
-            عدنا صوص على مزاجك.
-          </p>
+          <p>كريمي، سموكي، لو حار؟ عدنا صوص على مزاجك.</p>
           <ArrowLink href="/menu?category=sauces">اكتشف صوصك المفضل</ArrowLink>
-          <div className="sauce-flavors">
-            <span>
-              <Utensils size={17} /> كريمي
-            </span>
-            <span>
-              <Flame size={17} /> حار
-            </span>
-            <span>
-              <Heart size={17} /> على مزاجك
-            </span>
-          </div>
         </div>
+        <Image
+          src="/images/sauces.webp"
+          alt="صوصات سوبر صوص مع بطاطا للتغميس"
+          width={850}
+          height={567}
+          sizes="(max-width: 760px) 90vw, 50vw"
+        />
       </section>
+
       <BranchMap />
-      <section className="section container social-section">
-        <div className="section-heading">
+
+      <section className={`container ${styles.social}`}>
+        <div className={styles.sectionHead}>
           <div>
             <h2>كل يوم، سالفة سوبر.</h2>
-            <p>الطعم إله صورة. تابعنا وشوف شنو عدنا.</p>
+            <p>تابع مشاهد الحملة وآخر أخبارنا على إنستغرام.</p>
           </div>
-          <a href={site.instagram} className="text-link" target="_blank" rel="noopener noreferrer">
-            <Instagram size={20} />
+          <a
+            href={site.instagram}
+            className="text-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="تابع سوبر صوص على إنستغرام"
+          >
+            <Instagram size={20} aria-hidden="true" />
             <span dir="ltr">@supersauce.iq</span>
-            <ArrowUpLeft size={20} />
+            <ArrowUpLeft size={17} aria-hidden="true" />
           </a>
         </div>
-        <div className="social-grid">
-          {[
-            { image: "hero-burger", label: "دبل الطعم." },
-            { image: "sharing-meal", label: "اللّمة علينا." },
-            { image: "fried-chicken", label: "قرمشة تستاهل." },
-            { image: "restaurant", label: "مكانك يمّنا." },
-          ].map((post, i) => (
-            <a
-              key={post.image}
-              className={`social-tile social-tile-${i}`}
-              href={site.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${post.label} تابع سوبر صوص على إنستغرام`}
-            >
-              <Image
-                src={`/images/${post.image}.webp`}
-                alt={post.label}
-                fill
-                sizes="(max-width: 760px) 45vw, 25vw"
-              />
+        <div className={styles.socialGrid}>
+          {campaignPosts.map(({ image, alt, title }) => (
+            <figure key={image}>
               <div>
-                <span>{post.label}</span>
-                <ArrowUpLeft size={22} />
+                <Image
+                  src={`/images/campaign/${image}.webp`}
+                  alt={alt}
+                  fill
+                  sizes="(max-width: 760px) 45vw, 24vw"
+                />
               </div>
-            </a>
+              <figcaption>{title}</figcaption>
+            </figure>
           ))}
         </div>
       </section>
-      <section className="home-close">
+
+      <section className={styles.close}>
         <div className="container">
-          <h2>
-            خلك <span>سوبر.</span>
-          </h2>
+          <h2>خلك سوبر.</h2>
           <Link href="/menu" className="button button-dark">
-            يلا نطلب؟ <ArrowLeft size={20} />
+            يلا نطلب؟ <ArrowLeft size={20} aria-hidden="true" />
           </Link>
-          <BrandStar />
+          <BrandStar outline />
         </div>
       </section>
     </>

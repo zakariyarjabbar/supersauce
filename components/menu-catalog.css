@@ -11,12 +11,29 @@
   display: flex;
   flex-direction: column;
 }
+:is(.menu-content, .related-section) .food-card {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+:is(.menu-content, .related-section) .food-photo {
+  border-radius: 0;
+  border-block-end: 1px solid var(--line);
+}
+:is(.menu-content, .related-section) .food-info {
+  padding: 16px;
+}
+:is(.menu-content, .related-section) .food-bottom {
+  border-block-start: 1px dashed var(--line-strong);
+}
 .food-info {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
 .food-info h3 {
+  color: var(--burgundy-deep);
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
@@ -162,6 +179,9 @@
   }
 }
 @media (max-width: 600px) {
+  :is(.menu-content, .related-section) .food-info {
+    padding: 12px;
+  }
   .order-dialog {
     --order-inset: 22px;
   }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import restaurant from "@/public/images/restaurant.webp";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
@@ -72,8 +73,8 @@ function BranchDetails({ branch }: { branch: Branch }) {
     <article className={styles.details} aria-label={`معلومات فرع ${branch.name}`}>
       <Image
         className={styles.branchImage}
-        src={branch.image || "/images/restaurant.webp"}
-        alt="واجهة سوبر صوص بالأحمر والأبيض"
+        src={branch.image || restaurant}
+        alt="رسم لواجهة سوبر صوص بهويته العنّابية"
         width={720}
         height={420}
         sizes="(max-width: 760px) 100vw, 380px"
@@ -625,8 +626,8 @@ export function BranchMap() {
                         return (
                           <text
                             key={label.name}
-                            x={point.x}
-                            y={point.y}
+                            x={point.x.toFixed(3)}
+                            y={point.y.toFixed(3)}
                             textAnchor="middle"
                             className={label.home ? styles.iraqLabel : styles.countryLabel}
                           >
@@ -797,7 +798,6 @@ export function BranchMap() {
           </Link>
         </div>
       </div>
-      <div className={`checker-border ${styles.checker}`} />
       <dialog
         ref={sheet}
         className={styles.sheet}

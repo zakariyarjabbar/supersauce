@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import restaurant from "@/public/images/restaurant.webp";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpLeft, MapPin, Clock3, ShoppingBag } from "lucide-react";
 import { branches, getBranch, branchMapsUrl } from "@/lib/branches";
@@ -24,7 +25,7 @@ export async function generateMetadata({
         path: `/branches/${branch.slug}`,
         title: `فرع ${branch.name}`,
         description: `${branch.city}، ${branch.address}. تعرّف على الخدمات وأوقات العمل وطرق التواصل مع فرع ${branch.name}.`,
-        image: photoShareImage("/images/restaurant.webp", "واجهة سوبر صوص بالأحمر والأبيض"),
+        image: photoShareImage("/images/restaurant.webp", "رسم لواجهة سوبر صوص بهويته العنّابية"),
       })
     : { title: "الفرع غير موجود" };
 }
@@ -87,10 +88,10 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
           </div>
           <figure className="branch-detail-photo">
             <Image
-              src="/images/restaurant.webp"
-              alt="واجهة سوبر صوص الحمراء بإضاءة دافئة"
+              src={restaurant}
+              alt="رسم لواجهة سوبر صوص بهويته العنّابية"
               fill
-              priority
+              loading="eager"
               sizes="(max-width: 760px) 100vw, 50vw"
             />
           </figure>

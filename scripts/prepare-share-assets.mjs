@@ -21,7 +21,9 @@ const provenance = async (file, sources, note) => {
         type: "code-rendered-share-asset",
         generator: "scripts/prepare-share-assets.mjs — Chromium / Sharp",
         source: sources,
-        origin: "Existing project imagery and supplied identity; no new photograph generated.",
+        origin: sources.some((name) => name.startsWith("public/images/campaign/"))
+          ? "User-supplied campaign artwork and updated identity."
+          : "Existing project imagery and supplied identity; no new photograph generated.",
         note,
         sourcePrompts: sourceAssets.filter((asset) =>
           sources.some((name) => name.includes(asset.key)),
@@ -40,8 +42,8 @@ for (const [key, name, mime] of [
     "node_modules/@fontsource-variable/alexandria/files/alexandria-arabic-wght-normal.woff2",
     "font/woff2",
   ],
-  ["PHOTO", "public/images/hero-burger.webp", "image/webp"],
-  ["LOGO", "public/images/logo-original.webp", "image/webp"],
+  ["PHOTO", "public/images/campaign/burger-packaging.webp", "image/webp"],
+  ["LOGO", "public/images/brand/super-sauce-light.svg", "image/svg+xml"],
 ])
   html = html.replaceAll(`{{${key}}}`, await fileData(name, mime));
 
@@ -64,10 +66,10 @@ try {
       file,
       [
         "assets/social/share-card.html",
-        "public/images/hero-burger.webp",
-        "public/images/logo-original.webp",
+        "public/images/campaign/burger-packaging.webp",
+        "public/images/brand/super-sauce-light.svg",
       ],
-      "Branded Arabic link card using the existing illustrative burger and original logo. Rebuild when the source layout or imagery changes.",
+      "Arabic link card using the supplied burger campaign artwork and updated Super Sauce logo.",
     );
     await page.close();
   }
@@ -91,7 +93,7 @@ for (const asset of sourceAssets.filter((asset) => asset.key !== "logo-original"
   );
 }
 
-// Convert the existing vector favicon, preserving the site's established mark.
+// Use the same brand star across browsers, platform shortcuts and the manifest.
 const icon = await fs.readFile(path.join(root, "app/icon.svg"));
 await fs.mkdir(path.join(root, "public/icons"), { recursive: true });
 for (const [name, size] of [
@@ -101,11 +103,7 @@ for (const [name, size] of [
 ]) {
   const file = path.join(root, "public", name);
   await sharp(icon).resize(size, size).png().toFile(file);
-  await provenance(
-    file,
-    ["app/icon.svg"],
-    "Raster fallback of the existing SVG brand-star favicon.",
-  );
+  await provenance(file, ["app/icon.svg"], "Raster fallback of the updated Super Sauce star.");
 }
 const iconSizes = [16, 32, 48];
 const frames = await Promise.all(
@@ -129,7 +127,7 @@ await fs.writeFile(path.join(root, "public/favicon.ico"), Buffer.concat([header,
 await provenance(
   path.join(root, "public/favicon.ico"),
   ["app/icon.svg"],
-  "16px, 32px and 48px favicon fallbacks of the existing SVG mark.",
+  "16px, 32px and 48px favicon fallbacks of the updated Super Sauce star.",
 );
 await prepareMenuPreviews();
 console.log("Prepared branded OG/X images, catalog photo previews and platform icons.");

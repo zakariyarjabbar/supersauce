@@ -1,0 +1,11 @@
+{
+  "type": "ai-generated-concept",
+  "generator": "OpenAI ImageGen (built-in)",
+  "source": "Previous Super Sauce hero artwork and supplied storefront mascot reference",
+  "variants": [
+    "hero-star-cutout-640.webp",
+    "hero-star-cutout-960.webp",
+    "hero-star-cutout-1280.webp"
+  ],
+  "prompt": "Use case: background-extraction and outpainting. Asset type: isolated Super Sauce superhero and burger key visual for a website. Edit Image 1, the existing ad artwork, into a sharp, compact fully contained cutout on TRUE transparent alpha. Use Image 2 as the mascot identity reference. Keep the visual of the friendly smiling brown bull with tall gold S-shaped forelock, curved ivory horns, gold mask, wine burgundy suit, gold gloves and whipping cape, and keep the photoreal oversized juicy double cheeseburger very prominent in the foreground, supported by one glove. Keep the bold large metallic gold five-point star behind the hero. Pull back and outpaint the whole scene so the entire rounded star, the left tip of the flowing gold cape, both ivory horns, the tall crest, every burger layer and glove, and the mascot's airborne silhouette all end naturally within the picture, with clear transparent breathing room on every side. Complete the lower half with small foreshortened golden boots tucked behind in his airborne pose if visible, with legs secondary to the food. Exactly one mascot and one burger. Subject and star form one cohesive poster-like silhouette with the dynamic scale and extremely crisp detail of the reference. Face in upper third, large burger in lower foreground, cape swoops diagonally inside the left boundary. Center the complete group in a compact 4:3 or square composition with at least 8% empty transparency around the entire silhouette. Transparent background, no scenic background, no rectangular or straight cuts along any edge of the artwork, no lettering, no text, no watermark, no other objects, no black border, no halos around the whole cutout. Render premium commercial detail, not painterly or plastic."
+}

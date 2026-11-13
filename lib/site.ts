@@ -4,7 +4,7 @@ export const site = {
   name: "سوبر صوص",
   latinName: "Super Sauce",
   description:
-    "مو بس برغر، هذا سوبر. اكتشف البرغر، الدجاج المقرمش، الصوصات وبوكسات اللمة من سوبر صوص في العراق.",
+    "طعم غير. طعم سوبر. اكتشف البرغر، الدجاج المقرمش، الصوصات وبوكسات اللمة من سوبر صوص في العراق.",
   origin: resolveSiteOrigin({
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
     productionUrl: process.env.VERCEL_PROJECT_PRODUCTION_URL,

@@ -16,36 +16,36 @@ export default function AboutPage() {
         <div className="container">
           <nav className="breadcrumb" aria-label="مسار التصفح">
             <Link href="/">الرئيسية</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <span>حكاية السوبر</span>
           </nav>
-          <h1>
-            حكايتنا بسيطة.
-            <br />
-            <span>طعم يبقى بالبال.</span>
-          </h1>
-          <p>
-            كلّنا عدنا هذيك اللقمة اللي نرجعلها.
-            <br />
-            نريد نكون لقمتك، ومكانك، وسالفة لمّتك.
-          </p>
-          <BrandStar className="about-hero-star" />
+          <div className="about-hero-layout">
+            <div className="about-hero-copy">
+              <h1>
+                حكايتنا بسيطة.
+                <span>طعم يبقى بالبال.</span>
+              </h1>
+              <p>كلّنا عدنا هذيك اللقمة اللي نرجعلها. نريد نكون لقمتك، ومكانك، وسالفة لمّتك.</p>
+            </div>
+            <div className="about-hero-art">
+              <BrandStar className="about-hero-star" outline />
+              <figure className="about-portrait">
+                <Image
+                  src="/images/campaign/mascot-store.webp"
+                  alt="بطل سوبر صوص بعباءته الذهبية أمام الواجهة بالشعار الجديد"
+                  width={456}
+                  height={644}
+                  preload
+                  sizes="(max-width: 760px) min(360px, 90vw), min(385px, 36vw)"
+                />
+                <figcaption>
+                  <BrandStar /> من العراق، وبمزاج عراقي.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </section>
-      <div className="about-wide-photo">
-        <Image
-          src="/images/sharing-meal.webp"
-          alt="لمّة من وجبات سوبر صوص المتنوعة على سفرة حمراء"
-          fill
-          priority
-          sizes="100vw"
-        />
-        <div className="about-photo-note">
-          من العراق.
-          <br />
-          وبمزاج عراقي.
-        </div>
-      </div>
       <section className="section container story-grid">
         <h2>
           إحنا سوبر صوص.
@@ -104,18 +104,18 @@ export default function AboutPage() {
             <br />
             مكان يجمعنا.
           </h2>
-          <p>لون أحمر تعرفه من بعيد، لمّة ترتاحلها، وطعم يخليك ترجع. هذا عالم سوبر صوص.</p>
+          <p>عنّابي تعرفه من بعيد، لمّة ترتاحلها، وطعم يخليك ترجع. هذا عالم سوبر صوص.</p>
           <Link href="/careers" className="button button-red">
             صير جزء من الفريق <ArrowLeft size={19} />
           </Link>
         </div>
-        <div>
+        <div className="about-place-art">
           <Image
-            src="/images/restaurant.webp"
-            alt="واجهة سوبر صوص بالأحمر والأبيض"
-            width={900}
-            height={600}
-            sizes="(max-width: 760px) 100vw, 55vw"
+            src="/images/campaign/mascot-bag.webp"
+            alt="بطل سوبر صوص يحمل كيس الوجبة في إعلان الحملة"
+            width={434}
+            height={624}
+            sizes="(max-width: 760px) 85vw, 28vw"
           />
         </div>
       </section>

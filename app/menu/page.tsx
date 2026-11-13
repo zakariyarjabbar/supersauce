@@ -15,6 +15,7 @@ export default function MenuPage() {
       <PageIntro
         title="كل لقمة، سالفة."
         text="برغر يضبط المزاج، قرمشة تسمعها، وصوص ما ينشبع منه. هذا المنيو مالك."
+        color="red"
       />
       <Suspense
         fallback={

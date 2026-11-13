@@ -1,23 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import styles from "./site-shell.module.css";
 
 export function Logo({ footer = false }: { footer?: boolean }) {
   return (
     <Link
       href="/"
-      className={`logo ${footer ? "logo-footer" : ""}`}
+      className={footer ? styles.footerLogo : styles.logo}
       aria-label="سوبر صوص — الرئيسية"
     >
-      <span className="logo-crop">
-        <Image
-          src="/images/logo-original.webp"
-          alt="Super Sauce سوبر صوص"
-          width={180}
-          height={180}
-          priority
-        />
-      </span>
+      <Image
+        src="/images/brand/super-sauce-light.svg"
+        alt=""
+        width={720}
+        height={415}
+        loading={footer ? "lazy" : "eager"}
+        unoptimized
+      />
     </Link>
   );
 }
@@ -38,7 +38,7 @@ export function BrandStar({
       aria-hidden="true"
     >
       <path
-        d="M50 3 64 32 96 37 73 60 78 94 50 78 20 94 26 60 3 37 36 32Z"
+        d="M44 7Q50-3 56 7L68 25Q70 28 74 29L94 34Q103 36 96 44L82 61Q79 64 79 68L80 88Q81 98 72 95L53 88Q50 87 47 88L28 95Q19 98 20 88L21 68Q21 64 18 61L4 44Q-3 36 6 34L26 29Q30 28 32 25Z"
         strokeLinejoin="round"
       />
     </svg>
